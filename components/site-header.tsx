@@ -26,7 +26,7 @@ export function SiteHeader() {
       <div className="container flex h-16 items-center">
         <div className="mr-8 flex items-center space-x-2">
           <ShieldCheck className="h-6 w-6 text-primary" />
-          <span className="font-orbitron text-xl font-bold">CyberMuhscience Tech iLabs</span>
+          <span className="font-orbitron text-xl font-bold">CyberMuhscience Tech iLabs Ltd</span>
         </div>
         <nav className="flex flex-1 items-center space-x-6 text-sm font-medium">
           {navigation.map((item) => (
