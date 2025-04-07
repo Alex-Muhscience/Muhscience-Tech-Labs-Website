@@ -25,12 +25,12 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    details: ["contact@cybermuhscienceilabs.com", "support@cybermuhscience.com"],
+    details: ["contact@cybermuhscienceilabs.com", "support@cybermuhscienceilabs.com"],
   },
   {
     icon: Clock,
     title: "Working Hours",
-    details: ["9:00 AM - 6:00 PM EST", "24/7 Emergency Support"],
+    details: ["9:00 AM - 6:00 PM EAT", "24/7 Emergency Support"],
   },
 ];
 

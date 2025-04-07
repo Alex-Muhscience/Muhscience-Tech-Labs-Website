@@ -10,7 +10,7 @@ export function SiteFooter() {
           <div>
             <div className="flex items-center space-x-2">
               <ShieldCheck className="h-6 w-6 text-primary" aria-label="CyberMuhscience iLabs Logo" />
-              <span className="font-orbitron text-xl font-bold">CyberMuhscience iLabs</span>
+              <span className="font-orbitron text-xl font-bold">CyberMuhscience Tech iLabs</span>
             </div>
             <p className="mt-4 text-sm text-muted-foreground">
               Securing the future through innovation and cutting-edge technology solutions.
@@ -98,7 +98,7 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} CyberMuhscience iLabs. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} CyberMuhscience Tech iLabs. All rights reserved.</p>
         </div>
       </div>
     </footer>
