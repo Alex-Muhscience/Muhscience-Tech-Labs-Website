@@ -5,7 +5,7 @@ import BlogPost from "@/models/BlogPost";
 const samplePosts = [
   {
     title: "The Future of Cybersecurity: AI-Powered Threat Detection",
-    content: "Artificial Intelligence is revolutionizing the way we approach cybersecurity. Modern threat detection systems leverage machine learning algorithms to identify and respond to potential security breaches in real-time...",
+    content: "Artificial Intelligence is revolutionizing the way we approach cybersecurity. Modern threat detection systems leverage machine learning algorithms to identify and respond to potential security breaches in real-time. This comprehensive guide explores the latest advancements in AI-driven security solutions and their practical applications in enterprise environments.",
     excerpt: "Exploring how AI is transforming cybersecurity threat detection and response",
     author: {
       name: "Dr. Sarah Chen",
@@ -17,7 +17,7 @@ const samplePosts = [
   },
   {
     title: "Quantum Computing: Preparing for the Post-Quantum Era",
-    content: "As quantum computers become more powerful, the need for quantum-resistant cryptography becomes increasingly critical. Organizations must start preparing for the post-quantum era...",
+    content: "As quantum computers become more powerful, the need for quantum-resistant cryptography becomes increasingly critical. Organizations must start preparing for the post-quantum era. This article delves into the implications of quantum computing on current cryptographic systems and outlines strategies for maintaining security in a quantum-capable world.",
     excerpt: "Understanding the impact of quantum computing on modern cryptography",
     author: {
       name: "Dr. James Park",
@@ -29,7 +29,7 @@ const samplePosts = [
   },
   {
     title: "Blockchain Security: Best Practices for Smart Contracts",
-    content: "Smart contract vulnerabilities can lead to significant financial losses. This guide covers essential security practices for developing and auditing smart contracts...",
+    content: "Smart contract vulnerabilities can lead to significant financial losses. This guide covers essential security practices for developing and auditing smart contracts. Learn about common vulnerabilities, testing methodologies, and tools for ensuring the security of your blockchain applications.",
     excerpt: "Essential security practices for blockchain development",
     author: {
       name: "Marcus Rodriguez",
@@ -41,7 +41,7 @@ const samplePosts = [
   },
   {
     title: "Machine Learning in Healthcare: Ethical Considerations",
-    content: "As healthcare organizations increasingly adopt ML solutions, understanding and addressing ethical implications becomes crucial. This article explores key considerations...",
+    content: "As healthcare organizations increasingly adopt ML solutions, understanding and addressing ethical implications becomes crucial. This article explores key considerations in implementing AI/ML solutions in healthcare, including data privacy, bias mitigation, and ensuring equitable access to AI-driven healthcare services.",
     excerpt: "Navigating ethical challenges in healthcare AI implementation",
     author: {
       name: "Dr. Emily Watson",
@@ -53,7 +53,7 @@ const samplePosts = [
   },
   {
     title: "Zero Trust Architecture: Implementation Guide",
-    content: "Zero Trust security models are becoming the standard for enterprise security. Learn how to implement Zero Trust principles in your organization...",
+    content: "Zero Trust security models are becoming the standard for enterprise security. Learn how to implement Zero Trust principles in your organization. This comprehensive guide covers the fundamental concepts, implementation strategies, and best practices for transitioning to a Zero Trust security model.",
     excerpt: "A comprehensive guide to implementing Zero Trust security",
     author: {
       name: "Alex Thompson",
@@ -64,6 +64,17 @@ const samplePosts = [
     readTime: "10 min read"
   }
 ];
+
+export async function GET() {
+  try {
+    await connectDB();
+    const posts = await BlogPost.find({});
+    return NextResponse.json(posts);
+  } catch (error) {
+    console.error('Error fetching blog posts:', error);
+    return NextResponse.json({ error: "Failed to fetch blog posts" }, { status: 500 });
+  }
+}
 
 export async function POST() {
   try {
