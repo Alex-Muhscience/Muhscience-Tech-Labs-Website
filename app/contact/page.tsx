@@ -10,27 +10,28 @@ import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
+import { toast } from "sonner";
 
 const contactInfo = [
   {
     icon: MapPin,
     title: "Visit Us",
-    details: ["Nairobi"],
+    details: ["123 Innovation Drive", "Silicon Valley, CA 94025"],
   },
   {
     icon: Phone,
     title: "Call Us",
-    details: ["+254 746254055", "Monday to Friday"],
+    details: ["+1 (555) 123-4567", "Monday to Friday"],
   },
   {
     icon: Mail,
     title: "Email Us",
-    details: ["contact@cybermuhscienceilabs.com", "support@cybermuhscienceilabs.com"],
+    details: ["contact@cybermuhscience.com", "support@cybermuhscience.com"],
   },
   {
     icon: Clock,
     title: "Working Hours",
-    details: ["9:00 AM - 6:00 PM EAT", "24/7 Emergency Support"],
+    details: ["9:00 AM - 6:00 PM EST", "24/7 Emergency Support"],
   },
 ];
 
@@ -41,11 +42,31 @@ export default function ContactPage() {
     subject: "",
     message: "",
   });
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
+    setSubmitting(true);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) throw new Error('Failed to submit form');
+
+      toast.success('Message sent successfully! We\'ll get back to you soon.');
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      toast.error('Failed to send message. Please try again later.');
+      console.error('Error submitting form:', error);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -125,6 +146,7 @@ export default function ContactPage() {
                           setFormData({ ...formData, name: e.target.value })
                         }
                         required
+                        disabled={submitting}
                       />
                     </div>
                     <div className="space-y-2">
@@ -137,6 +159,7 @@ export default function ContactPage() {
                           setFormData({ ...formData, email: e.target.value })
                         }
                         required
+                        disabled={submitting}
                       />
                     </div>
                   </div>
@@ -149,6 +172,7 @@ export default function ContactPage() {
                         setFormData({ ...formData, subject: e.target.value })
                       }
                       required
+                      disabled={submitting}
                     />
                   </div>
                   <div className="space-y-2">
@@ -161,10 +185,11 @@ export default function ContactPage() {
                         setFormData({ ...formData, message: e.target.value })
                       }
                       required
+                      disabled={submitting}
                     />
                   </div>
-                  <Button type="submit" className="w-full">
-                    Send Message
+                  <Button type="submit" className="w-full" disabled={submitting}>
+                    {submitting ? 'Sending...' : 'Send Message'}
                   </Button>
                 </form>
               </CardContent>

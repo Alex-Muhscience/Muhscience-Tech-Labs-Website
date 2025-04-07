@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,49 +8,43 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Search } from "lucide-react";
 
-const blogPosts = [
-  {
-    title: "The Future of Quantum Computing in Cybersecurity",
-    category: "Cybersecurity",
-    author: "Dr. Sarah Chen",
-    date: "2024-02-28",
-    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800",
-    excerpt: "Exploring how quantum computing will revolutionize cybersecurity and the measures we need to take to prepare for this technological shift.",
-    readTime: "5 min read",
-  },
-  {
-    title: "Implementing Zero Trust Architecture",
-    category: "Security",
-    author: "James Park",
-    date: "2024-02-25",
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800",
-    excerpt: "A comprehensive guide to implementing zero trust architecture in your organization's security infrastructure.",
-    readTime: "8 min read",
-  },
-  {
-    title: "AI in Healthcare: Transforming Patient Care",
-    category: "AI/ML",
-    author: "Dr. Emily Watson",
-    date: "2024-02-22",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800",
-    excerpt: "How artificial intelligence is revolutionizing healthcare delivery and improving patient outcomes.",
-    readTime: "6 min read",
-  },
-  {
-    title: "The Rise of Edge Computing",
-    category: "Technology",
-    author: "Marcus Rodriguez",
-    date: "2024-02-20",
-    image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=800",
-    excerpt: "Understanding the impact of edge computing on modern application architecture and performance.",
-    readTime: "7 min read",
-  },
-];
+interface BlogPost {
+  _id: string;
+  title: string;
+  category: string;
+  author: {
+    name: string;
+    title?: string;
+  };
+  createdAt: string;
+  imageUrl: string;
+  excerpt: string;
+  readTime: string;
+}
 
 export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const filteredPosts = blogPosts.filter(
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        const response = await fetch('/api/blog');
+        if (!response.ok) throw new Error('Failed to fetch posts');
+        const data = await response.json();
+        setPosts(data);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchPosts();
+  }, []);
+
+  const filteredPosts = posts.filter(
     (post) =>
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -103,44 +97,48 @@ export default function BlogPage() {
         {/* Blog Posts Grid */}
         <section className="py-12">
           <div className="container">
-            <div className="grid gap-8 md:grid-cols-2">
-              {filteredPosts.map((post, index) => (
-                <motion.div
-                  key={post.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Card className="overflow-hidden">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="aspect-video w-full object-cover"
-                    />
-                    <CardHeader>
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-primary">{post.category}</span>
-                        <span className="text-sm text-muted-foreground">{post.readTime}</span>
-                      </div>
-                      <CardTitle className="font-orbitron text-xl">{post.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">{post.excerpt}</p>
-                      <div className="mt-4 flex items-center justify-between">
-                        <span className="text-sm font-medium">{post.author}</span>
-                        <span className="text-sm text-muted-foreground">
-                          {new Date(post.date).toLocaleDateString("en-US", {
-                            month: "long",
-                            day: "numeric",
-                            year: "numeric",
-                          })}
-                        </span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+            {loading ? (
+              <div className="text-center">Loading posts...</div>
+            ) : (
+              <div className="grid gap-8 md:grid-cols-2">
+                {filteredPosts.map((post, index) => (
+                  <motion.div
+                    key={post._id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Card className="overflow-hidden">
+                      <img
+                        src={post.imageUrl}
+                        alt={post.title}
+                        className="aspect-video w-full object-cover"
+                      />
+                      <CardHeader>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-primary">{post.category}</span>
+                          <span className="text-sm text-muted-foreground">{post.readTime}</span>
+                        </div>
+                        <CardTitle className="font-orbitron text-xl">{post.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-muted-foreground">{post.excerpt}</p>
+                        <div className="mt-4 flex items-center justify-between">
+                          <span className="text-sm font-medium">{post.author.name}</span>
+                          <span className="text-sm text-muted-foreground">
+                            {new Date(post.createdAt).toLocaleDateString("en-US", {
+                              month: "long",
+                              day: "numeric",
+                              year: "numeric",
+                            })}
+                          </span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       </main>
