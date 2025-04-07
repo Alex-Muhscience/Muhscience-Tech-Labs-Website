@@ -1,10 +1,9 @@
-// mongodb.ts
-import mongoose, { ConnectOptions } from 'mongoose';
+import mongoose, { ConnectOptions, Connection } from 'mongoose';
 
 // Type for our cached MongoDB connection
 interface MongooseCache {
-  conn: typeof mongoose | null;
-  promise: Promise<typeof mongoose> | null;
+  conn: Connection | null;
+  promise: Promise<Connection> | null;
 }
 
 // Extend the global type with our mongoose cache
@@ -21,7 +20,7 @@ if (!MONGODB_URI) {
 // Initialize the global cache if it doesn't exist
 let cached: MongooseCache = global.mongoose || { conn: null, promise: null };
 
-async function connectDB(): Promise<typeof mongoose> {
+async function connectDB(): Promise<Connection> {
   if (cached.conn) {
     return cached.conn;
   }
@@ -32,7 +31,7 @@ async function connectDB(): Promise<typeof mongoose> {
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose;
+      return mongoose.connection;
     });
   }
 
