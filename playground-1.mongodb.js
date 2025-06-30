@@ -3,7 +3,7 @@
 // Use Ctrl+Space inside a snippet or a string literal to trigger completions.
 
 const database = 'cybermuhscience';
-const collection = 'cybermuhscience';
+const collection = 'users';
 
 // Create a new database.
 use(database);

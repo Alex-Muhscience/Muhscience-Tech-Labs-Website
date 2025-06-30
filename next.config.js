@@ -1,19 +1,28 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  eslint: {
-    ignoreDuringBuilds: true,
+  output: 'export', // Static export for deployment
+  trailingSlash: true,
+  eslint: { ignoreDuringBuilds: true },
+  images: {
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
-  images: { 
-    unoptimized: true 
+  reactStrictMode: true,
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.svg$/i,
+      use: ['@svgr/webpack'],
+    });
+    return config;
   },
-  // Development server configuration
-  devServer: (config) => {
-    return {
-      ...config,
-      port: 3001
-    }
-  }
+  env: {
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001',
+  },
 };
 
 module.exports = nextConfig;

@@ -1,3 +1,4 @@
+// app/auth/login/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -22,10 +23,10 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -33,13 +34,13 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to login');
+        throw new Error(data.error || "Failed to login");
       }
 
       toast.success("Logged in successfully");
       router.push("/admin");
     } catch (error) {
-      toast.error("Failed to log in. Please check your credentials.");
+      toast.error(error instanceof Error ? error.message : "Failed to log in");
     } finally {
       setLoading(false);
     }

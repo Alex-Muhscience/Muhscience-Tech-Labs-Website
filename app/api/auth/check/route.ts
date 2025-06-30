@@ -1,20 +1,29 @@
+// app/api/auth/check/route.ts
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { verify } from "jsonwebtoken";
+import { jwtVerify } from "jose";
+import { z } from "zod";
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+// Environment validation
+const envSchema = z.object({
+  JWT_SECRET: z.string().min(32),
+});
+
+envSchema.parse(process.env);
 
 export async function GET() {
   try {
     const token = cookies().get('auth-token')?.value;
 
     if (!token) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ authenticated: false }, { status: 200 });
     }
 
-    verify(token, JWT_SECRET);
-    return NextResponse.json({ authenticated: true });
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+    await jwtVerify(token, secret);
+    
+    return NextResponse.json({ authenticated: true }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ authenticated: false }, { status: 200 });
   }
 }

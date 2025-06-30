@@ -10,14 +10,14 @@ export function SiteFooter() {
           <div>
             <div className="flex items-center space-x-2">
               <ShieldCheck className="h-6 w-6 text-primary" aria-label="CyberMuhscience iLabs Logo" />
-              <span className="font-orbitron text-xl font-bold">CyberMuhscience Tech iLabs Ltd</span>
+              <span className="font-Roboto text-xl font-bold">CyberMuhscience Tech iLabs Ltd</span>
             </div>
             <p className="mt-4 text-sm text-muted-foreground">
               Securing the future through innovation and cutting-edge technology solutions.
             </p>
           </div>
           <div>
-            <h3 className="font-orbitron text-sm font-semibold">Services</h3>
+            <h3 className="font-Roboto text-sm font-semibold">Services</h3>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/services#cybersecurity" className="hover:underline">
@@ -38,11 +38,14 @@ export function SiteFooter() {
                 <Link href="/services#innovation" className="hover:underline">
                   Innovation Labs
                 </Link>
+                <Link href="/careers" className="hover:underline">
+                  Careers
+                </Link>
               </li>
             </ul>
           </div>
           <div>
-            <h3 className="font-orbitron text-sm font-semibold">Company</h3>
+            <h3 className="font-Roboto text-sm font-semibold">Company</h3>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/about" className="hover:underline">
@@ -77,7 +80,7 @@ export function SiteFooter() {
             </ul>
           </div>
           <div>
-            <h3 className="font-orbitron text-sm font-semibold">Legal</h3>
+            <h3 className="font-Roboto text-sm font-semibold">Legal</h3>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/privacy" className="hover:underline">
