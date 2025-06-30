@@ -19,7 +19,7 @@ const team = [
   {
     name: "Mr. Alex M. Kamau",
     role: "Chief Executive Officer",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400",
+    image: "https://github.com/Alex-Muhscience/CyberMuhscience-iLabs-Website/blob/main/app/assets/images/CEO.jpg",
     bio: "BSc in Computer Science with expertise in AI and cybersecurity. Founded CyberMuhscience in 2013 with a vision to bridge security and innovation.",
     social: {
       linkedin: "#",
