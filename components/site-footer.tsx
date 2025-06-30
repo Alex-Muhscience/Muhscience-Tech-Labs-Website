@@ -9,8 +9,12 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div>
             <div className="flex items-center space-x-2">
-              <ShieldCheck className="h-6 w-6 text-primary" aria-label="CyberMuhscience iLabs Logo" />
-              <span className="font-Roboto text-xl font-bold">CyberMuhscience Tech iLabs Ltd</span>
+                <img
+                src="/images/logo.png"
+                alt="Muhscience Tech Labs Logo"
+                className="h-16 w-16"
+                />
+              <span className="font-Roboto text-xl font-bold">Muhscience Tech Labs Ltd</span>
             </div>
             <p className="mt-4 text-sm text-muted-foreground">
               Securing the future through innovation and cutting-edge technology solutions.

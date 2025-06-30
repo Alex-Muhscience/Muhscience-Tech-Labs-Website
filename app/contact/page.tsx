@@ -266,7 +266,7 @@ export default function ContactPage() {
                 className="h-full overflow-hidden rounded-xl"
               >
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d101268.89989132444!2d-122.1076353!3d37.4219999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb7495bec0189%3A0x7c17d44a466baf9b!2sPalo+Alto%2C+CA!5e0!3m2!1sen!2sus!4v1123456789"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.03101100311!2d36.8064952!3d-1.2920659!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d5a7e6e7e9%3A0x9b6f8b0c7e8b7b7b!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1719830000000!5m2!1sen!2ske"
                   width="100%"
                   height="100%"
                   className="min-h-[400px] w-full rounded-xl border-0 shadow-lg"

@@ -19,7 +19,7 @@ const team = [
   {
     name: "Mr. Alex M. Kamau",
     role: "Chief Executive Officer",
-    image: "https://media.licdn.com/dms/image/v2/D5635AQE40b2DdUHtpw/profile-framedphoto-shrink_400_400/B56Zet8yVGHEAc-/0/1750970083600?e=1751734800&v=beta&t=UqCcHfzkiftLr6LVT8PjD__0iTItDnHGeNTpZ48kss8",
+    image: "/images/CEO.jpg",
     bio: "BSc in Computer Science with expertise in AI and cybersecurity. Founded CyberMuhscience in 2023 with a vision to bridge security and innovation.",
     social: {
       linkedin: "https://linkedin.com/in/alex-m-kamau-20015b340",
@@ -27,35 +27,35 @@ const team = [
     }
   },
   {
-    name: "Marcus Rodriguez",
+    name: "Apollo Kiiru",
     role: "Chief Technology Officer",
-    //image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=400",
-    bio: "5+ years experience in software architecture and cloud computing. Leads our technical strategy and infrastructure.",
+    image: "https://media.licdn.com/dms/image/v2/D4D35AQGsYAMstZLE3w/profile-framedphoto-shrink_100_100/B4DZXAT83MHkAk-/0/1742688210661?e=1751882400&v=beta&t=HoxMqsj7KeDM4nNIi2Y5-aTYrbyuV6SBm90hOUZLJS8",
+    bio: "3+ years experience in software architecture and cloud computing. Leads our technical strategy and infrastructure.",
     social: {
       linkedin: "#",
       twitter: "#"
     }
   },
   {
-    name: "Dr. Emily Watson",
-    role: "Head of AI Research",
-    //image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400&h=400",
-    bio: "PhD in Machine Learning from Stanford. Published researcher in neural networks and AI ethics.",
+    name: "Mr. Brian Kimunya",
+    role: "Head of AI Research and Data Science",
+    image: "/images/AI_Research_Lead.jpg",
+    bio: "Bsc in Applied Statistics and Computer Science with a focus on AI and Data Science.",
     social: {
       linkedin: "#",
       twitter: "#"
     }
   },
-  {
-    name: "James Park",
-    role: "Security Director",
+  //{
+   // name: "James Park",
+    //role: "Security Director",
     //image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=400",
-    bio: "Former CISO at Fortune 500 company. Expert in enterprise security frameworks and threat intelligence.",
-    social: {
-      linkedin: "#",
-      twitter: "#"
-    }
-  },
+   // bio: "Former CISO at Fortune 500 company. Expert in enterprise security frameworks and threat intelligence.",
+   // social: {
+    //  linkedin: "#",
+     // twitter: "#"
+  //  }
+  //},
 ];
 
 const coreValues = [
@@ -101,7 +101,7 @@ export default function AboutPage() {
               className="mx-auto max-w-3xl text-center"
             >
               <h1 className="font-Helvetica text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-                About <span className="bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">CyberMuhscience</span>
+                About <span className="bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">Muhscience Tech Labs</span>
               </h1>
               <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
                 We are a team of innovators, researchers, and technologists dedicated to

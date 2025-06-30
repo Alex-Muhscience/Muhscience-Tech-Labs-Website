@@ -46,10 +46,16 @@ export function SiteHeader() {
         {/* Logo */}
         <div className="flex items-center space-x-2">
           <Link href="/" className="flex items-center">
-            <ShieldCheck className="h-6 w-6 text-primary" />
+             <div className="flex items-center space-x-2">
+                <img
+                src="/images/logo.png"
+                alt="Muhscience Tech Labs Logo"
+                className="h-12 w-24 md:h-20 md:w-40"
+                />
+               </div>
             <span className="ml-2 font-Roboto text-xl font-bold">
-              <span className="hidden sm:inline">CyberMuhscience Tech iLabs Ltd</span>
-              <span className="sm:hidden">CMT iLabs</span>
+              <span className="hidden sm:inline">Muhscience Tech Labs Ltd</span>
+              <span className="sm:hidden">MT Labs</span>
             </span>
           </Link>
         </div>
