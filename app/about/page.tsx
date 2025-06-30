@@ -9,28 +9,28 @@ import { Button } from "@/components/ui/button";
 import '../globals.css';
 
 const stats = [
-  { name: "Years Experience", value: "10+", icon: Briefcase, color: "bg-blue-100 text-blue-600" },
-  { name: "Global Clients", value: "200+", icon: Globe, color: "bg-green-100 text-green-600" },
-  { name: "Team Members", value: "50+", icon: Users, color: "bg-purple-100 text-purple-600" },
-  { name: "Industry Awards", value: "25+", icon: Award, color: "bg-amber-100 text-amber-600" },
+  { name: "Years Experience", value: "3+", icon: Briefcase, color: "bg-blue-100 text-blue-600" },
+  { name: "Global Clients", value: "20+", icon: Globe, color: "bg-green-100 text-green-600" },
+  { name: "Team Members", value: "5+", icon: Users, color: "bg-purple-100 text-purple-600" },
+  { name: "Industry Awards", value: "1", icon: Award, color: "bg-amber-100 text-amber-600" },
 ];
 
 const team = [
   {
     name: "Mr. Alex M. Kamau",
     role: "Chief Executive Officer",
-    image: "https://github.com/Alex-Muhscience/CyberMuhscience-iLabs-Website/blob/main/app/assets/images/CEO.jpg",
-    bio: "BSc in Computer Science with expertise in AI and cybersecurity. Founded CyberMuhscience in 2013 with a vision to bridge security and innovation.",
+    image: "https://media.licdn.com/dms/image/v2/D5635AQE40b2DdUHtpw/profile-framedphoto-shrink_400_400/B56Zet8yVGHEAc-/0/1750970083600?e=1751734800&v=beta&t=UqCcHfzkiftLr6LVT8PjD__0iTItDnHGeNTpZ48kss8",
+    bio: "BSc in Computer Science with expertise in AI and cybersecurity. Founded CyberMuhscience in 2023 with a vision to bridge security and innovation.",
     social: {
-      linkedin: "#",
+      linkedin: "https://linkedin.com/in/alex-m-kamau-20015b340",
       twitter: "#"
     }
   },
   {
     name: "Marcus Rodriguez",
     role: "Chief Technology Officer",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=400",
-    bio: "15+ years experience in software architecture and cloud computing. Leads our technical strategy and infrastructure.",
+    //image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=400",
+    bio: "5+ years experience in software architecture and cloud computing. Leads our technical strategy and infrastructure.",
     social: {
       linkedin: "#",
       twitter: "#"
@@ -39,7 +39,7 @@ const team = [
   {
     name: "Dr. Emily Watson",
     role: "Head of AI Research",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400&h=400",
+    //image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400&h=400",
     bio: "PhD in Machine Learning from Stanford. Published researcher in neural networks and AI ethics.",
     social: {
       linkedin: "#",
@@ -49,7 +49,7 @@ const team = [
   {
     name: "James Park",
     role: "Security Director",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=400",
+    //image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=400",
     bio: "Former CISO at Fortune 500 company. Expert in enterprise security frameworks and threat intelligence.",
     social: {
       linkedin: "#",
