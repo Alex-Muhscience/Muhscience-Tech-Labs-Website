@@ -12,7 +12,7 @@ const stats = [
   { name: "Years Experience", value: "3+", icon: Briefcase, color: "bg-blue-100 text-blue-600" },
   { name: "Global Clients", value: "20+", icon: Globe, color: "bg-green-100 text-green-600" },
   { name: "Team Members", value: "5+", icon: Users, color: "bg-purple-100 text-purple-600" },
-  { name: "Industry Awards", value: "1", icon: Award, color: "bg-amber-100 text-amber-600" },
+  { name: "Projects Completed", value: "50+", icon: Award, color: "bg-amber-100 text-amber-600" },
 ];
 
 const team = [

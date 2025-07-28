@@ -42,9 +42,6 @@ export function SiteFooter() {
                 <Link href="/services#innovation" className="hover:underline">
                   Innovation Labs
                 </Link>
-                <Link href="/careers" className="hover:underline">
-                  Careers
-                </Link>
               </li>
             </ul>
           </div>

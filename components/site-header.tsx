@@ -78,8 +78,10 @@ export function SiteHeader() {
 
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="default" size="sm">
-            Get a Quote
+          <Button variant="default" size="sm" asChild>
+            <Link href="/contact">
+              Get a Quote
+            </Link>
           </Button>
         </div>
 
@@ -119,8 +121,10 @@ export function SiteHeader() {
                     {item.name}
                   </Link>
                 ))}
-                <Button variant="default" className="mt-2 w-full">
-                  Get a Quote
+                <Button variant="default" className="mt-2 w-full" asChild>
+                  <Link href="/contact">
+                    Get a Quote
+                  </Link>
                 </Button>
               </div>
             </div>

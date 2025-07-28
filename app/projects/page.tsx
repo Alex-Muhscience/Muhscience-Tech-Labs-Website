@@ -211,13 +211,17 @@ export default function ProjectsPage() {
                             </div>
                           </CardContent>
                           <CardFooter className="flex justify-between p-6 pt-0">
-                            <Button variant="ghost" size="sm" className="gap-1.5 px-3">
-                              <Github className="h-4 w-4" />
-                              Code
+                            <Button variant="ghost" size="sm" className="gap-1.5 px-3" asChild>
+                              <a href={project.github} target="_blank" rel="noopener noreferrer">
+                                <Github className="h-4 w-4" />
+                                Code
+                              </a>
                             </Button>
-                            <Button variant="ghost" size="sm" className="gap-1.5 px-3">
-                              <ExternalLink className="h-4 w-4" />
-                              Live Demo
+                            <Button variant="ghost" size="sm" className="gap-1.5 px-3" asChild>
+                              <a href={project.live} target="_blank" rel="noopener noreferrer">
+                                <ExternalLink className="h-4 w-4" />
+                                Live Demo
+                              </a>
                             </Button>
                           </CardFooter>
                         </Card>

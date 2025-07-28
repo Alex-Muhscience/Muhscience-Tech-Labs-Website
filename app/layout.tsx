@@ -1,24 +1,9 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
-import { Inter, Orbitron } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/react';
-
-// Font optimization with subsets and display swap
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-  adjustFontFallback: false,
-});
-
-const orbitron = Orbitron({
-  subsets: ['latin'],
-  variable: '--font-orbitron',
-  display: 'swap',
-  adjustFontFallback: false,
-});
+import { Toaster } from '@/components/ui/sonner';
 
 // Metadata improvements
 export const metadata: Metadata = {
@@ -90,24 +75,8 @@ export default function RootLayout({
       suppressHydrationWarning
       className="scroll-smooth" // For smooth scrolling
     >
-      <head>
-        {/* Preload critical resources */}
-        <link
-          rel="preload"
-          href={`${inter.variable}.woff2`}
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href={`${orbitron.variable}.woff2`}
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </head>
-      <body className={`${inter.variable} ${orbitron.variable} font-sans antialiased bg-background text-foreground min-h-screen`}>
+      <head />
+      <body className="font-sans antialiased bg-background text-foreground min-h-screen">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -115,6 +84,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Toaster position="top-right" richColors />
           {/* Performance monitoring */}
           <SpeedInsights />
           <Analytics />

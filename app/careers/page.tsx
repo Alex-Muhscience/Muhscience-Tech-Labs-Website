@@ -246,7 +246,7 @@ export default function CareersPage() {
                       </div>
                       
                       <Button className="mt-8 w-full" asChild>
-                        <a href={`/careers/${job.id}`}>
+                        <a href="/contact">
                           Apply Now <ArrowRight className="ml-2 h-4 w-4" />
                         </a>
                       </Button>

@@ -58,8 +58,17 @@ export default function ContactPage() {
     setSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
       
       setSubmitSuccess(true);
       toast.success('Message sent successfully!');
@@ -68,6 +77,7 @@ export default function ContactPage() {
       // Reset success state after 3 seconds
       setTimeout(() => setSubmitSuccess(false), 3000);
     } catch (error) {
+      console.error('Error sending message:', error);
       toast.error('Failed to send message. Please try again later.');
     } finally {
       setSubmitting(false);

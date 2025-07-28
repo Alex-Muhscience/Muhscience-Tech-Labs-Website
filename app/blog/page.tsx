@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { Search, Clock, Calendar, User, ArrowRight } from "lucide-react";
+import { Search, Clock, Calendar, User, ArrowRight, Mail, Send } from "lucide-react";
 import '../globals.css';
 
 interface BlogPost {
@@ -31,6 +31,9 @@ export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [displayCount, setDisplayCount] = useState(6);
+  const [email, setEmail] = useState("");
+  const [isSubscribing, setIsSubscribing] = useState(false);
 
   useEffect(() => {
     async function fetchPosts() {
@@ -64,6 +67,29 @@ export default function BlogPage() {
 
     return matchesSearch && matchesCategory;
   });
+
+  // Reset display count when filters change
+  useEffect(() => {
+    setDisplayCount(6);
+  }, [searchQuery, selectedCategory]);
+
+  const handleNewsletterSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    
+    setIsSubscribing(true);
+    try {
+      // Here you would typically send the email to your backend
+      // For now, we'll just simulate the process
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      alert('Thank you for subscribing to our newsletter!');
+      setEmail('');
+    } catch (error) {
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -159,11 +185,12 @@ export default function BlogPage() {
             ) : (
               <AnimatePresence>
                 {filteredPosts.length > 0 ? (
-                  <motion.div
-                    className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-                    layout
-                  >
-                    {filteredPosts.map((post, index) => (
+                  <>
+                    <motion.div
+                      className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+                      layout
+                    >
+                      {filteredPosts.slice(0, displayCount).map((post, index) => (
                       <motion.div
                         key={post._id}
                         layout
@@ -254,8 +281,28 @@ export default function BlogPage() {
                           </CardContent>
                         </Card>
                       </motion.div>
-                    ))}
-                  </motion.div>
+                      ))}
+                    </motion.div>
+                    
+                    {/* Load More Button */}
+                    {displayCount < filteredPosts.length && (
+                      <motion.div
+                        className="mt-12 text-center"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                      >
+                        <Button
+                          onClick={() => setDisplayCount(prev => Math.min(prev + 6, filteredPosts.length))}
+                          variant="outline"
+                          size="lg"
+                          className="px-8 py-3 font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                        >
+                          Load More Articles ({filteredPosts.length - displayCount} remaining)
+                        </Button>
+                      </motion.div>
+                    )}
+                  </>
                 ) : (
                   <motion.div
                     className="py-12 text-center"
@@ -280,6 +327,76 @@ export default function BlogPage() {
                 )}
               </AnimatePresence>
             )}
+          </div>
+        </section>
+        
+        {/* Newsletter Subscription Section */}
+        <section className="relative overflow-hidden bg-gradient-to-r from-primary/10 via-background to-primary/10 py-16">
+          <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+          <div className="container relative px-4 sm:px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mx-auto max-w-2xl text-center"
+            >
+              <div className="mb-4 flex justify-center">
+                <div className="rounded-full bg-primary/10 p-3">
+                  <Mail className="h-8 w-8 text-primary" />
+                </div>
+              </div>
+              <h2 className="font-Helvetica text-2xl font-bold tracking-tight sm:text-3xl">
+                Stay <span className="bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">Informed</span>
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Get the latest insights on cybersecurity, AI, and emerging technologies delivered straight to your inbox.
+              </p>
+              
+              <form onSubmit={handleNewsletterSubscribe} className="mt-8">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
+                  <div className="relative flex-1 w-full">
+                    <Mail className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+                    <Input
+                      type="email"
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="pl-10 h-12"
+                      disabled={isSubscribing}
+                    />
+                  </div>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={isSubscribing || !email.trim()}
+                      className="h-12 px-8 font-semibold bg-primary hover:bg-primary/90 transition-all duration-300"
+                    >
+                      {isSubscribing ? (
+                        <div className="flex items-center">
+                          <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin mr-2" />
+                          Subscribing...
+                        </div>
+                      ) : (
+                        <div className="flex items-center">
+                          <Send className="mr-2 h-4 w-4" />
+                          Subscribe
+                        </div>
+                      )}
+                    </Button>
+                  </motion.div>
+                </div>
+              </form>
+              
+              <p className="mt-4 text-sm text-muted-foreground">
+                No spam, unsubscribe at any time. We respect your privacy.
+              </p>
+            </motion.div>
           </div>
         </section>
       </main>
