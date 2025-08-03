@@ -1,7 +1,10 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.cybermuhscience.com'
+  // Use Vercel URL if NEXT_PUBLIC_SITE_URL is not set
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 
+                  process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 
+                  'https://muhscience-tech-labs-website.vercel.app'
   const currentDate = new Date().toISOString().split('T')[0] // Format: YYYY-MM-DD
   
   // Main pages with high priority
