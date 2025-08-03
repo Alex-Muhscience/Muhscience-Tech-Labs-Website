@@ -14,20 +14,13 @@ export function middleware(request: NextRequest) {
   const userAgent = request.headers.get('user-agent') || '';
   const isSearchBot = /googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|facebookexternalhit|twitterbot|linkedinbot/i.test(userAgent);
 
-  // If it's a SEO path or search bot, add the bypass header
+  // For SEO paths or search bots, add proper headers
   if (isSEOPath || isSearchBot) {
     const response = NextResponse.next();
     
-    // Add the bypass header for Vercel protection
-    // Note: You'll need to replace 'YOUR_BYPASS_SECRET' with the actual secret from Vercel
-    const bypassSecret = process.env.VERCEL_PROTECTION_BYPASS;
-    
-    if (bypassSecret) {
-      response.headers.set('x-vercel-protection-bypass', bypassSecret);
-    }
-    
     // Add headers to allow search engine crawling
     response.headers.set('X-Robots-Tag', 'index, follow');
+    response.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
     
     return response;
   }
