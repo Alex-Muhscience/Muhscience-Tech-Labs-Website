@@ -108,6 +108,20 @@ const nextConfig = {
           },
         ],
       },
+      // SEO files - allow search engine access
+      {
+        source: '/(sitemap.xml|robots.txt)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, s-maxage=3600',
+          },
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow',
+          },
+        ],
+      },
       // Cache API responses
       {
         source: '/api/(.*)',
