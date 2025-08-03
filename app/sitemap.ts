@@ -1,10 +1,8 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Use Vercel URL if NEXT_PUBLIC_SITE_URL is not set
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 
-                  process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 
-                  'https://muhscience-tech-labs-website-alex-muhsciences-projects.vercel.app'
+  // Force the correct production URL for Google Search Console
+  const baseUrl = 'https://muhscience-tech-labs-website-alex-muhsciences-projects.vercel.app'
   const currentDate = new Date().toISOString().split('T')[0] // Format: YYYY-MM-DD
   
   // Main pages with high priority
