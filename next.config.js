@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Remove output: 'export' to enable API routes and database functionality
+  // Enable modern React features
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
+  
+  // SEO and performance optimizations
   eslint: { ignoreDuringBuilds: true },
+  
+  // Enhanced image optimization
   images: {
     remotePatterns: [
       {
@@ -18,27 +25,52 @@ const nextConfig = {
       },
     ],
     formats: ['image/webp', 'image/avif'],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 86400, // 24 hours cache for better performance
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  
+  // Performance and SEO settings
   reactStrictMode: true,
   compress: true,
   poweredByHeader: false,
-  generateEtags: false,
-  webpack: (config) => {
+  generateEtags: true, // Enable ETags for better caching
+  trailingSlash: false, // Avoid duplicate content issues
+  
+  // Webpack optimizations
+  webpack: (config, { dev, isServer }) => {
+    // SVG handling
     config.module.rules.push({
       test: /\.svg$/i,
       use: ['@svgr/webpack'],
     });
+    
+    // Production optimizations
+    if (!dev && !isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        '@': require('path').resolve(__dirname),
+      };
+    }
+    
     return config;
   },
+  
+  // Environment variables
   env: {
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001',
+    NEXT_PUBLIC_ANALYTICS_ID: process.env.NEXT_PUBLIC_ANALYTICS_ID,
   },
+  
+  // Enhanced headers for SEO and security
   async headers() {
     return [
       {
         source: '/(.*)',
         headers: [
+          // Security headers
           {
             key: 'X-Frame-Options',
             value: 'DENY',
@@ -55,8 +87,56 @@ const nextConfig = {
             key: 'X-XSS-Protection',
             value: '1; mode=block',
           },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(), browsing-topics=()',
+          },
+          // Performance headers
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
         ],
       },
+      // Cache static assets
+      {
+        source: '/(.*)\\.(ico|png|jpg|jpeg|gif|webp|svg|css|js)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      // Cache API responses
+      {
+        source: '/api/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, s-maxage=3600', // 1 hour cache
+          },
+        ],
+      },
+    ];
+  },
+
+  // Redirects for SEO (if needed)
+  async redirects() {
+    return [
+      // Add any necessary redirects here
+      // {
+      //   source: '/old-page',
+      //   destination: '/new-page',
+      //   permanent: true,
+      // },
+    ];
+  },
+
+  // Rewrites for cleaner URLs (if needed)
+  async rewrites() {
+    return [
+      // Add any URL rewrites here for better SEO URLs
     ];
   },
 };
