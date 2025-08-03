@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     site: '@cybermuhscience',
   },
   verification: {
-    google: 'your-google-verification-code', // Replace with actual verification code
+    google: 'M1ruyE4wie7Ei_x3caoezOYlvtHt4QJj56iDbvIWWPE',
     // yandex: 'your-yandex-verification-code',
     // yahoo: 'your-yahoo-verification-code',
   },
