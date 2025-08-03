@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.cybermuhscience.com'
-  const currentDate = new Date()
+  const currentDate = new Date().toISOString().split('T')[0] // Format: YYYY-MM-DD
   
   // Main pages with high priority
   const mainPages = [
