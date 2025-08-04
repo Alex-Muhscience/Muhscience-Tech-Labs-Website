@@ -90,7 +90,7 @@ export default function Home() {
   // Client testimonials
   const testimonials = [
     {
-      quote: "CyberMuhscience transformed our security posture completely. Their 24/7 monitoring has prevented multiple cyber attacks, saving us millions in potential damages.",
+      quote: "Muhscience Tech Labs transformed our security posture completely. Their 24/7 monitoring has prevented multiple cyber attacks, saving us millions in potential damages.",
       author: "Sarah Johnson",
       title: "CTO, TechCorp Industries",
       company: "Fortune 500 Manufacturing",
@@ -364,7 +364,7 @@ export default function Home() {
               className="text-center mb-16"
             >
               <h2 className="text-3xl font-bold sm:text-4xl mb-4">
-                Why Choose CyberMuhscience?
+                Why Choose Muhscience Tech Labs?
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 We combine technical expertise with industry best practices to deliver exceptional results.
@@ -406,7 +406,7 @@ export default function Home() {
                 Ready to Transform Your Business?
               </h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Join the growing number of organizations that trust CyberMuhscience with their digital transformation journey.
+                Join the growing number of organizations that trust Muhscience Tech Labs with their digital transformation journey.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="group" asChild>
