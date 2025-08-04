@@ -55,7 +55,7 @@ export function SEOHead({
       <meta property="og:image" content={fullOgImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="CyberMuhscience iLabs" />
+      <meta property="og:site_name" content="Muhscience Tech Labs" />
       <meta property="og:locale" content="en_US" />
       
       {/* Twitter Card */}
@@ -99,7 +99,7 @@ export function SEOHead({
 // Predefined SEO configurations for common pages
 export const seoConfigs = {
   home: {
-    title: 'CyberMuhscience iLabs - Leading Cybersecurity & AI Solutions Provider',
+    title: 'Muhscience Tech Labs - Leading Cybersecurity & AI Solutions Provider',
     description: 'Transform your business with enterprise-grade cybersecurity solutions, AI/ML development, and full-stack software development. 500+ successful projects, 99.9% uptime guarantee.',
     keywords: [
       'cybersecurity solutions',
@@ -122,8 +122,8 @@ export const seoConfigs = {
     ],
   },
   about: {
-    title: 'About Us - CyberMuhscience iLabs Technology Experts',
-    description: 'Learn about CyberMuhscience iLabs, a leading technology company specializing in cybersecurity, AI/ML, and software development with 500+ successful projects.',
+    title: 'About Us - Muhscience Tech Labs Technology Experts',
+    description: 'Learn about Muhscience Tech Labs, a leading technology company specializing in cybersecurity, AI/ML, and software development with 500+ successful projects.',
     keywords: [
       'technology company',
       'cybersecurity experts',
@@ -134,7 +134,7 @@ export const seoConfigs = {
   },
   contact: {
     title: 'Contact Us - Get Expert Technology Solutions',
-    description: 'Contact CyberMuhscience iLabs for expert cybersecurity, AI development, and software solutions. Free consultation available. 24/7 support guaranteed.',
+    description: 'Contact Muhscience Tech Labs for expert cybersecurity, AI development, and software solutions. Free consultation available. 24/7 support guaranteed.',
     keywords: [
       'contact cybersecurity company',
       'AI development consultation',
@@ -143,7 +143,7 @@ export const seoConfigs = {
     ],
   },
   blog: {
-    title: 'Tech Blog - Cybersecurity & AI Insights | CyberMuhscience iLabs',
+    title: 'Tech Blog - Cybersecurity & AI Insights | Muhscience Tech Labs',
     description: 'Stay updated with the latest cybersecurity trends, AI developments, and software engineering insights from our expert team.',
     keywords: [
       'cybersecurity blog',

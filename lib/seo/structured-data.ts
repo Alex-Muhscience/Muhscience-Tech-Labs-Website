@@ -9,8 +9,8 @@ export interface StructuredData {
 export const organizationSchema: StructuredData = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'CyberMuhscience iLabs',
-  alternateName: 'CyberMuhscience Tech iLabs',
+  name: 'Muhscience Tech Labs',
+  alternateName: 'Muhscience Technology Laboratories',
   description: 'Leading provider of cybersecurity solutions, AI/ML development, and full-stack software development services.',
   url: 'https://www.cybermuhscience.com',
   logo: 'https://www.cybermuhscience.com/logo.png',
@@ -58,13 +58,13 @@ export const organizationSchema: StructuredData = {
 export const websiteSchema: StructuredData = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'CyberMuhscience iLabs',
-  alternateName: 'CyberMuhscience Tech iLabs',
+  name: 'Muhscience Tech Labs',
+  alternateName: 'Muhscience Technology Laboratories',
   url: 'https://www.cybermuhscience.com',
   description: 'Leading provider of cybersecurity solutions, AI/ML development, and full-stack software development services.',
   publisher: {
     '@type': 'Organization',
-    name: 'CyberMuhscience iLabs',
+    name: 'Muhscience Tech Labs',
   },
   potentialAction: {
     '@type': 'SearchAction',
@@ -80,7 +80,7 @@ export const websiteSchema: StructuredData = {
 export const localBusinessSchema: StructuredData = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
-  name: 'CyberMuhscience iLabs',
+  name: 'Muhscience Tech Labs',
   description: 'Professional cybersecurity and AI development services',
   url: 'https://www.cybermuhscience.com',
   telephone: '+1-XXX-XXX-XXXX', // Replace with actual phone
@@ -122,7 +122,7 @@ export const servicesSchema: StructuredData[] = [
     description: 'Enterprise-grade cybersecurity solutions with 24/7 monitoring, threat detection, and incident response.',
     provider: {
       '@type': 'Organization',
-      name: 'CyberMuhscience iLabs',
+      name: 'Muhscience Tech Labs',
     },
     areaServed: 'Worldwide',
     hasOfferCatalog: {
@@ -153,7 +153,7 @@ export const servicesSchema: StructuredData[] = [
     description: 'Custom AI solutions including predictive analytics, process automation, and machine learning models.',
     provider: {
       '@type': 'Organization',
-      name: 'CyberMuhscience iLabs',
+      name: 'Muhscience Tech Labs',
     },
     areaServed: 'Worldwide',
   },
@@ -164,7 +164,7 @@ export const servicesSchema: StructuredData[] = [
     description: 'Full-stack development services with cloud-native architecture and enterprise system integration.',
     provider: {
       '@type': 'Organization',
-      name: 'CyberMuhscience iLabs',
+      name: 'Muhscience Tech Labs',
     },
     areaServed: 'Worldwide',
   },
@@ -234,7 +234,7 @@ export const createArticleSchema = (article: {
   },
   publisher: {
     '@type': 'Organization',
-    name: 'CyberMuhscience iLabs',
+    name: 'Muhscience Tech Labs',
     logo: {
       '@type': 'ImageObject',
       url: 'https://www.cybermuhscience.com/logo.png',

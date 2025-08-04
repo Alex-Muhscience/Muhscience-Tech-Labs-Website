@@ -9,10 +9,10 @@ import { organizationSchema, websiteSchema, generateJsonLd } from '@/lib/seo/str
 // Enhanced SEO metadata
 export const metadata: Metadata = {
   title: {
-    default: 'CyberMuhscience iLabs - Leading Cybersecurity & AI Solutions Provider',
-    template: '%s | CyberMuhscience iLabs - Cybersecurity & AI Experts',
+    default: 'Muhscience Tech Labs - Leading Cybersecurity & AI Solutions Provider',
+    template: '%s | Muhscience Tech Labs - Cybersecurity & AI Experts',
   },
-  description: 'Transform your business with CyberMuhscience iLabs. We provide enterprise-grade cybersecurity solutions, AI/ML development, full-stack software development, and innovation labs. 500+ successful projects, 99.9% uptime guarantee.',
+  description: 'Transform your business with Muhscience Tech Labs. We provide enterprise-grade cybersecurity solutions, AI/ML development, full-stack software development, and innovation labs. 500+ successful projects, 99.9% uptime guarantee.',
   keywords: [
     // Primary keywords
     'cybersecurity solutions',
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
     'cybersecurity services USA',
     'AI development company'
   ],
-  authors: [{ name: 'CyberMuhscience Team', url: 'https://www.cybermuhscience.com/about' }],
-  creator: 'CyberMuhscience iLabs',
-  publisher: 'CyberMuhscience iLabs',
+  authors: [{ name: 'Muhscience Tech Labs Team', url: 'https://www.cybermuhscience.com/about' }],
+  creator: 'Muhscience Tech Labs',
+  publisher: 'Muhscience Tech Labs',
   metadataBase: new URL('https://www.cybermuhscience.com'),
   alternates: {
     canonical: '/',
@@ -61,22 +61,22 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'CyberMuhscience iLabs - Leading Cybersecurity & AI Solutions Provider',
+    title: 'Muhscience Tech Labs - Leading Cybersecurity & AI Solutions Provider',
     description: 'Transform your business with enterprise-grade cybersecurity, AI/ML development, and full-stack software solutions. 500+ successful projects, 99.9% uptime guarantee.',
     url: 'https://www.cybermuhscience.com',
-    siteName: 'CyberMuhscience iLabs',
+    siteName: 'Muhscience Tech Labs',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'CyberMuhscience iLabs - Cybersecurity & AI Solutions',
+        alt: 'Muhscience Tech Labs - Cybersecurity & AI Solutions',
       },
       {
         url: '/og-image-square.jpg',
         width: 600,
         height: 600,
-        alt: 'CyberMuhscience iLabs Logo',
+        alt: 'Muhscience Tech Labs Logo',
       },
     ],
     locale: 'en_US',
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CyberMuhscience iLabs - Leading Cybersecurity & AI Solutions Provider',
+    title: 'Muhscience Tech Labs - Leading Cybersecurity & AI Solutions Provider',
     description: 'Transform your business with enterprise-grade cybersecurity, AI/ML development, and full-stack software solutions. 500+ successful projects.',
     images: ['/og-image.jpg'],
     creator: '@cybermuhscience',
