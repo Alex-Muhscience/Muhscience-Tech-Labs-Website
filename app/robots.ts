@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cybermuhscienceilabs.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://muhscience-tech-labs-website-alex-muhsciences-projects.vercel.app'
   
   return {
     rules: {

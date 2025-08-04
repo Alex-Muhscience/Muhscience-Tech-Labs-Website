@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Force the correct production URL for Google Search Console
-  const baseUrl = 'https://muhscience-tech-labs-website-alex-muhsciences-projects.vercel.app'
+  const baseUrl = 'https://muhscience-tech-labs-website.vercel.app'
   const currentDate = new Date().toISOString().split('T')[0] // Format: YYYY-MM-DD
   
   // Main pages with high priority
