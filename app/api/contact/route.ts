@@ -41,11 +41,11 @@ export async function POST(request: Request): Promise<NextResponse<ContactFormDa
     console.error('Contact form submission error:', error);
 
     // Handle validation errors
-    if (error instanceof z.ZodError) {
+if (error instanceof z.ZodError) {
       return NextResponse.json(
         {
           error: 'Validation failed',
-          details: error.errors.map(err => `${err.path.join('.')}: ${err.message}`).join(', ')
+          details: error.issues.map((err: z.ZodIssue) => `${err.path.join('.')}: ${err.message}`).join(', ')
         },
         { status: 400 }
       );

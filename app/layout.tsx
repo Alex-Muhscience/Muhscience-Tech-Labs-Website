@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import { siteConfig } from '@/lib/env';
+import { ClientErrorLoggerComponent } from '@/components/client-error-logger';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Analytics } from '@vercel/analytics/react';
@@ -99,7 +100,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div className="flex-1">{children}</div>
           </div>
           <Toaster />
-        </ThemeProvider>
+            <ClientErrorLoggerComponent />
+          </ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>

@@ -295,7 +295,7 @@ export default function HomePage() {
               </Link>
             </div>
             
-            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center" suppressHydrationWarning>
               <div className="group">
                 <div className="text-4xl font-bold text-blue-600 group-hover:scale-110 transition-transform">
                   {stats.clients}+
@@ -415,7 +415,7 @@ export default function HomePage() {
             <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
               
-              <div className="flex flex-col md:flex-row items-center">
+              <div className="flex flex-col md:flex-row items-center" suppressHydrationWarning>
                 <div className="md:w-1/3 mb-8 md:mb-0">
                   <div className="w-32 h-32 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full mx-auto flex items-center justify-center text-white text-4xl font-bold shadow-xl">
                     {testimonials[currentTestimonial].name.split(' ').map(n => n[0]).join('')}

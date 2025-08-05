@@ -70,11 +70,11 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Authentication error:", error);
     
-    if (error instanceof z.ZodError) {
+if (error instanceof z.ZodError) {
       return NextResponse.json(
         { 
           error: "Validation failed",
-          details: error.errors.map(e => ({
+          details: error.issues.map((e: z.ZodIssue) => ({
             field: e.path.join("."),
             message: e.message
           }))
