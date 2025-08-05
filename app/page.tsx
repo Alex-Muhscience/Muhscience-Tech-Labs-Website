@@ -1,431 +1,609 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useRef } from "react";
-import { SiteHeader } from "@/components/site-header";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { 
-  Brain, Code, Lock, Sparkles, ArrowRight, CheckCircle, Users, Globe, Award, 
-  TrendingUp, Shield, Zap, Target, Star, Quote, Play, Calendar, Phone, Mail,
-  Cpu, Database, Cloud, Monitor, Settings, BarChart, Lightbulb, Rocket,
-  Building, Briefcase, Timer, MessageSquare, Eye, Layers, Heart
-} from "lucide-react";
-import { SiteFooter } from "@/components/site-footer";
-import { motion, AnimatePresence, useInView, useScroll, useTransform } from "framer-motion";
-import Link from "next/link";
-import './globals.css';
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
-export default function Home() {
+export default function HomePage() {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [email, setEmail] = useState("");
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
+  const [stats, setStats] = useState({
+    clients: 0,
+    projects: 0,
+    experience: 0,
+    team: 0
+  });
 
-  // Enhanced services data
-  const services = [
-    {
-      title: "Cybersecurity Solutions",
-      subtitle: "Fortress-Level Protection",
-      description: "Enterprise-grade security solutions with 24/7 monitoring, threat detection, and incident response to protect your digital infrastructure.",
-      icon: Lock,
-      features: ["24/7 SOC Monitoring", "Advanced Threat Detection", "Compliance Management", "Incident Response"],
-      color: "from-blue-600 to-purple-700",
-      pricing: "Starting at $2,500/month",
-      benefits: ["99.9% Threat Prevention", "ISO 27001 Compliance", "15-min Response Time"]
-    },
-    {
-      title: "AI & Machine Learning",
-      subtitle: "Intelligent Automation",
-      description: "Cutting-edge AI solutions including predictive analytics, process automation, and custom machine learning models.",
-      icon: Brain,
-      features: ["Custom ML Models", "Predictive Analytics", "Process Automation", "Data Intelligence"],
-      color: "from-emerald-600 to-teal-700",
-      pricing: "Starting at $5,000/month",
-      benefits: ["95%+ Accuracy", "Real-time Insights", "80% Cost Reduction"]
-    },
-    {
-      title: "Software Development",
-      subtitle: "Scalable Solutions",
-      description: "Full-stack development services with cloud-native architecture, mobile apps, and enterprise system integration.",
-      icon: Code,
-      features: ["Cloud-Native Apps", "Mobile Development", "API Integration", "DevOps"],
-      color: "from-amber-600 to-orange-700",
-      pricing: "Starting at $10,000/project",
-      benefits: ["99.99% Uptime", "Scalable Architecture", "Rapid Deployment"]
-    },
-    {
-      title: "Innovation Labs",
-      subtitle: "Future Technology",
-      description: "Research and development for emerging technologies including blockchain, IoT, and quantum computing applications.",
-      icon: Sparkles,
-      features: ["Emerging Tech Research", "Rapid Prototyping", "Digital Transformation", "Innovation Consulting"],
-      color: "from-violet-600 to-fuchsia-700",
-      pricing: "Starting at $3,000/project",
-      benefits: ["2-week Prototypes", "ROI Analysis", "Market Research"]
-    },
-  ];
-
-  // Enhanced stats with animations
-  const stats = [
-    { number: "500+", label: "Projects Completed", icon: Target, color: "text-blue-600" },
-    { number: "150+", label: "Happy Clients", icon: Users, color: "text-green-600" },
-    { number: "10+", label: "Years Experience", icon: Award, color: "text-purple-600" },
-    { number: "99.9%", label: "Uptime Guarantee", icon: Shield, color: "text-orange-600" },
-  ];
-
-  // Technologies we work with
-  const technologies = [
-    { name: "AWS", icon: Cloud, category: "Cloud" },
-    { name: "Kubernetes", icon: Layers, category: "DevOps" },
-    { name: "TensorFlow", icon: Brain, category: "AI/ML" },
-    { name: "React", icon: Code, category: "Frontend" },
-    { name: "PostgreSQL", icon: Database, category: "Database" },
-    { name: "Docker", icon: Monitor, category: "DevOps" },
-  ];
-
-  // Client testimonials
+  // Define testimonials array first
   const testimonials = [
     {
-      quote: "Muhscience Tech Labs transformed our security posture completely. Their 24/7 monitoring has prevented multiple cyber attacks, saving us millions in potential damages.",
-      author: "Sarah Johnson",
-      title: "CTO, TechCorp Industries",
-      company: "Fortune 500 Manufacturing",
+      name: 'Sarah Johnson',
+      title: 'CTO',
+      company: 'TechCorp Solutions',
+      content: 'Muhscience Tech Labs transformed our entire security infrastructure. Their expertise in cybersecurity is unmatched, and they delivered results that exceeded our expectations.',
       rating: 5,
-      avatar: "/api/placeholder/64/64"
+      image: '/images/avatars/sarah-johnson.svg'
     },
     {
-      quote: "The AI solutions they developed increased our operational efficiency by 80%. The predictive analytics have revolutionized our decision-making process.",
-      author: "Michael Chen",
-      title: "Head of Operations, DataFlow Solutions",
-      company: "Leading SaaS Provider",
+      name: 'Michael Chen',
+      title: 'CEO',
+      company: 'StartupXYZ',
+      content: 'The cloud migration project was seamless. Their team guided us through every step, and we saw immediate improvements in performance and cost savings.',
       rating: 5,
-      avatar: "/api/placeholder/64/64"
+      image: '/images/avatars/michael-chen.svg'
     },
     {
-      quote: "Their software development team delivered our mobile app ahead of schedule. The quality and attention to detail exceeded our expectations.",
-      author: "Emma Rodriguez",
-      title: "Product Manager, StartupX",
-      company: "Y Combinator Startup",
+      name: 'Emma Rodriguez',
+      title: 'IT Director',
+      company: 'Global Enterprises',
+      content: 'Professional, innovative, and reliable. Their AI solutions have revolutionized how we handle data analysis and decision-making processes.',
       rating: 5,
-      avatar: "/api/placeholder/64/64"
+      image: '/images/avatars/emma-rodriguez.svg'
     }
   ];
 
-  // Features for why choose us section
-  const features = [
-    {
-      title: "Enterprise-Grade Security",
-      description: "Military-grade encryption and multi-layered security protocols protecting your critical data and infrastructure from advanced threats."
-    },
-    {
-      title: "AI-Powered Solutions",
-      description: "Cutting-edge artificial intelligence and machine learning technologies that adapt and evolve with your business needs."
-    },
-    {
-      title: "24/7 Expert Support",
-      description: "Round-the-clock technical support from certified professionals with guaranteed response times and proactive monitoring."
-    },
-    {
-      title: "Scalable Architecture",
-      description: "Cloud-native solutions designed to grow with your business, ensuring optimal performance at any scale."
-    },
-    {
-      title: "Proven Track Record",
-      description: "500+ successful projects delivered across various industries with 99.9% client satisfaction rate."
-    },
-    {
-      title: "Innovation Leadership",
-      description: "Stay ahead of the competition with access to the latest technologies and industry best practices."
-    }
-  ];
-
-  // Why choose us features
-  const whyChooseUs = [
-    {
-      title: "Industry-Leading Expertise",
-      description: "Our certified professionals bring decades of combined experience across cybersecurity, AI, and software development.",
-      icon: Award,
-      stats: "50+ Certifications"
-    },
-    {
-      title: "24/7 Global Support",
-      description: "Round-the-clock support with guaranteed response times and proactive monitoring for maximum uptime.",
-      icon: Timer,
-      stats: "15-min Response"
-    },
-    {
-      title: "Proven Track Record",
-      description: "Successfully delivered 500+ projects with 99.9% client satisfaction rate across various industries.",
-      icon: TrendingUp,
-      stats: "99.9% Success Rate"
-    },
-    {
-      title: "Cutting-Edge Innovation",
-      description: "We stay ahead of technology trends, implementing the latest solutions to give you competitive advantage.",
-      icon: Lightbulb,
-      stats: "Latest Tech Stack"
-    }
-  ];
-
-  // Case studies preview
-  const caseStudies = [
-    {
-      title: "Financial Services Security Overhaul",
-      client: "Major Bank",
-      industry: "Finance",
-      challenge: "Legacy security systems vulnerable to modern threats",
-      solution: "Comprehensive cybersecurity transformation with AI-powered threat detection",
-      results: "100% threat prevention, regulatory compliance achieved",
-      icon: Building,
-      color: "from-blue-500 to-cyan-500"
-    },
-    {
-      title: "Manufacturing AI Implementation",
-      client: "Global Manufacturer",
-      industry: "Manufacturing",
-      challenge: "Inefficient production processes and quality control",
-      solution: "AI-powered predictive maintenance and quality assurance systems",
-      results: "40% efficiency increase, 60% defect reduction",
-      icon: Settings,
-      color: "from-green-500 to-emerald-500"
-    },
-    {
-      title: "Healthcare Platform Development",
-      client: "Regional Hospital Network",
-      industry: "Healthcare",
-      challenge: "Fragmented patient data and inefficient workflows",
-      solution: "Integrated healthcare platform with AI-driven insights",
-      results: "50% faster patient processing, improved outcomes",
-      icon: Heart,
-      color: "from-purple-500 to-pink-500"
-    }
-  ];
-
-  // Auto-rotate testimonials
+  // Handle scroll effect for header
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Animate stats on load
+  useEffect(() => {
+    const animateStats = () => {
+      const targets = { clients: 200, projects: 500, experience: 10, team: 25 };
+      const duration = 2000;
+      const steps = 60;
+      const stepDuration = duration / steps;
+      
+      let step = 0;
+      const timer = setInterval(() => {
+        step++;
+        const progress = step / steps;
+        
+        setStats({
+          clients: Math.floor(targets.clients * progress),
+          projects: Math.floor(targets.projects * progress),
+          experience: Math.floor(targets.experience * progress),
+          team: Math.floor(targets.team * progress)
+        });
+        
+        if (step >= steps) {
+          clearInterval(timer);
+          setStats(targets);
+        }
+      }, stepDuration);
+    };
+    
+    const timer = setTimeout(animateStats, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Testimonial rotation
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTestimonial(prev => (prev + 1) % testimonials.length);
     }, 5000);
-    return () => clearInterval(interval);
+    return () => clearInterval(timer);
   }, [testimonials.length]);
 
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    // Newsletter signup logic here
-    console.log('Newsletter signup:', email);
-    setEmail('');
-  };
+  const services = [
+    {
+      icon: '🛡️',
+      title: 'Cybersecurity Solutions',
+      description: 'Comprehensive security infrastructure to protect your digital assets from evolving threats.',
+      features: [
+        'Advanced Threat Detection',
+        'Penetration Testing & Audits',
+        'Compliance & Risk Management',
+        'Security Incident Response',
+        'Vulnerability Assessments'
+      ],
+      color: 'from-red-500 to-pink-500'
+    },
+    {
+      icon: '☁️',
+      title: 'Cloud & DevOps',
+      description: 'Scalable cloud infrastructure and automation solutions for modern businesses.',
+      features: [
+        'Cloud Migration & Strategy',
+        'Kubernetes & Containerization',
+        'CI/CD Pipeline Implementation',
+        'Infrastructure as Code',
+        'Multi-Cloud Management'
+      ],
+      color: 'from-blue-500 to-cyan-500'
+    },
+    {
+      icon: '🤖',
+      title: 'AI & Machine Learning',
+      description: 'Intelligent solutions powered by cutting-edge AI and machine learning technologies.',
+      features: [
+        'Custom AI Model Development',
+        'Natural Language Processing',
+        'Computer Vision Solutions',
+        'Predictive Analytics',
+        'AI Integration Consulting'
+      ],
+      color: 'from-green-500 to-emerald-500'
+    },
+    {
+      icon: '💻',
+      title: 'Software Development',
+      description: 'Custom software solutions built with modern technologies and best practices.',
+      features: [
+        'Full-Stack Web Applications',
+        'Mobile App Development',
+        'API Development & Integration',
+        'Database Design & Optimization',
+        'Legacy System Modernization'
+      ],
+      color: 'from-purple-500 to-indigo-500'
+    }
+  ];
+
+
+  const achievements = [
+    {
+      icon: '🏆',
+      title: 'ISO 27001 Certified',
+      description: 'Information Security Management'
+    },
+    {
+      icon: '🥇',
+      title: 'AWS Advanced Partner',
+      description: 'Cloud Solutions Excellence'
+    },
+    {
+      icon: '⭐',
+      title: '99.9% Uptime',
+      description: 'Service Reliability Guarantee'
+    },
+    {
+      icon: '🔒',
+      title: 'Zero Breaches',
+      description: 'Perfect Security Track Record'
+    }
+  ];
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-background to-background/95 py-20 md:py-32">
-          <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:75px_75px]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/0 to-primary/20" />
-          <div className="container relative px-4 sm:px-6">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mx-auto max-w-4xl text-center"
-            >
-              <Badge className="mb-4" variant="secondary">
-                <Zap className="mr-1 h-3 w-3" />
-                Trusted by 20+ Organizations
-              </Badge>
-              <h1 className="font-inter text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
-                Securing the Future with{" "}
-                <span className="bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
-                  Innovation
+    <div className="min-h-screen bg-white">
+      {/* Advanced Header */}
+      <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-200' 
+          : 'bg-transparent'
+      }`}>
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="relative">
+                <div className="h-10 w-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">M</span>
+                </div>
+                <div className="absolute -top-1 -right-1 h-4 w-4 bg-green-500 rounded-full border-2 border-white"></div>
+              </div>
+              <div>
+                <span className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+                  Muhscience Tech Labs
                 </span>
-              </h1>
-              <p className="mt-6 text-lg leading-8 text-muted-foreground sm:text-xl">
-                We specialize in cybersecurity, AI/ML solutions, and full-stack development.
-                Protecting your digital assets while driving technological advancement.
-              </p>
-              <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-                <Button size="lg" className="group w-full sm:w-auto" asChild>
-                  <Link href="/contact">
-                    Get Started
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" className="w-full sm:w-auto" asChild>
-                  <Link href="/services">
+                <div className="text-xs text-blue-600 font-medium">Securing Digital Futures</div>
+              </div>
+            </div>
+            
+            <nav className="hidden lg:flex items-center space-x-8">
+              {[
+                { name: 'Services', href: '/services' },
+                { name: 'Solutions', href: '/projects' },
+                { name: 'About', href: '/about' },
+                { name: 'Blog', href: '/blog' },
+                { name: 'Careers', href: '/careers' }
+              ].map((item) => (
+                <Link 
+                  key={item.name}
+                  href={item.href} 
+                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group"
+                >
+                  {item.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+                </Link>
+              ))}
+            </nav>
+            
+            <div className="flex items-center space-x-4">
+              <Link 
+                href="/contact" 
+                className="hidden md:inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              >
+                Get Free Consultation
+                <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+              
+              <button className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+        <div className="absolute top-40 right-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute -bottom-32 left-1/2 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse" style={{animationDelay: '4s'}}></div>
+        
+        <div className="relative z-10 container mx-auto px-4 pt-20">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full text-sm font-medium text-blue-800 mb-8 animate-bounce">
+              <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+              🚀 Leading Cybersecurity & Tech Innovation in East Africa
+            </div>
+            
+            <h1 className="text-4xl md:text-7xl font-bold mb-8 leading-tight">
+              <span className="bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+                Secure.
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Scale.
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 bg-clip-text text-transparent">
+                Innovate.
+              </span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+              Transform your business with cutting-edge <span className="text-blue-600 font-semibold">cybersecurity</span>, 
+              <span className="text-purple-600 font-semibold"> cloud solutions</span>, and 
+              <span className="text-pink-600 font-semibold">AI-powered innovations</span>. 
+              Trusted by 200+ companies across Africa.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <Link 
+                href="/contact" 
+                className="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1"
+              >
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-purple-400 rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></span>
+                <span className="relative flex items-center">
+                  Start Your Digital Transformation
+                  <svg className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
+              </Link>
+              
+              <Link 
+                href="/services" 
+                className="inline-flex items-center px-8 py-4 border-2 border-gray-300 text-gray-700 rounded-xl font-semibold text-lg hover:border-blue-500 hover:text-blue-600 transition-all duration-300 group"
+              >
+                <svg className="mr-3 h-5 w-5 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                Explore Our Solutions
+              </Link>
+            </div>
+            
+            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              <div className="group">
+                <div className="text-4xl font-bold text-blue-600 group-hover:scale-110 transition-transform">
+                  {stats.clients}+
+                </div>
+                <div className="text-sm text-gray-600 font-medium">Happy Clients</div>
+              </div>
+              <div className="group">
+                <div className="text-4xl font-bold text-purple-600 group-hover:scale-110 transition-transform">
+                  {stats.projects}+
+                </div>
+                <div className="text-sm text-gray-600 font-medium">Projects Delivered</div>
+              </div>
+              <div className="group">
+                <div className="text-4xl font-bold text-pink-600 group-hover:scale-110 transition-transform">
+                  {stats.experience}+
+                </div>
+                <div className="text-sm text-gray-600 font-medium">Years Experience</div>
+              </div>
+              <div className="group">
+                <div className="text-4xl font-bold text-green-600 group-hover:scale-110 transition-transform">
+                  {stats.team}+
+                </div>
+                <div className="text-sm text-gray-600 font-medium">Expert Team</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Expertise</span>
+            </h2>
+            <p className="text-xl text-gray-600 leading-relaxed">
+              Comprehensive technology solutions designed to protect, optimize, and transform your business operations.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {services.map((service, index) => (
+              <div key={index} className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
+                <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl" style={{backgroundImage: `linear-gradient(135deg, ${service.color.split(' ')[1]}, ${service.color.split(' ')[3]})`}}></div>
+                
+                <div className="relative">
+                  <div className="flex items-center mb-6">
+                    <div className={`text-4xl mr-4 p-3 rounded-xl bg-gradient-to-r ${service.color} text-white shadow-lg`}>
+                      {service.icon}
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">{service.title}</h3>
+                  </div>
+                  
+                  <p className="text-gray-600 mb-6 leading-relaxed text-lg">
+                    {service.description}
+                  </p>
+                  
+                  <ul className="space-y-3">
+                    {service.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center text-gray-700">
+                        <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.color} mr-3`}></div>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <Link 
+                    href="/services"
+                    className="inline-flex items-center mt-6 text-blue-600 font-semibold hover:text-purple-600 transition-colors group-hover:translate-x-2 transform duration-300"
+                  >
                     Learn More
+                    <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                   </Link>
-                </Button>
+                </div>
               </div>
-            </motion.div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Stats Section */}
-        <section className="py-16 bg-muted/50">
-          <div className="container px-4 sm:px-6">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              className="grid grid-cols-2 gap-8 sm:grid-cols-4"
-            >
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="mb-2 flex justify-center">
-                    <stat.icon className="h-8 w-8 text-primary" />
+      {/* Achievements Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">
+              Trusted & <span className="text-blue-600">Certified</span>
+            </h2>
+            <p className="text-xl text-gray-600">Industry recognition and certifications that validate our expertise.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            {achievements.map((achievement, index) => (
+              <div key={index} className="text-center group">
+                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">{achievement.icon}</div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{achievement.title}</h3>
+                <p className="text-sm text-gray-600">{achievement.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">
+              What Our <span className="text-purple-600">Clients</span> Say
+            </h2>
+            <p className="text-xl text-gray-600">Real feedback from companies that trust us with their digital transformation.</p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+              
+              <div className="flex flex-col md:flex-row items-center">
+                <div className="md:w-1/3 mb-8 md:mb-0">
+                  <div className="w-32 h-32 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full mx-auto flex items-center justify-center text-white text-4xl font-bold shadow-xl">
+                    {testimonials[currentTestimonial].name.split(' ').map(n => n[0]).join('')}
                   </div>
-                  <div className="text-3xl font-bold">{stat.number}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Services Section */}
-        <section className="py-20">
-          <div className="container px-4 sm:px-6">
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-              <Badge className="mb-4" variant="outline">
-                Our Expertise
-              </Badge>
-              <h2 className="text-3xl font-bold sm:text-4xl">
-                Comprehensive Technology Solutions
-              </h2>
-              <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                From cybersecurity to AI implementation, we deliver cutting-edge solutions that drive business growth.
-              </p>
-            </motion.div>
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {services.map((service, index) => (
-                <motion.div
-                  key={service.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                >
-                  <Card className="h-full group cursor-pointer transition-all hover:shadow-xl">
-                    <CardContent className="p-6">
-                      <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-r ${service.color}`}>
-                        <service.icon className="h-6 w-6 text-white" />
-                      </div>
-                      <h3 className="text-xl font-semibold mb-2">
-                        {service.title}
-                      </h3>
-                      <p className="text-muted-foreground mb-4">
-                        {service.description}
-                      </p>
-                      <ul className="space-y-2">
-                        {service.features.map((feature, i) => (
-                          <li key={i} className="flex items-center text-sm">
-                            <CheckCircle className="mr-2 h-4 w-4 text-primary" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                      <Button variant="ghost" className="mt-4 p-0 h-auto" asChild>
-                        <Link href="/services">
-                          Learn More <ArrowRight className="ml-1 h-4 w-4" />
-                        </Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section className="py-20 bg-muted/50">
-          <div className="container px-4 sm:px-6">
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-3xl font-bold sm:text-4xl mb-4">
-                Why Choose Muhscience Tech Labs?
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                We combine technical expertise with industry best practices to deliver exceptional results.
-              </p>
-            </motion.div>
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={feature.title}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex items-start space-x-4"
-                >
-                  <div className="flex-shrink-0">
-                    <CheckCircle className="h-6 w-6 text-primary" />
+                </div>
+                
+                <div className="md:w-2/3 md:pl-8">
+                  <div className="flex mb-4">
+                    {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
+                      <svg key={i} className="w-6 h-6 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    ))}
                   </div>
+                  
+                  <blockquote className="text-xl text-gray-700 mb-6 leading-relaxed italic">
+                    "{testimonials[currentTestimonial].content}"
+                  </blockquote>
+                  
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-muted-foreground">{feature.description}</p>
+                    <div className="font-bold text-lg text-gray-900">{testimonials[currentTestimonial].name}</div>
+                    <div className="text-blue-600 font-medium">{testimonials[currentTestimonial].title}</div>
+                    <div className="text-gray-600">{testimonials[currentTestimonial].company}</div>
                   </div>
-                </motion.div>
-              ))}
+                </div>
+              </div>
+              
+              <div className="flex justify-center mt-8 space-x-2">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentTestimonial(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      currentTestimonial === index
+                        ? 'bg-blue-600 w-8'
+                        : 'bg-gray-300 hover:bg-gray-400'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* CTA Section */}
-        <section className="py-20">
-          <div className="container px-4 sm:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="rounded-2xl bg-gradient-to-r from-primary/10 to-purple-500/10 p-8 text-center sm:p-12"
-            >
-              <TrendingUp className="mx-auto h-12 w-12 text-primary mb-6" />
-              <h2 className="text-3xl font-bold sm:text-4xl mb-4">
-                Ready to Transform Your Business?
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Join the growing number of organizations that trust Muhscience Tech Labs with their digital transformation journey.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="group" asChild>
-                  <Link href="/contact">
-                    Start Your Project
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="/about">
-                    Learn About Us
-                  </Link>
-                </Button>
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-blue-900 via-purple-900 to-pink-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="absolute inset-0">
+          <div className="w-full h-full bg-gradient-to-r from-blue-600/20 to-purple-600/20 animate-pulse"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              Ready to Transform Your Business?
+            </h2>
+            <p className="text-xl md:text-2xl mb-12 opacity-90 leading-relaxed">
+              Join 200+ companies that trust Muhscience Tech Labs for their cybersecurity, 
+              cloud infrastructure, and digital innovation needs.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <Link 
+                href="/contact" 
+                className="group relative inline-flex items-center px-10 py-5 bg-white text-gray-900 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl transform hover:-translate-y-1"
+              >
+                <span className="flex items-center">
+                  📞 Schedule Free Consultation
+                  <svg className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
+              </Link>
+              
+              <Link 
+                href="/projects" 
+                className="inline-flex items-center px-10 py-5 border-2 border-white text-white rounded-xl font-bold text-lg hover:bg-white hover:text-gray-900 transition-all duration-300 group"
+              >
+                <svg className="mr-3 h-5 w-5 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                View Our Portfolio
+              </Link>
+            </div>
+            
+            <div className="mt-12 text-center">
+              <p className="text-lg opacity-75 mb-4">🔒 Trusted by leading companies across Africa</p>
+              <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+                <div className="text-2xl font-bold">TechCorp</div>
+                <div className="text-2xl font-bold">StartupXYZ</div>
+                <div className="text-2xl font-bold">Global Enterprises</div>
+                <div className="text-2xl font-bold">+200 More</div>
               </div>
-            </motion.div>
+            </div>
           </div>
-        </section>
-      </main>
-      <SiteFooter />
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8 mb-12">
+            <div className="md:col-span-2">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="h-12 w-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-xl">M</span>
+                </div>
+                <div>
+                  <span className="text-2xl font-bold">Muhscience Tech Labs</span>
+                  <div className="text-sm text-blue-400">Securing Digital Futures</div>
+                </div>
+              </div>
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                Leading cybersecurity and technology solutions provider in East Africa. 
+                We help businesses secure, scale, and innovate in the digital age.
+              </p>
+              <div className="flex space-x-4">
+                <a href="#" className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors">
+                  <span className="sr-only">Twitter</span>
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                  </svg>
+                </a>
+                <a href="#" className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors">
+                  <span className="sr-only">LinkedIn</span>
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </a>
+                <a href="#" className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors">
+                  <span className="sr-only">GitHub</span>
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="font-bold text-lg mb-6">Services</h3>
+              <ul className="space-y-3 text-gray-300">
+                <li><Link href="/services" className="hover:text-white transition-colors">Cybersecurity</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors">Cloud Solutions</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors">AI & ML</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors">Software Development</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors">IT Consulting</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="font-bold text-lg mb-6">Contact Info</h3>
+              <div className="space-y-3 text-gray-300">
+                <div className="flex items-center">
+                  <svg className="w-5 h-5 mr-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  +254 746 254 055
+                </div>
+                <div className="flex items-center">
+                  <svg className="w-5 h-5 mr-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  info@muhsciencetechlabs.com
+                </div>
+                <div className="flex items-center">
+                  <svg className="w-5 h-5 mr-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  Nairobi, Kenya
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <div className="text-gray-400 mb-4 md:mb-0">
+              © {new Date().getFullYear()} Muhscience Tech Labs. All rights reserved.
+            </div>
+            <div className="flex space-x-6 text-gray-400">
+              <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+              <Link href="/security" className="hover:text-white transition-colors">Security</Link>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" fill="#064e3b"/>
+  <circle cx="300" cy="200" r="80" fill="#10b981" opacity="0.7"/>
+  <path d="M250 160 L300 120 L350 160 L330 200 L270 200 Z" fill="#22c55e"/>
+  <rect x="280" y="200" width="40" height="60" fill="#92400e"/>
+  <text x="300" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#f1f5f9">Climate Tech</text>
+  <text x="300" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#cbd5e1">Sustainable Innovation</text>
+  <rect x="20" y="20" width="80" height="30" rx="15" fill="#ef4444" opacity="0.9"/>
+  <text x="60" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">WEBINAR</text>
+</svg>

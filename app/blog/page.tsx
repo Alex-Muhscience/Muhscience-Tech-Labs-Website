@@ -9,6 +9,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Search, Clock, Calendar, User, ArrowRight, Mail, Send } from "lucide-react";
 import '../globals.css';
+import CommentsSection from '../components/CommentsSection';
 
 interface BlogPost {
   _id: string;
@@ -278,6 +279,11 @@ export default function BlogPage() {
                                 Read more <ArrowRight className="ml-2 h-4 w-4" />
                               </a>
                             </Button>
+                            
+                            {/* Comments Section for each post */}
+                            <div className="mt-6 pt-6 border-t">
+                              <CommentsSection />
+                            </div>
                           </CardContent>
                         </Card>
                       </motion.div>

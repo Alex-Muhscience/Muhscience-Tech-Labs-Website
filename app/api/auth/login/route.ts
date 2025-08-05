@@ -48,7 +48,8 @@ export async function POST(request: Request) {
       .setExpirationTime("24h")
       .sign(secret);
 
-    cookies().set({
+    const cookieStore = await cookies();
+    cookieStore.set({
       name: "auth-token",
       value: token,
       httpOnly: true,

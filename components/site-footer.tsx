@@ -1,6 +1,9 @@
+"use client";
+
 // SiteFooter.tsx
-import { ShieldCheck } from "lucide-react";
+import { Phone, Mail, MessageCircle, MapPin } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export function SiteFooter() {
   return (
@@ -81,28 +84,54 @@ export function SiteFooter() {
             </ul>
           </div>
           <div>
-            <h3 className="font-Roboto text-sm font-semibold">Legal</h3>
-            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              <li>
-                <Link href="/privacy" className="hover:underline">
-                  Privacy Policy
-                </Link>
+            <h3 className="font-Roboto text-sm font-semibold">Contact Us</h3>
+            <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+              <li className="flex items-center space-x-2">
+                <Phone className="h-4 w-4" />
+                <a href="tel:+254746254055" className="hover:underline">
+                  +254 746 254 055
+                </a>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Mail className="h-4 w-4" />
+                <a href="mailto:info@cybermuhscience.com" className="hover:underline">
+                  info@cybermuhscience.com
+                </a>
+              </li>
+              <li className="flex items-center space-x-2">
+                <MapPin className="h-4 w-4" />
+                <span>Nairobi, Kenya</span>
               </li>
               <li>
-                <Link href="/terms" className="hover:underline">
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link href="/security" className="hover:underline">
-                  Security
-                </Link>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => {
+                    const whatsappUrl = `https://wa.me/254746254055?text=${encodeURIComponent('Hello! I\'m interested in your services.')}`;
+                    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+                  }}
+                  className="text-green-600 border-green-600 hover:bg-green-600 hover:text-white w-full"
+                >
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  Chat on WhatsApp
+                </Button>
               </li>
             </ul>
           </div>
         </div>
-        <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} CyberMuhscience Tech iLabs Ltd. All rights reserved.</p>
+        <div className="mt-8 border-t pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="text-center md:text-left text-sm text-muted-foreground">
+              <p>© {new Date().getFullYear()} CyberMuhscience Tech iLabs Ltd. All rights reserved.</p>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">
+              <div className="text-sm text-muted-foreground">
+                <Link href="/privacy" className="hover:underline mr-4">Privacy</Link>
+                <Link href="/terms" className="hover:underline mr-4">Terms</Link>
+                <Link href="/security" className="hover:underline">Security</Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

@@ -14,7 +14,7 @@ import {
   Smartphone, BarChart, Users, Clock, Star, ArrowRight, Target, Zap, Award,
   Monitor, Cpu, Network, Key, Eye, AlertTriangle, TrendingUp, Briefcase,
   Settings, Globe, Layers, FileCode, Rocket, Heart, MessageSquare, Phone,
-  Mail, MapPin, Calendar, DollarSign
+  Mail, MapPin, Calendar, DollarSign, PlayCircle, Users2, Headphones
 } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -277,8 +277,57 @@ export default function ServicesPage() {
             </motion.p>
           </section>
 
+          {/* Service Introduction */}
+          <section className="mt-12 lg:mt-16">
+            <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8 mb-16">
+              <div className="text-center mb-8">
+                <h2 className="font-Helvetica text-3xl font-bold mb-4">Why Choose Our Services</h2>
+                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                  At Muhscience Tech Labs, we combine cutting-edge technology with deep industry expertise to deliver solutions that drive real business value. Our comprehensive service portfolio is designed to address the most complex challenges in today's digital landscape.
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="text-center">
+                  <div className="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                    <Award className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Industry Expertise</h3>
+                  <p className="text-sm text-muted-foreground">Over a decade of experience across multiple industries and domains</p>
+                </div>
+                <div className="text-center">
+                  <div className="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                    <Rocket className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Cutting-Edge Tech</h3>
+                  <p className="text-sm text-muted-foreground">Latest technologies and methodologies to stay ahead of the curve</p>
+                </div>
+                <div className="text-center">
+                  <div className="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                    <Shield className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Security First</h3>
+                  <p className="text-sm text-muted-foreground">Enterprise-grade security built into every solution we deliver</p>
+                </div>
+                <div className="text-center">
+                  <div className="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                    <Headphones className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="font-semibold mb-2">24/7 Support</h3>
+                  <p className="text-sm text-muted-foreground">Round-the-clock support to ensure your operations never stop</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Services Grid */}
           <section className="mt-12 lg:mt-16">
+            <div className="text-center mb-12">
+              <h2 className="font-Helvetica text-3xl font-bold mb-4">Our Core Services</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+                Explore our comprehensive range of technology services designed to transform your business and drive innovation.
+              </p>
+            </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {services.map((service) => (
                 <motion.div
@@ -339,8 +388,420 @@ export default function ServicesPage() {
             </div>
           </section>
 
+          {/* Pricing Section */}
+          <section className="mt-16">
+            <div className="text-center mb-12">
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="font-Helvetica text-3xl font-bold mb-4"
+              >
+                Flexible Pricing for {activeService.title}
+              </motion.h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Choose the perfect plan that fits your needs and budget
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              {Object.entries(activeService.pricing).map(([tier, price], index) => (
+                <motion.div
+                  key={tier}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Card className={`relative ${tier === 'professional' ? 'border-primary shadow-lg scale-105' : ''}`}>
+                    {tier === 'professional' && (
+                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                        <Badge className="bg-primary text-primary-foreground px-4 py-1">
+                          Most Popular
+                        </Badge>
+                      </div>
+                    )}
+                    <CardHeader className="text-center">
+                      <CardTitle className="capitalize text-xl">{tier}</CardTitle>
+                      <div className="mt-4">
+                        <span className="text-3xl font-bold">{price}</span>
+                        {price.includes('/') && <span className="text-muted-foreground text-sm">/month</span>}
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-3">
+                        {activeService.features.slice(0, tier === 'starter' ? 2 : tier === 'professional' ? 3 : 4).map((feature, idx) => (
+                          <li key={idx} className="flex items-start space-x-3">
+                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5" />
+                            <span className="text-sm">{feature.name}</span>
+                          </li>
+                        ))}
+                        {tier === 'enterprise' && (
+                          <>
+                            <li className="flex items-start space-x-3">
+                              <CheckCircle className="h-5 w-5 text-green-500 mt-0.5" />
+                              <span className="text-sm">Dedicated support team</span>
+                            </li>
+                            <li className="flex items-start space-x-3">
+                              <CheckCircle className="h-5 w-5 text-green-500 mt-0.5" />
+                              <span className="text-sm">Custom integrations</span>
+                            </li>
+                          </>
+                        )}
+                      </ul>
+                      <Button 
+                        className="w-full mt-6" 
+                        variant={tier === 'professional' ? 'default' : 'outline'}
+                        onClick={() => {
+                          const element = document.getElementById('contact-form');
+                          element?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                      >
+                        {tier === 'enterprise' ? 'Contact Sales' : 'Get Started'}
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* Stats Section */}
+          <section className="mt-16 bg-gradient-to-r from-muted/50 to-muted/30 rounded-2xl p-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              <div>
+                <div className="text-3xl font-bold text-primary mb-2">500+</div>
+                <div className="text-sm text-muted-foreground">Projects Completed</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-primary mb-2">99.9%</div>
+                <div className="text-sm text-muted-foreground">Uptime Guarantee</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-primary mb-2">24/7</div>
+                <div className="text-sm text-muted-foreground">Support Available</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-primary mb-2">50+</div>
+                <div className="text-sm text-muted-foreground">Enterprise Clients</div>
+              </div>
+            </div>
+          </section>
+
+          {/* Our Development Process */}
+          <section className="mt-16">
+            <div className="text-center mb-12">
+              <h2 className="font-Helvetica text-3xl font-bold mb-4">Our Proven Development Process</h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
+                We follow a comprehensive, client-centric approach that ensures every project is delivered on time, within budget, and exceeds expectations. Our methodology combines agile practices with rigorous quality assurance.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              {[
+                {
+                  step: "01",
+                  title: "Discovery & Analysis",
+                  description: "Deep dive into your business requirements, technical constraints, and success metrics. We conduct stakeholder interviews, competitive analysis, and technical feasibility studies.",
+                  icon: Target,
+                  duration: "1-2 weeks",
+                  deliverables: ["Requirements document", "Technical specifications", "Project timeline"]
+                },
+                {
+                  step: "02",
+                  title: "Design & Architecture",
+                  description: "Create comprehensive system architecture, UI/UX designs, and technical blueprints. We focus on scalability, security, and user experience from the ground up.",
+                  icon: Layers,
+                  duration: "2-3 weeks",
+                  deliverables: ["System architecture", "UI/UX mockups", "Database design"]
+                },
+                {
+                  step: "03",
+                  title: "Development & Testing",
+                  description: "Agile development with continuous integration, automated testing, and regular client reviews. We ensure code quality, performance optimization, and security best practices.",
+                  icon: Code,
+                  duration: "4-12 weeks",
+                  deliverables: ["Working software", "Test reports", "Performance metrics"]
+                },
+                {
+                  step: "04",
+                  title: "Deployment & Support",
+                  description: "Seamless deployment to production environments with monitoring, documentation, and ongoing support. We provide training and ensure smooth transition to your team.",
+                  icon: Rocket,
+                  duration: "1-2 weeks",
+                  deliverables: ["Production deployment", "Documentation", "Training materials"]
+                }
+              ].map((process, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="relative"
+                >
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 group">
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="bg-primary/10 rounded-full h-12 w-12 flex items-center justify-center">
+                          <process.icon className="h-6 w-6 text-primary" />
+                        </div>
+                        <div className="text-2xl font-bold text-primary/30">{process.step}</div>
+                      </div>
+                      
+                      <h3 className="font-semibold text-lg mb-3">{process.title}</h3>
+                      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                        {process.description}
+                      </p>
+                      
+                      <div className="space-y-3">
+                        <div className="flex items-center text-xs text-muted-foreground">
+                          <Clock className="h-3 w-3 mr-2" />
+                          <span>{process.duration}</span>
+                        </div>
+                        
+                        <div>
+                          <p className="text-xs font-medium text-muted-foreground mb-2">Key Deliverables:</p>
+                          <ul className="space-y-1">
+                            {process.deliverables.map((deliverable, idx) => (
+                              <li key={idx} className="flex items-center text-xs text-muted-foreground">
+                                <div className="h-1 w-1 rounded-full bg-primary mr-2" />
+                                {deliverable}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                  
+                  {/* Connection line */}
+                  {index < 3 && (
+                    <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-primary/30 to-primary/10 transform -translate-y-1/2" />
+                  )}
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Technologies and Tools */}
+            <div className="bg-gradient-to-r from-muted/30 to-muted/20 rounded-2xl p-8">
+              <div className="text-center mb-8">
+                <h3 className="font-Helvetica text-2xl font-bold mb-4">Technologies & Tools We Use</h3>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                  We leverage the latest technologies and industry-standard tools to deliver cutting-edge solutions
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                  <h4 className="font-semibold mb-4 flex items-center">
+                    <Code className="h-4 w-4 mr-2 text-primary" />
+                    Frontend
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {["React", "Next.js", "Vue.js", "Angular", "TypeScript", "Tailwind CSS"].map((tech) => (
+                      <Badge key={tech} variant="secondary" className="text-xs">{tech}</Badge>
+                    ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-4 flex items-center">
+                    <Server className="h-4 w-4 mr-2 text-primary" />
+                    Backend
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {["Node.js", "Python", "Java", "Go", "PostgreSQL", "MongoDB"].map((tech) => (
+                      <Badge key={tech} variant="secondary" className="text-xs">{tech}</Badge>
+                    ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-4 flex items-center">
+                    <Cloud className="h-4 w-4 mr-2 text-primary" />
+                    Cloud & DevOps
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {["AWS", "Azure", "GCP", "Docker", "Kubernetes", "Terraform"].map((tech) => (
+                      <Badge key={tech} variant="secondary" className="text-xs">{tech}</Badge>
+                    ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-4 flex items-center">
+                    <Brain className="h-4 w-4 mr-2 text-primary" />
+                    AI/ML
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {["TensorFlow", "PyTorch", "Scikit-learn", "OpenAI", "Hugging Face", "MLflow"].map((tech) => (
+                      <Badge key={tech} variant="secondary" className="text-xs">{tech}</Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Case Studies Section */}
+          <section className="mt-16">
+            <div className="text-center mb-12">
+              <h2 className="font-Helvetica text-3xl font-bold mb-4">Success Stories</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Real results from our enterprise clients across different industries
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "Healthcare Security Transformation",
+                  industry: "Healthcare",
+                  challenge: "HIPAA compliance and patient data protection",
+                  result: "99.9% threat prevention, zero data breaches",
+                  metric: "100% Compliance",
+                  icon: Shield,
+                  color: "from-blue-600 to-blue-800"
+                },
+                {
+                  title: "AI-Powered Supply Chain Optimization",
+                  industry: "Manufacturing",
+                  challenge: "Inefficient inventory management and forecasting",
+                  result: "40% reduction in inventory costs, 25% faster delivery",
+                  metric: "$2M Saved Annually",
+                  icon: Bot,
+                  color: "from-green-600 to-green-800"
+                },
+                {
+                  title: "Cloud-Native E-commerce Platform",
+                  industry: "Retail",
+                  challenge: "Legacy system scalability issues",
+                  result: "10x traffic handling capacity, 50% faster page loads",
+                  metric: "300% Revenue Growth",
+                  icon: Cloud,
+                  color: "from-purple-600 to-purple-800"
+                },
+                {
+                  title: "Financial Services Risk Analytics",
+                  industry: "Finance",
+                  challenge: "Real-time fraud detection and risk assessment",
+                  result: "95% fraud detection accuracy, 60% faster processing",
+                  metric: "$5M Loss Prevention",
+                  icon: BarChart,
+                  color: "from-orange-600 to-orange-800"
+                },
+                {
+                  title: "Government Cybersecurity Framework",
+                  industry: "Government",
+                  challenge: "Multi-agency security standardization",
+                  result: "Unified security posture across 15 agencies",
+                  metric: "Zero Incidents",
+                  icon: Lock,
+                  color: "from-red-600 to-red-800"
+                },
+                {
+                  title: "EdTech Learning Platform",
+                  industry: "Education",
+                  challenge: "Remote learning scalability and engagement",
+                  result: "500K+ concurrent users, 40% better engagement",
+                  metric: "2M+ Students",
+                  icon: Users,
+                  color: "from-indigo-600 to-indigo-800"
+                }
+              ].map((caseStudy, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group"
+                >
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 group-hover:scale-105">
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${caseStudy.color} shadow-lg`}>
+                          <caseStudy.icon className="h-6 w-6 text-white" />
+                        </div>
+                        <Badge variant="secondary" className="text-xs">
+                          {caseStudy.industry}
+                        </Badge>
+                      </div>
+                      
+                      <h3 className="font-semibold text-lg mb-3 group-hover:text-primary transition-colors">
+                        {caseStudy.title}
+                      </h3>
+                      
+                      <div className="space-y-3 mb-4">
+                        <div>
+                          <p className="text-xs text-muted-foreground font-medium mb-1">Challenge:</p>
+                          <p className="text-sm text-muted-foreground">{caseStudy.challenge}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-muted-foreground font-medium mb-1">Result:</p>
+                          <p className="text-sm">{caseStudy.result}</p>
+                        </div>
+                      </div>
+                      
+                      <div className={`bg-gradient-to-r ${caseStudy.color} text-white px-4 py-2 rounded-lg text-center`}>
+                        <p className="text-sm font-bold">{caseStudy.metric}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* Call to Action Section */}
+          <section className="mt-16">
+            <Card className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">
+              <CardContent className="p-8 text-center">
+                <h2 className="font-Helvetica text-3xl font-bold mb-4">Ready to Get Started?</h2>
+                <p className="text-lg mb-6 opacity-90 max-w-2xl mx-auto">
+                  Join 500+ satisfied clients who trust Muhscience Tech Labs with their most critical technology needs.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Button 
+                    size="lg" 
+                    variant="secondary"
+                    className="min-w-[200px]"
+                    onClick={() => {
+                      const element = document.getElementById('contact-form');
+                      element?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    <Users2 className="mr-2 h-5 w-5" />
+                    Schedule Consultation
+                  </Button>
+                  <Button 
+                    size="lg" 
+                    variant="outline"
+                    className="min-w-[200px] bg-white/10 border-white/20 text-white hover:bg-white/20"
+                    onClick={() => {
+                      const whatsappUrl = `https://wa.me/254746254055?text=${encodeURIComponent('Hello! I\'m interested in your ' + activeService.title.toLowerCase() + ' services.')}`;
+                      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+                    }}
+                  >
+                    <MessageSquare className="mr-2 h-5 w-5" />
+                    WhatsApp Us
+                  </Button>
+                </div>
+                <div className="flex items-center justify-center space-x-6 mt-6 text-sm opacity-80">
+                  <div className="flex items-center space-x-2">
+                    <Headphones className="h-4 w-4" />
+                    <span>24/7 Support</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Shield className="h-4 w-4" />
+                    <span>Enterprise Security</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <TrendingUp className="h-4 w-4" />
+                    <span>Proven Results</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
           {/* Service Details & Form Section */}
-          <section className="mt-16 grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-8">
+          <section id="contact-form" className="mt-16 grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-8">
             {/* Service Details */}
             <motion.div
               key={activeService.id}

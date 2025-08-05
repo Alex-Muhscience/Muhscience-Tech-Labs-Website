@@ -3,16 +3,20 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 10, 10, 10;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 240, 240, 240;
+  --primary-rgb: 71, 167, 162;
+  --secondary-rgb: 241, 196, 15;
+  --accent-rgb: 155, 89, 182;
+  --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 250, 250, 250;
+    --background-end-rgb: 240, 240, 240;
   }
 }
 
@@ -106,48 +110,43 @@
     @apply xl:max-w-xl;
   }
 
-  /* Responsive typography */
-  .text-responsive {
-    @apply text-base;
-    font-size: 1rem;
-  }
-  @media (min-width: 640px) {
-    .text-responsive {
-      font-size: calc(1rem + 0.1vw);
-    }
-  }
-  @media (min-width: 1024px) {
-    .text-responsive {
-      font-size: calc(1rem + 0.2vw);
-    }
+  /* Button styles */
+  .btn {
+    @apply inline-flex items-center justify-center px-5 py-3 border border-transparent rounded-md shadow-sm;
+    background: linear-gradient(to right, var(--primary-rgb), var(--secondary-rgb));
+    @apply text-white hover:text-primary hover:shadow-lg;
+    transition: all 0.2s ease-in-out;
   }
 
-  /* Responsive grid */
-  .grid-responsive {
-    @apply grid grid-cols-1 gap-4;
-  }
-  @media (min-width: 640px) {
-    .grid-responsive {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (min-width: 768px) {
-    .grid-responsive {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  @media (min-width: 1024px) {
-    .grid-responsive {
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem; /* theme('spacing.6') */
-    }
+  /* Premium card styles */
+  .card-premium {
+    background: linear-gradient(to bottom, var(--background-start-rgb), var(--background-end-rgb));
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    @apply rounded-lg overflow-hidden;
   }
 
-  /* Responsive navigation */
+  /* Typography */
+  .heading {
+    @apply font-semibold text-center mb-4;
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  }
+
+  /* Responsive card */
+  .card-responsive {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-md */
+    overflow: hidden;
+    background-color: rgba(var(--card), 0.9);
+  }
+
+  /* Premium nav styles */
   .nav-responsive {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    @apply text-primary hover:text-accent;
   }
   @media (min-width: 768px) {
     .nav-responsive {
@@ -156,21 +155,10 @@
     }
   }
 
-  /* Responsive card */
-  .card-responsive {
-    display: flex;
-    flex-direction: column;
-    border-radius: 0.5rem; /* rounded-lg */
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1); /* shadow-md */
-    overflow: hidden;
-  }
-  @media (min-width: 768px) {
-    .card-responsive {
-      flex-direction: row;
-    }
-  }
+  /* Responsive card image */
   .card-image {
     @apply w-full h-48;
+    object-fit: cover;
   }
   @media (min-width: 768px) {
     .card-image {
@@ -180,12 +168,44 @@
   }
   .card-content {
     @apply p-4;
+    background-color: rgba(var(--card-foreground), 0.85);
   }
   @media (min-width: 768px) {
     .card-content {
       width: 60%;
       padding: 1.5rem; /* theme('spacing.6') */
     }
+  }
+}
+
+@layer utilities {
+  /* Border gradient */
+  .border-gradient {
+    border: 2px solid transparent;
+    background-image: linear-gradient(var(--background-end-rgb), var(--background-end-rgb)), radial-gradient(circle at top left, var(--primary-rgb), var(--accent-rgb));
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+  }
+
+  /* Shadow utilities */
+  .shadow-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Animation utilities */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
   }
 }
 

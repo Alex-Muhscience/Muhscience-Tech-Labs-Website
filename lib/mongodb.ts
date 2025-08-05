@@ -1,4 +1,6 @@
 import mongoose, { ConnectOptions, Connection } from 'mongoose';
+import { env, isDevelopment } from '@/lib/env';
+import { DB_CONNECTION } from '@/lib/constants';
 
 // Type for our cached MongoDB connection
 interface MongooseCache {
@@ -11,9 +13,9 @@ declare global {
   var mongoose: MongooseCache;
 }
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cybermuhscience';
-const MONGODB_LOCAL_URI = process.env.MONGODB_LOCAL_URI || 'mongodb://localhost:27017/cybermuhscience';
-const IS_DEVELOPMENT = process.env.NODE_ENV === 'development';
+// Use validated environment variables
+const MONGODB_URI = env.MONGODB_URI;
+const MONGODB_LOCAL_URI = env.MONGODB_LOCAL_URI || 'mongodb://localhost:27017/cybermuhscience';
 
 if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable inside .env');
@@ -23,7 +25,7 @@ if (!MONGODB_URI) {
 const sanitizedURI = MONGODB_URI.replace(/:\/\/([^:]+):([^@]+)@/, '://[USERNAME]:[PASSWORD]@');
 console.log('MongoDB URI configured:', sanitizedURI);
 console.log('Local MongoDB URI:', MONGODB_LOCAL_URI);
-console.log('Development mode:', IS_DEVELOPMENT);
+console.log('Development mode:', isDevelopment);
 
 // Initialize the global cache if it doesn't exist
 let cached: MongooseCache = global.mongoose || { conn: null, promise: null };
@@ -33,8 +35,8 @@ async function tryConnection(uri: string, description: string): Promise<Connecti
   
   const opts: ConnectOptions = {
     bufferCommands: false,
-    serverSelectionTimeoutMS: 5000, // 5 second timeout
-    socketTimeoutMS: 45000,
+    serverSelectionTimeoutMS: DB_CONNECTION.SERVER_SELECTION_TIMEOUT_MS,
+    socketTimeoutMS: DB_CONNECTION.SOCKET_TIMEOUT_MS,
   };
 
   // Close any existing connection first
@@ -74,7 +76,7 @@ async function connectDB(): Promise<Connection> {
           code: atlasError instanceof Error && 'code' in atlasError ? atlasError.code : undefined,
         });
         
-        if (IS_DEVELOPMENT) {
+        if (isDevelopment) {
           try {
             console.log('🔄 Falling back to local MongoDB...');
             connection = await tryConnection(MONGODB_LOCAL_URI, 'Local MongoDB');

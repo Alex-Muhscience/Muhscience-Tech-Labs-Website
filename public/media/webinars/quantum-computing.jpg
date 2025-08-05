@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" fill="#1e293b"/>
+  <circle cx="150" cy="120" r="40" fill="#3b82f6" opacity="0.6"/>
+  <circle cx="300" cy="200" r="30" fill="#8b5cf6" opacity="0.7"/>
+  <circle cx="450" cy="150" r="35" fill="#06b6d4" opacity="0.5"/>
+  <path d="M150 120 L300 200 M300 200 L450 150" stroke="#64748b" stroke-width="2" opacity="0.8"/>
+  <text x="300" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#f1f5f9">Quantum Computing</text>
+  <text x="300" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#cbd5e1">Fundamentals & Applications</text>
+  <rect x="20" y="20" width="80" height="30" rx="15" fill="#ef4444" opacity="0.9"/>
+  <text x="60" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">WEBINAR</text>
+</svg>

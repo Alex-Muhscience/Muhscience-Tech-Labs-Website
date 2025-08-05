@@ -1,10 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable modern React features
-  experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion'],
-  },
-  
   // SEO and performance optimizations
   eslint: { ignoreDuringBuilds: true },
   
@@ -38,25 +33,6 @@ const nextConfig = {
   poweredByHeader: false,
   generateEtags: true, // Enable ETags for better caching
   trailingSlash: false, // Avoid duplicate content issues
-  
-  // Webpack optimizations
-  webpack: (config, { dev, isServer }) => {
-    // SVG handling
-    config.module.rules.push({
-      test: /\.svg$/i,
-      use: ['@svgr/webpack'],
-    });
-    
-    // Production optimizations
-    if (!dev && !isServer) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        '@': require('path').resolve(__dirname),
-      };
-    }
-    
-    return config;
-  },
   
   // Environment variables
   env: {
