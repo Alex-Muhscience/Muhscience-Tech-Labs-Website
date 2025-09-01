@@ -1,19 +1,18 @@
 import { NextResponse } from "next/server";
-import connectDB from "@/lib/mongodb";
-import BlogPost from "@/models/BlogPost";
+import { DatabaseQueries, initializeDatabase } from "@/lib/mariadb";
+import connectDB from '@/lib/mariadb';
 
 const samplePosts = [
   {
     title: "The Future of Cybersecurity: AI-Powered Threat Detection",
+    slug: "future-cybersecurity-ai-threat-detection",
     content: "Artificial Intelligence is revolutionizing the way we approach cybersecurity. Modern threat detection systems leverage machine learning algorithms to identify and respond to potential security breaches in real-time. This comprehensive guide explores the latest advancements in AI-driven security solutions and their practical applications in enterprise environments.",
     excerpt: "Exploring how AI is transforming cybersecurity threat detection and response",
-    author: {
-      name: "Dr. Sarah Chen",
-      title: "Chief Security Officer"
-    },
+    author: "Dr. Sarah Chen",
     category: "Cybersecurity",
-    imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800",
-    readTime: "5 min read"
+    featured_image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800",
+    status: 'published' as const,
+    published_at: new Date()
   },
   {
     title: "Quantum Computing: Preparing for the Post-Quantum Era",
@@ -69,13 +68,12 @@ export async function GET() {
   try {
     console.log('GET /api/seed/blog - Starting request');
     
-    console.log('Connecting to database...');
-    await connectDB();
-    console.log('Database connected successfully');
+    await initializeDatabase();
+    console.log('Database initialized successfully');
     
     console.log('Fetching existing blog posts...');
-    const posts = await BlogPost.find({});
-    console.log(`Found ${posts.length} existing blog posts`);
+    const posts = await DatabaseQueries.getBlogPosts('published');
+    console.log(`Found ${Array.isArray(posts) ? posts.length : 0} existing blog posts`);
     
     return NextResponse.json(posts);
   } catch (error) {
@@ -92,37 +90,8 @@ export async function GET() {
 }
 
 export async function POST() {
-  try {
-    console.log('POST /api/seed/blog - Starting seeding process');
-    
-    console.log('Connecting to database...');
-    await connectDB();
-    console.log('Database connected successfully');
-    
-    // Clear existing posts
-    console.log('Clearing existing blog posts...');
-    const deleteResult = await BlogPost.deleteMany({});
-    console.log(`Deleted ${deleteResult.deletedCount} existing posts`);
-    
-    // Insert sample posts
-    console.log('Inserting sample blog posts...');
-    const posts = await BlogPost.insertMany(samplePosts);
-    console.log(`Inserted ${posts.length} new blog posts`);
-    
-    return NextResponse.json({ 
-      message: "Sample blog posts created successfully",
-      count: posts.length,
-      deleted: deleteResult.deletedCount
-    }, { status: 201 });
-  } catch (error) {
-    console.error('POST /api/seed/blog - Error details:', {
-      message: error instanceof Error ? error.message : 'Unknown error',
-      stack: error instanceof Error ? error.stack : undefined,
-      name: error instanceof Error ? error.name : undefined
-    });
-    return NextResponse.json({ 
-      error: "Failed to seed blog posts",
-      details: error instanceof Error ? error.message : 'Unknown error'
-    }, { status: 500 });
-  }
+  return NextResponse.json({ 
+    message: "Seeding not implemented yet",
+    note: "Use MariaDB directly to seed data"
+  }, { status: 501 });
 }

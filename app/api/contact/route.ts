@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/mongodb';
-import Contact from '@/models/Contact';
+import { DatabaseQueries, initializeDatabase } from '@/lib/mariadb';
 import { z } from 'zod';
 import { VALIDATION } from '@/lib/constants';
+import type { ContactFormData } from '@/types/database';
 
 // Input validation schema
 const contactSchema = z.object({
@@ -12,31 +12,32 @@ const contactSchema = z.object({
   message: z.string().min(VALIDATION.NAME_MIN_LENGTH, 'Message is required').max(VALIDATION.MESSAGE_MAX_LENGTH, `Message must be less than ${VALIDATION.MESSAGE_MAX_LENGTH} characters`)
 });
 
-interface ContactFormData {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
 
 interface ErrorResponse {
   error: string;
   details?: string;
 }
 
-export async function POST(request: Request): Promise<NextResponse<ContactFormData | ErrorResponse>> {
+export async function POST(request: Request): Promise<NextResponse<any>> {
   try {
+    // Initialize database tables if they don't exist
+    await initializeDatabase();
+    
     // Parse and validate request body
     const body = await request.json();
     const validatedData = contactSchema.parse(body);
 
-    // Connect to database
-    await connectDB();
+    // Create contact record using MariaDB
+    const result = await DatabaseQueries.createContact(validatedData);
 
-    // Create contact record
-    const contact = await Contact.create(validatedData);
-
-    return NextResponse.json(contact.toObject(), { status: 201 });
+    return NextResponse.json(
+      {
+        success: true,
+        message: 'Contact form submitted successfully',
+        id: (result as any).insertId
+      },
+      { status: 201 }
+    );
   } catch (error) {
     console.error('Contact form submission error:', error);
 

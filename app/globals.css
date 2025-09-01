@@ -22,30 +22,31 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 0 0% 5%;
+    /* Brand Colors as HSL */
+    --background: 215 33% 97%; /* #F4F6F9 */
+    --foreground: 0 0% 17%; /* #2C2C2C */
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 5%;
+    --card-foreground: 0 0% 17%; /* #2C2C2C */
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 5%;
-    --primary: 230 95% 60%;
+    --popover-foreground: 0 0% 17%; /* #2C2C2C */
+    --primary: 218 95% 16%; /* #0A1F44 - Deep Navy Blue */
     --primary-foreground: 0 0% 98%;
-    --secondary: 230 20% 95%;
-    --secondary-foreground: 230 95% 20%;
-    --muted: 230 15% 92%;
-    --muted-foreground: 230 15% 45%;
-    --accent: 285 85% 65%;
+    --secondary: 215 33% 95%; /* Light version of background */
+    --secondary-foreground: 218 95% 16%; /* Navy for contrast */
+    --muted: 215 25% 92%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 183 100% 40%; /* #00C8CF - Vibrant Teal */
     --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 230 15% 88%;
-    --input: 230 15% 88%;
-    --ring: 230 95% 60%;
-    --chart-1: 230 95% 60%;
-    --chart-2: 285 85% 65%;
-    --chart-3: 340 75% 55%;
-    --chart-4: 195 80% 50%;
-    --chart-5: 160 70% 50%;
+    --border: 215 25% 88%;
+    --input: 215 25% 88%;
+    --ring: 218 95% 16%; /* Navy ring */
+    --chart-1: 218 95% 16%; /* Navy */
+    --chart-2: 183 100% 40%; /* Teal */
+    --chart-3: 18 100% 61%; /* #FF6F3C - Neon Orange */
+    --chart-4: 0 0% 17%; /* Charcoal */
+    --chart-5: 215 33% 75%; /* Lighter background */
     --radius: 0.75rem;
   }
 
@@ -179,6 +180,13 @@
 }
 
 @layer utilities {
+  /* Hide browser extension artifacts */
+  [bis_skin_checked],
+  [__processed_b3a67481-e450-464f-80ce-69a14e9915f5__],
+  [bis_register] {
+    /* Reset any browser extension modifications */
+  }
+  
   /* Border gradient */
   .border-gradient {
     border: 2px solid transparent;

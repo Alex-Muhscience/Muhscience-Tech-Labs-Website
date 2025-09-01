@@ -8,8 +8,6 @@ import {
   CheckCircle, Star, Zap, Lightbulb, Headphones, Cloud,
   Settings, Trophy, TrendingUp, Bot, Eye
 } from "lucide-react";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
 
 const stats = [
@@ -24,7 +22,7 @@ const team = [
     name: "Mr. Alex M. Kamau",
     role: "Chief Executive Officer",
     image: "/images/CEO.jpg",
-    bio: "BSc in Computer Science with expertise in AI and cybersecurity. Founded CyberMuhscience in 2023 with a vision to bridge security and innovation.",
+    bio: "BSc in Computer Science with expertise in AI and cybersecurity. Founded Muhscience Tech Labs in 2023 with a vision to bridge security and innovation.",
     social: { linkedin: "https://linkedin.com/in/alex-m-kamau-20015b340", twitter: "#" }
   },
   {
@@ -144,9 +142,7 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <main className="flex-1">
+    <div className="flex-1">
 
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-b from-background to-background/95 py-20 md:py-28">
@@ -494,8 +490,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-      </main>
-      <SiteFooter />
     </div>
   );
 }

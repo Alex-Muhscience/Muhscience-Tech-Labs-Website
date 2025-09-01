@@ -1,8 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Briefcase, Shield, BrainCircuit, Code, Rocket, Users, ArrowRight } from "lucide-react";
@@ -111,9 +109,7 @@ const benefits = [
 
 export default function CareersPage() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <main className="flex-1">
+    <main className="flex-1">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-b from-background to-background/95 py-20 md:py-28">
           <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:75px_75px]" />
@@ -277,8 +273,6 @@ export default function CareersPage() {
             </motion.div>
           </div>
         </section>
-      </main>
-      <SiteFooter />
-    </div>
+    </main>
   );
 }

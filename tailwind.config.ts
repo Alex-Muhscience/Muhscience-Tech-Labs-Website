@@ -32,6 +32,13 @@ darkMode: 'class',
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+        // Brand Colors
+        'brand-navy': '#0A1F44',
+        'brand-bg': '#F4F6F9',
+        'brand-teal': '#00C8CF',
+        'brand-orange': '#FF6F3C',
+        'brand-charcoal': '#2C2C2C',
+        // shadcn/ui color variables (keep existing for component compatibility)
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

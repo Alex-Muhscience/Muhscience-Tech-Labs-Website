@@ -2,15 +2,25 @@
 // This avoids build-time errors while maintaining functionality
 
 export const env = {
-  MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost:27017/cybermuhscience',
-  MONGODB_LOCAL_URI: process.env.MONGODB_LOCAL_URI || 'mongodb://localhost:27017/cybermuhscience',
+  // MariaDB Configuration
+  MARIADB_HOST: process.env.MARIADB_HOST || 'localhost',
+  MARIADB_PORT: process.env.MARIADB_PORT || '3306',
+  MARIADB_USER: process.env.MARIADB_USER || 'root',
+  MARIADB_PASSWORD: process.env.MARIADB_PASSWORD || '',
+  MARIADB_DATABASE: process.env.MARIADB_DATABASE || 'cybermuhscience',
+  
+  // Application Configuration
   JWT_SECRET: process.env.JWT_SECRET || 'fallback-jwt-secret-for-development-only',
   NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001',
   NEXT_PUBLIC_ANALYTICS_ID: process.env.NEXT_PUBLIC_ANALYTICS_ID,
+  
+  // Email Configuration
   SMTP_HOST: process.env.SMTP_HOST,
   SMTP_PORT: process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT, 10) : 587,
   SMTP_USER: process.env.SMTP_USER,
   SMTP_PASS: process.env.SMTP_PASS,
+  
+  // Environment
   NODE_ENV: (process.env.NODE_ENV as 'development' | 'test' | 'production') || 'development',
 };
 

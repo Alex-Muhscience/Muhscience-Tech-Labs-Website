@@ -14,18 +14,23 @@ export function middleware(request: NextRequest) {
   const userAgent = request.headers.get('user-agent') || '';
   const isSearchBot = /googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|facebookexternalhit|twitterbot|linkedinbot/i.test(userAgent);
 
+  // Create response with security headers
+  const response = NextResponse.next();
+  
+  // Add security headers for all requests
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('X-XSS-Protection', '1; mode=block');
+  response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
+  
   // For SEO paths or search bots, add proper headers
   if (isSEOPath || isSearchBot) {
-    const response = NextResponse.next();
-    
     // Add headers to allow search engine crawling
     response.headers.set('X-Robots-Tag', 'index, follow');
     response.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
-    
-    return response;
   }
-
-  return NextResponse.next();
+  
+  return response;
 }
 
 export const config = {

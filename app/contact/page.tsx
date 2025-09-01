@@ -7,8 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
 import { Mail, MapPin, Phone, Clock, Send, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
 import '../globals.css';
@@ -85,9 +83,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <main className="flex-1">
+    <main className="flex-1">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-b from-background to-background/95 py-20 md:py-28">
           <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:75px_75px]" />
@@ -309,8 +305,6 @@ export default function ContactPage() {
             </motion.div>
           </div>
         </section>
-      </main>
-      <SiteFooter />
-    </div>
+    </main>
   );
 }

@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/mongodb';
-import BlogPost from '@/models/BlogPost';
+import { DatabaseQueries, initializeDatabase } from '@/lib/mariadb';
 import { mockBlogPosts, delay } from '@/lib/mockBlogData';
 
 const IS_DEVELOPMENT = process.env.NODE_ENV === 'development';
@@ -9,15 +8,15 @@ export async function GET() {
   try {
     console.log('GET /api/blog - Starting request');
     
-    // Test database connection
-    console.log('Attempting to connect to database...');
-    await connectDB();
-    console.log('Database connection successful');
+    // Initialize database
+    console.log('Initializing database...');
+    await initializeDatabase();
+    console.log('Database initialization successful');
     
     // Fetch blog posts
     console.log('Fetching blog posts...');
-    const posts = await BlogPost.find({}).sort({ createdAt: -1 });
-    console.log(`Found ${posts.length} blog posts`);
+    const posts = await DatabaseQueries.getBlogPosts('published');
+    console.log(`Found ${Array.isArray(posts) ? posts.length : 0} blog posts`);
     
     return NextResponse.json(posts);
   } catch (error) {
@@ -65,17 +64,17 @@ export async function POST(request: Request) {
     body = await request.json();
     console.log('Request body received:', body);
     
-    // Test database connection
-    console.log('Attempting to connect to database...');
-    await connectDB();
-    console.log('Database connection successful');
+    // Initialize database
+    console.log('Initializing database...');
+    await initializeDatabase();
+    console.log('Database initialization successful');
     
     // Create blog post
     console.log('Creating blog post...');
-    const post = await BlogPost.create(body);
-    console.log('Blog post created successfully:', post._id);
+    const result = await DatabaseQueries.createBlogPost(body);
+    console.log('Blog post created successfully:', (result as any).insertId);
     
-    return NextResponse.json(post, { status: 201 });
+    return NextResponse.json({ ...body, id: (result as any).insertId }, { status: 201 });
   } catch (error) {
     console.error('POST /api/blog - Database error:', {
       message: error instanceof Error ? error.message : 'Unknown error',

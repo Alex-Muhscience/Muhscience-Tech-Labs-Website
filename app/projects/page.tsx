@@ -4,8 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
 import { ArrowRight, Github, ExternalLink } from "lucide-react";
 import '../globals.css';
 
@@ -83,9 +81,7 @@ export default function ProjectsPage() {
     : projects.filter(project => project.category === selectedCategory);
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <main className="flex-1">
+    <main className="flex-1">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-b from-background to-background/95 py-20 md:py-28 lg:py-32">
           <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:75px_75px]" />
@@ -233,8 +229,6 @@ export default function ProjectsPage() {
             </AnimatePresence>
           </div>
         </section>
-      </main>
-      <SiteFooter />
-    </div>
+    </main>
   );
 }

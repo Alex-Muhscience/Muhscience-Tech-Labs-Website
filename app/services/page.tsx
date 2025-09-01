@@ -16,8 +16,6 @@ import {
   Settings, Globe, Layers, FileCode, Rocket, Heart, MessageSquare, Phone,
   Mail, MapPin, Calendar, DollarSign, PlayCircle, Users2, Headphones
 } from "lucide-react";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 
 // Enhanced service definitions with detailed information
@@ -253,11 +251,8 @@ export default function ServicesPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <main className="flex-1">
-        <div className="container py-8 sm:py-12 lg:py-16">
-          {/* Hero Section */}
+    <div className="container py-8 sm:py-12 lg:py-16">
+      {/* Hero Section */}
           <section className="text-center">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
@@ -996,9 +991,6 @@ export default function ServicesPage() {
               </Card>
             </motion.div>
           </section>
-        </div>
-      </main>
-      <SiteFooter />
     </div>
   );
 }

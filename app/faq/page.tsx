@@ -1,6 +1,4 @@
 "use client";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
@@ -30,7 +28,7 @@ const faqs = [
     category: "Industries"
   },
   {
-    question: "How long has CyberMuhscience iLabs been operating?",
+    question: "How long has Muhscience Tech Labs been operating?",
     answer: "Since our founding in 2025, we've been at the forefront of technological innovation. Over the past few months, we've successfully delivered over 5 projects for clients in 3 countries.",
     category: "Company"
   },
@@ -61,9 +59,7 @@ export default function FAQPage() {
     : faqs.filter(faq => faq.category === activeCategory);
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <main className="flex-1">
+    <main className="flex-1">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-b from-background to-background/95 py-20 md:py-28">
           <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:75px_75px]" />
@@ -174,9 +170,7 @@ export default function FAQPage() {
             </motion.div>
           </div>
         </section>
-      </main>
-      <SiteFooter />
-    </div>
+    </main>
   );
 }
 

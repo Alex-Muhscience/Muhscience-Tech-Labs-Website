@@ -1,8 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Shield, Eye, Lock, Database, Users, FileText } from "lucide-react";
 import '../globals.css';
@@ -52,9 +50,7 @@ const sections = [
 
 export default function PrivacyPage() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <main className="flex-1">
+    <main className="flex-1">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-b from-background to-background/95 py-20 md:py-28">
           <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:75px_75px]" />
@@ -159,8 +155,6 @@ export default function PrivacyPage() {
             </div>
           </div>
         </section>
-      </main>
-      <SiteFooter />
-    </div>
+    </main>
   );
 }

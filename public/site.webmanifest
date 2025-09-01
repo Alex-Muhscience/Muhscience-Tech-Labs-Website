@@ -1,6 +1,6 @@
 {
-  "name": "CyberMuhscience iLabs - Cybersecurity & AI Solutions",
-  "short_name": "CyberMuhscience",
+  "name": "Muhscience Tech Labs - Cybersecurity & AI Solutions",
+  "short_name": "Muhscience Tech Labs",
   "description": "Leading provider of cybersecurity solutions, AI/ML development, and full-stack software development services.",
   "start_url": "/",
   "display": "standalone",
@@ -45,14 +45,14 @@
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "CyberMuhscience iLabs Homepage"
+      "label": "Muhscience Tech Labs Homepage"
     },
     {
       "src": "/screenshot-narrow.png",
       "sizes": "640x1136",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "CyberMuhscience iLabs Mobile View"
+      "label": "Muhscience Tech Labs Mobile View"
     }
   ]
 }

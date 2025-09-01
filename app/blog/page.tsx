@@ -5,11 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
 import { Search, Clock, Calendar, User, ArrowRight, Mail, Send } from "lucide-react";
 import '../globals.css';
-import CommentsSection from '../components/CommentsSection';
 
 interface BlogPost {
   _id: string;
@@ -93,9 +90,7 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <main className="flex-1">
+    <div className="flex-1">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-b from-background to-background/95 py-20 md:py-28">
           <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:75px_75px]" />
@@ -280,9 +275,9 @@ export default function BlogPage() {
                               </a>
                             </Button>
                             
-                            {/* Comments Section for each post */}
+                            {/* Comments placeholder - will be added in future */}
                             <div className="mt-6 pt-6 border-t">
-                              <CommentsSection />
+                              <p className="text-sm text-muted-foreground">Comments coming soon...</p>
                             </div>
                           </CardContent>
                         </Card>
@@ -405,8 +400,6 @@ export default function BlogPage() {
             </motion.div>
           </div>
         </section>
-      </main>
-      <SiteFooter />
     </div>
   );
 }

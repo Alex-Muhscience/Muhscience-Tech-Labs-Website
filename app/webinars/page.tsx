@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 import { webinars, Webinar } from '../../lib/webinar-data';
 import WebinarCard from '../../components/WebinarCard';
 import WebinarRegistrationModal from '../../components/WebinarRegistrationModal';
-import { SiteHeader } from '../../components/site-header';
-import { SiteFooter } from '../../components/site-footer';
 import { motion } from 'framer-motion';
 import { Calendar, Users, Clock, Video } from 'lucide-react';
 
@@ -24,9 +22,7 @@ const WebinarsPage: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <main className="flex-1">
+    <main className="flex-1">
         <div className="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
           {/* Hero Section */}
           <motion.section 
@@ -93,14 +89,12 @@ const WebinarsPage: React.FC = () => {
             </motion.div>
           )}
         </div>
-      </main>
-      <SiteFooter />
       <WebinarRegistrationModal
         isOpen={isModalOpen}
         onClose={closeModal}
         webinar={selectedWebinar}
       />
-    </div>
+    </main>
   );
 };
 
