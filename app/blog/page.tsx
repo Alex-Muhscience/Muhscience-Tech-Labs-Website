@@ -24,6 +24,190 @@ interface BlogPost {
   tags?: string[];
 }
 
+// Hardcoded blog posts as fallback data
+const fallbackPosts: BlogPost[] = [
+  {
+    _id: "1",
+    title: "The Future of Cybersecurity: AI-Powered Threat Detection",
+    category: "Cybersecurity",
+    author: {
+      name: "Dr. Sarah Chen",
+      title: "Chief Security Officer",
+      avatar: "/images/avatars/sarah-chen.jpg"
+    },
+    createdAt: "2024-01-15T10:00:00Z",
+    imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    excerpt: "Explore how artificial intelligence is revolutionizing cybersecurity with advanced threat detection, automated response systems, and predictive analytics to stay ahead of evolving cyber threats.",
+    readTime: "8 min read",
+    tags: ["AI", "Machine Learning", "Threat Detection", "Security"]
+  },
+  {
+    _id: "2",
+    title: "Building Scalable Cloud Infrastructure: Best Practices for 2024",
+    category: "Cloud Computing",
+    author: {
+      name: "Michael Rodriguez",
+      title: "Cloud Solutions Architect",
+      avatar: "/images/avatars/michael-rodriguez.jpg"
+    },
+    createdAt: "2024-01-12T14:30:00Z",
+    imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    excerpt: "Learn the essential strategies for designing and implementing scalable cloud infrastructure that can handle growing demands while maintaining performance and cost-effectiveness.",
+    readTime: "12 min read",
+    tags: ["Cloud", "AWS", "Azure", "Scalability", "DevOps"]
+  },
+  {
+    _id: "3",
+    title: "Zero Trust Architecture: A Complete Implementation Guide",
+    category: "Cybersecurity",
+    author: {
+      name: "Alex Thompson",
+      title: "Senior Security Consultant",
+      avatar: "/images/avatars/alex-thompson.jpg"
+    },
+    createdAt: "2024-01-10T09:15:00Z",
+    imageUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    excerpt: "Discover how to implement Zero Trust security architecture in your organization, from initial planning to full deployment, ensuring maximum protection against modern threats.",
+    readTime: "15 min read",
+    tags: ["Zero Trust", "Network Security", "Identity Management", "Compliance"]
+  },
+  {
+    _id: "4",
+    title: "Machine Learning in Business: From Concept to Production",
+    category: "Artificial Intelligence",
+    author: {
+      name: "Dr. Emily Watson",
+      title: "AI Research Director",
+      avatar: "/images/avatars/emily-watson.jpg"
+    },
+    createdAt: "2024-01-08T16:45:00Z",
+    imageUrl: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    excerpt: "A comprehensive guide to implementing machine learning solutions in business environments, covering data preparation, model selection, deployment strategies, and monitoring.",
+    readTime: "10 min read",
+    tags: ["Machine Learning", "MLOps", "Data Science", "Business Intelligence"]
+  },
+  {
+    _id: "5",
+    title: "Quantum Computing: Preparing for the Next Revolution",
+    category: "Emerging Technologies",
+    author: {
+      name: "Prof. David Kumar",
+      title: "Quantum Computing Researcher",
+      avatar: "/images/avatars/david-kumar.jpg"
+    },
+    createdAt: "2024-01-05T11:20:00Z",
+    imageUrl: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    excerpt: "Understand the fundamentals of quantum computing, its potential impact on various industries, and how organizations can prepare for the quantum advantage.",
+    readTime: "14 min read",
+    tags: ["Quantum Computing", "Future Tech", "Cryptography", "Research"]
+  },
+  {
+    _id: "6",
+    title: "DevSecOps: Integrating Security into CI/CD Pipelines",
+    category: "DevOps",
+    author: {
+      name: "Jennifer Park",
+      title: "DevSecOps Engineer",
+      avatar: "/images/avatars/jennifer-park.jpg"
+    },
+    createdAt: "2024-01-03T13:10:00Z",
+    imageUrl: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    excerpt: "Learn how to seamlessly integrate security practices into your development and deployment workflows, ensuring secure code delivery without compromising speed.",
+    readTime: "11 min read",
+    tags: ["DevSecOps", "CI/CD", "Security", "Automation", "Git"]
+  },
+  {
+    _id: "7",
+    title: "The Rise of Edge Computing: Bringing Processing Closer to Data",
+    category: "Cloud Computing",
+    author: {
+      name: "Robert Kim",
+      title: "Edge Computing Specialist",
+      avatar: "/images/avatars/robert-kim.jpg"
+    },
+    createdAt: "2024-01-01T08:30:00Z",
+    imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    excerpt: "Explore the growing importance of edge computing in reducing latency, improving performance, and enabling real-time processing for IoT and mobile applications.",
+    readTime: "9 min read",
+    tags: ["Edge Computing", "IoT", "5G", "Real-time Processing"]
+  },
+  {
+    _id: "8",
+    title: "Blockchain Beyond Cryptocurrency: Enterprise Applications",
+    category: "Emerging Technologies",
+    author: {
+      name: "Lisa Zhang",
+      title: "Blockchain Solutions Architect",
+      avatar: "/images/avatars/lisa-zhang.jpg"
+    },
+    createdAt: "2023-12-28T15:45:00Z",
+    imageUrl: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    excerpt: "Discover practical blockchain applications in supply chain management, healthcare, finance, and other industries beyond digital currencies.",
+    readTime: "13 min read",
+    tags: ["Blockchain", "Supply Chain", "Smart Contracts", "Enterprise"]
+  },
+  {
+    _id: "9",
+    title: "API Security: Protecting Your Digital Interfaces",
+    category: "Cybersecurity",
+    author: {
+      name: "Marcus Johnson",
+      title: "API Security Expert",
+      avatar: "/images/avatars/marcus-johnson.jpg"
+    },
+    createdAt: "2023-12-25T12:00:00Z",
+    imageUrl: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    excerpt: "Learn essential API security practices, from authentication and authorization to rate limiting and monitoring, to protect your digital services from attacks.",
+    readTime: "7 min read",
+    tags: ["API Security", "Authentication", "OAuth", "Rate Limiting"]
+  },
+  {
+    _id: "10",
+    title: "Natural Language Processing: Transforming Human-Computer Interaction",
+    category: "Artificial Intelligence",
+    author: {
+      name: "Dr. Amanda Foster",
+      title: "NLP Research Lead",
+      avatar: "/images/avatars/amanda-foster.jpg"
+    },
+    createdAt: "2023-12-22T10:15:00Z",
+    imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    excerpt: "Explore the latest advances in natural language processing and how they're revolutionizing chatbots, virtual assistants, and automated content generation.",
+    readTime: "11 min read",
+    tags: ["NLP", "Chatbots", "Language Models", "AI Communication"]
+  },
+  {
+    _id: "11",
+    title: "Microservices Architecture: Design Patterns and Best Practices",
+    category: "Software Development",
+    author: {
+      name: "Carlos Mendez",
+      title: "Software Architect",
+      avatar: "/images/avatars/carlos-mendez.jpg"
+    },
+    createdAt: "2023-12-20T14:20:00Z",
+    imageUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    excerpt: "Master the art of designing and implementing microservices architecture with proven patterns, communication strategies, and deployment techniques.",
+    readTime: "16 min read",
+    tags: ["Microservices", "Architecture", "Docker", "Kubernetes", "API Gateway"]
+  },
+  {
+    _id: "12",
+    title: "Data Privacy in the Digital Age: GDPR, CCPA, and Beyond",
+    category: "Compliance",
+    author: {
+      name: "Rachel Green",
+      title: "Privacy Compliance Officer",
+      avatar: "/images/avatars/rachel-green.jpg"
+    },
+    createdAt: "2023-12-18T09:30:00Z",
+    imageUrl: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    excerpt: "Navigate the complex landscape of data privacy regulations and learn how to implement compliant data handling practices in your organization.",
+    readTime: "12 min read",
+    tags: ["GDPR", "CCPA", "Data Privacy", "Compliance", "Legal"]
+  }
+];
+
 export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -43,6 +227,8 @@ export default function BlogPage() {
         setPosts(data);
       } catch (error) {
         console.error('Error fetching posts:', error);
+        // Use fallback data when API fails
+        setPosts(fallbackPosts);
       } finally {
         setLoading(false);
       }
