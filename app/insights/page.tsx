@@ -5,6 +5,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, Clock, ArrowRight, TrendingUp, Users, Zap } from 'lucide-react';
 import '../globals.css';
 
+// Icon mapping for SSR-safe rendering
+const iconMap = {
+  'Zap': Zap,
+  'TrendingUp': TrendingUp,
+  'Users': Users
+};
+
 // Sample blog posts data - this would typically come from a CMS or database
 const blogPosts = [
   {
@@ -17,7 +24,7 @@ const blogPosts = [
     readTime: "8 min read",
     image: "/images/blog/automation-signs.jpg",
     featured: true,
-    icon: Zap
+    icon: 'Zap'
   },
   {
     id: 2,
@@ -29,7 +36,7 @@ const blogPosts = [
     readTime: "12 min read",
     image: "/images/blog/roi-automation.jpg",
     featured: false,
-    icon: TrendingUp
+    icon: 'TrendingUp'
   },
   {
     id: 3,
@@ -41,7 +48,7 @@ const blogPosts = [
     readTime: "10 min read",
     image: "/images/blog/technical-seo.jpg",
     featured: false,
-    icon: Users
+    icon: 'Users'
   },
   {
     id: 4,
@@ -53,7 +60,7 @@ const blogPosts = [
     readTime: "15 min read",
     image: "/images/blog/scalable-platforms.jpg",
     featured: false,
-    icon: Zap
+    icon: 'Zap'
   },
   {
     id: 5,
@@ -65,7 +72,7 @@ const blogPosts = [
     readTime: "9 min read",
     image: "/images/blog/crm-integration.jpg",
     featured: false,
-    icon: Users
+    icon: 'Users'
   },
   {
     id: 6,
@@ -77,7 +84,7 @@ const blogPosts = [
     readTime: "11 min read",
     image: "/images/blog/kpis-systems.jpg",
     featured: false,
-    icon: TrendingUp
+    icon: 'TrendingUp'
   }
 ];
 
@@ -143,9 +150,9 @@ export default function InsightsPage() {
                   <div className="md:w-1/3">
                     <div className="h-48 md:h-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
                       <div className="h-16 w-16 text-blue-200 flex items-center justify-center">
-                        {featuredPost.icon === Zap && <Zap className="h-16 w-16 text-blue-200" />}
-                        {featuredPost.icon === TrendingUp && <TrendingUp className="h-16 w-16 text-blue-200" />}
-                        {featuredPost.icon === Users && <Users className="h-16 w-16 text-blue-200" />}
+                        {featuredPost.icon && iconMap[featuredPost.icon as keyof typeof iconMap] &&
+                          React.createElement(iconMap[featuredPost.icon as keyof typeof iconMap], { className: "h-16 w-16 text-blue-200" })
+                        }
                       </div>
                     </div>
                   </div>
@@ -215,9 +222,9 @@ export default function InsightsPage() {
                         <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm font-medium">
                           {post.category}
                         </span>
-                        {post.icon === Zap && <Zap className="h-6 w-6 text-blue-400" />}
-                        {post.icon === TrendingUp && <TrendingUp className="h-6 w-6 text-blue-400" />}
-                        {post.icon === Users && <Users className="h-6 w-6 text-blue-400" />}
+                        {post.icon && iconMap[post.icon as keyof typeof iconMap] &&
+                          React.createElement(iconMap[post.icon as keyof typeof iconMap], { className: "h-6 w-6 text-blue-400" })
+                        }
                       </div>
                       <CardTitle className="text-xl text-white line-clamp-2">
                         <Link href={`/insights/${post.id}`} className="hover:text-blue-400 transition-colors">
