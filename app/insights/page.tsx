@@ -5,6 +5,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, Clock, ArrowRight, TrendingUp, Users, Zap } from 'lucide-react';
 import '../globals.css';
 
+// Simple Icon component to handle dynamic rendering
+const Icon = ({ icon, className }: { icon: any; className?: string }) => {
+  const IconComponent = icon;
+  return IconComponent ? <IconComponent className={className} /> : null;
+};
+
 // Sample blog posts data - this would typically come from a CMS or database
 const blogPosts = [
   {
@@ -142,7 +148,9 @@ export default function InsightsPage() {
                 <div className="md:flex">
                   <div className="md:w-1/3">
                     <div className="h-48 md:h-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
-                      {React.createElement(featuredPost.icon, { className: "h-16 w-16 text-blue-200" })}
+                      <div className="h-16 w-16 text-blue-200 flex items-center justify-center">
+                        <Icon icon={featuredPost.icon} className="h-16 w-16 text-blue-200" />
+                      </div>
                     </div>
                   </div>
                   <div className="md:w-2/3 p-8">
@@ -211,7 +219,7 @@ export default function InsightsPage() {
                         <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm font-medium">
                           {post.category}
                         </span>
-                        {React.createElement(post.icon, { className: "h-6 w-6 text-blue-400" })}
+                        <Icon icon={post.icon} className="h-6 w-6 text-blue-400" />
                       </div>
                       <CardTitle className="text-xl text-white line-clamp-2">
                         <Link href={`/insights/${post.id}`} className="hover:text-blue-400 transition-colors">
