@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import {
-  Mail, Phone, MapPin, Clock, ArrowRight, Facebook, Twitter, 
-  Linkedin, Instagram, Youtube, Send, Shield, Award, Users, 
+  Mail, Phone, MapPin, Clock, ArrowRight, Facebook, Twitter,
+  Linkedin, Instagram, Youtube, Send, Shield, Award, Users,
   Globe, ChevronRight, ExternalLink, MessageSquare
 } from 'lucide-react';
 
@@ -17,7 +17,7 @@ export function SiteFooter() {
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
-    
+
     setIsSubscribing(true);
     try {
       // Newsletter subscription logic would go here
@@ -39,9 +39,9 @@ export function SiteFooter() {
         <div className="border-b border-white/10 py-12">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 className="text-2xl font-bold mb-4">Stay Ahead of Cyber Threats</h3>
+              <h3 className="text-2xl font-bold mb-4">Stay Ahead with Business Systems</h3>
               <p className="text-gray-300 text-lg leading-relaxed">
-                Get the latest insights on cybersecurity, AI innovations, and industry best practices 
+                Get the latest insights on business systems, AI innovations, and industry best practices
                 delivered directly to your inbox.
               </p>
             </div>
@@ -98,10 +98,10 @@ export function SiteFooter() {
                 </div>
               </div>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                Leading cybersecurity and technology solutions provider in East Africa. 
-                Protecting businesses and empowering digital transformation.
+                Leading business systems and technology solutions provider in East Africa.
+                Optimizing businesses and empowering digital transformation.
               </p>
-              
+
               {/* Trust Indicators */}
               <div className="space-y-3">
                 <div className="flex items-center text-sm text-gray-300">
@@ -128,17 +128,17 @@ export function SiteFooter() {
               <h4 className="text-lg font-semibold mb-6 text-white">Our Services</h4>
               <ul className="space-y-3">
                 <li>
-                  <Link 
-                    href="/services#cybersecurity" 
+                  <Link
+                    href="/services#business-systems"
                     className="text-gray-300 hover:text-brand-teal transition-colors flex items-center group"
                   >
                     <ChevronRight className="w-4 h-4 mr-1 group-hover:translate-x-1 transition-transform" />
-                    Cybersecurity Solutions
+                    Business Systems Solutions
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    href="/services#ai-ml" 
+                  <Link
+                    href="/services#ai-ml"
                     className="text-gray-300 hover:text-brand-teal transition-colors flex items-center group"
                   >
                     <ChevronRight className="w-4 h-4 mr-1 group-hover:translate-x-1 transition-transform" />
@@ -146,8 +146,8 @@ export function SiteFooter() {
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    href="/services#software" 
+                  <Link
+                    href="/services#software"
                     className="text-gray-300 hover:text-brand-teal transition-colors flex items-center group"
                   >
                     <ChevronRight className="w-4 h-4 mr-1 group-hover:translate-x-1 transition-transform" />
@@ -155,8 +155,8 @@ export function SiteFooter() {
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    href="/services#innovation" 
+                  <Link
+                    href="/services#innovation"
                     className="text-gray-300 hover:text-brand-teal transition-colors flex items-center group"
                   >
                     <ChevronRight className="w-4 h-4 mr-1 group-hover:translate-x-1 transition-transform" />
@@ -164,8 +164,8 @@ export function SiteFooter() {
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    href="/services" 
+                  <Link
+                    href="/services"
                     className="text-brand-teal hover:text-brand-orange font-medium flex items-center group"
                   >
                     View All Services
@@ -180,8 +180,8 @@ export function SiteFooter() {
               <h4 className="text-lg font-semibold mb-6 text-white">Company</h4>
               <ul className="space-y-3">
                 <li>
-                  <Link 
-                    href="/about" 
+                  <Link
+                    href="/about"
                     className="text-gray-300 hover:text-brand-teal transition-colors flex items-center group"
                   >
                     <ChevronRight className="w-4 h-4 mr-1 group-hover:translate-x-1 transition-transform" />
@@ -189,8 +189,8 @@ export function SiteFooter() {
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    href="/projects" 
+                  <Link
+                    href="/projects"
                     className="text-gray-300 hover:text-brand-teal transition-colors flex items-center group"
                   >
                     <ChevronRight className="w-4 h-4 mr-1 group-hover:translate-x-1 transition-transform" />
@@ -198,8 +198,8 @@ export function SiteFooter() {
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    href="/blog" 
+                  <Link
+                    href="/blog"
                     className="text-gray-300 hover:text-brand-teal transition-colors flex items-center group"
                   >
                     <ChevronRight className="w-4 h-4 mr-1 group-hover:translate-x-1 transition-transform" />
@@ -207,8 +207,8 @@ export function SiteFooter() {
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    href="/webinars" 
+                  <Link
+                    href="/webinars"
                     className="text-gray-300 hover:text-brand-teal transition-colors flex items-center group"
                   >
                     <ChevronRight className="w-4 h-4 mr-1 group-hover:translate-x-1 transition-transform" />
@@ -216,8 +216,8 @@ export function SiteFooter() {
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    href="/careers" 
+                  <Link
+                    href="/careers"
                     className="text-gray-300 hover:text-brand-teal transition-colors flex items-center group"
                   >
                     <ChevronRight className="w-4 h-4 mr-1 group-hover:translate-x-1 transition-transform" />
@@ -225,8 +225,8 @@ export function SiteFooter() {
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    href="/contact" 
+                  <Link
+                    href="/contact"
                     className="text-brand-teal hover:text-brand-orange font-medium flex items-center group"
                   >
                     Contact Us
@@ -276,22 +276,22 @@ export function SiteFooter() {
               <div className="mt-6">
                 <p className="text-sm font-medium text-white mb-3">Follow Us</p>
                 <div className="flex space-x-3">
-                  <a 
-                    href="#" 
+                  <a
+                    href="#"
                     className="w-8 h-8 bg-white/10 hover:bg-brand-teal rounded-full flex items-center justify-center transition-colors"
                     aria-label="Facebook"
                   >
                     <Facebook className="w-4 h-4" />
                   </a>
-                  <a 
-                    href="#" 
+                  <a
+                    href="#"
                     className="w-8 h-8 bg-white/10 hover:bg-brand-teal rounded-full flex items-center justify-center transition-colors"
                     aria-label="Twitter"
                   >
                     <Twitter className="w-4 h-4" />
                   </a>
-                  <a 
-                    href="https://linkedin.com/company/muhscience-tech-labs" 
+                  <a
+                    href="https://linkedin.com/company/muhscience-tech-labs"
                     className="w-8 h-8 bg-white/10 hover:bg-brand-teal rounded-full flex items-center justify-center transition-colors"
                     aria-label="LinkedIn"
                     target="_blank"
@@ -299,15 +299,15 @@ export function SiteFooter() {
                   >
                     <Linkedin className="w-4 h-4" />
                   </a>
-                  <a 
-                    href="#" 
+                  <a
+                    href="#"
                     className="w-8 h-8 bg-white/10 hover:bg-brand-teal rounded-full flex items-center justify-center transition-colors"
                     aria-label="Instagram"
                   >
                     <Instagram className="w-4 h-4" />
                   </a>
-                  <a 
-                    href="#" 
+                  <a
+                    href="#"
                     className="w-8 h-8 bg-white/10 hover:bg-brand-teal rounded-full flex items-center justify-center transition-colors"
                     aria-label="YouTube"
                   >
@@ -320,7 +320,7 @@ export function SiteFooter() {
               <div className="mt-6">
                 <Button
                   onClick={() => {
-                    const whatsappUrl = `https://wa.me/254746254055?text=${encodeURIComponent('Hello! I\'m interested in your cybersecurity services.')}`;
+                    const whatsappUrl = `https://wa.me/254746254055?text=${encodeURIComponent('Hello! I\'m interested in your business systems services.')}`;
                     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
                   }}
                   className="w-full bg-green-600 hover:bg-green-700 text-white font-medium"
