@@ -1,9 +1,7 @@
 import './globals.css';
-import type { Metadata, Viewport } from 'next';
 import { SiteFooter } from '@/components/site-footer';
 import { DetailedHeader } from '@/components/DetailedHeader';
-
-// Get the correct base URL for metadata
+import type { Metadata, Viewport } from 'next';
 const getBaseUrl = () => {
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL}`;
