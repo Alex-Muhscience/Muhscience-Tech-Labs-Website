@@ -8,70 +8,52 @@ export async function GET(request: NextRequest) {
   
   const currentDate = new Date().toISOString();
   
-  // Define routes with enterprise SEO priorities and GEO targeting
-  const routes = [
+  // Sample insights data - this would typically come from a CMS or database
+  const insights = [
     {
-      path: '',
+      slug: '5-signs-business-needs-custom-systems-automation',
       lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: '1.0'
-    },
-    {
-      path: '/solutions',
-      lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: '0.9'
-    },
-    {
-      path: '/case-studies',
-      lastmod: currentDate,
-      changefreq: 'weekly',
       priority: '0.8'
     },
     {
-      path: '/about',
+      slug: 'roi-process-automation-smes',
       lastmod: currentDate,
-      changefreq: 'monthly',
+      priority: '0.8'
+    },
+    {
+      slug: 'technical-seo-vs-traditional-seo',
+      lastmod: currentDate,
       priority: '0.7'
     },
     {
-      path: '/insights',
+      slug: 'building-scalable-web-platforms-systems-approach',
       lastmod: currentDate,
-      changefreq: 'daily',
-      priority: '0.8'
+      priority: '0.7'
     },
     {
-      path: '/contact',
+      slug: 'crm-integration-strategies-seamless-operations',
       lastmod: currentDate,
-      changefreq: 'monthly',
-      priority: '0.9'
+      priority: '0.6'
     },
     {
-      path: '/privacy',
+      slug: 'measuring-success-kpis-business-systems',
       lastmod: currentDate,
-      changefreq: 'yearly',
-      priority: '0.3'
-    },
-    {
-      path: '/terms',
-      lastmod: currentDate,
-      changefreq: 'yearly',
-      priority: '0.3'
+      priority: '0.6'
     }
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-${routes
+${insights
   .map(
-    (route) => `  <url>
-    <loc>${baseUrl}${route.path}</loc>
-    <lastmod>${route.lastmod}</lastmod>
-    <changefreq>${route.changefreq}</changefreq>
-    <priority>${route.priority}</priority>
+    (insight) => `  <url>
+    <loc>${baseUrl}/insights/${insight.slug}</loc>
+    <lastmod>${insight.lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>${insight.priority}</priority>
   </url>`
   )
   .join('\n')}

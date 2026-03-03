@@ -19,7 +19,7 @@ export function DetailedHeader() {
               <div>
                 <span className="text-2xl font-bold text-brand-navy">Muhscience</span>
                 <span className="text-2xl font-bold text-brand-charcoal ml-1">Tech Labs</span>
-                <div className="text-xs text-gray-600 -mt-1">Cybersecurity & Innovation</div>
+                <div className="text-xs text-gray-600 -mt-1">Business Systems & Automation</div>
               </div>
             </Link>
           </div>
@@ -27,65 +27,38 @@ export function DetailedHeader() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             <div className="flex items-center space-x-8">
-              <Link href="/" className="text-brand-charcoal hover:text-brand-teal font-medium transition-colors duration-200 relative group">
+              <Link href="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group">
                 Home
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-teal transition-all duration-200 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
               </Link>
-              <Link href="/about" className="text-brand-charcoal hover:text-brand-teal font-medium transition-colors duration-200 relative group">
+              <Link href="/solutions" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group">
+                Solutions
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              </Link>
+              <Link href="/case-studies" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group">
+                Case Studies
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              </Link>
+              <Link href="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group">
                 About
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-teal transition-all duration-200 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
               </Link>
-              <div className="relative group">
-                <button className="text-brand-charcoal hover:text-brand-teal font-medium transition-colors duration-200 flex items-center">
-                  Services
-                  <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                  <div className="p-4">
-                    <Link href="/services" className="block px-4 py-2 text-sm text-brand-charcoal hover:bg-brand-teal/10 hover:text-brand-teal rounded-md transition-colors">
-                      🛡️ Cybersecurity Services
-                    </Link>
-                    <Link href="/services" className="block px-4 py-2 text-sm text-brand-charcoal hover:bg-brand-teal/10 hover:text-brand-teal rounded-md transition-colors">
-                      ☁️ Cloud Solutions
-                    </Link>
-                    <Link href="/services" className="block px-4 py-2 text-sm text-brand-charcoal hover:bg-brand-teal/10 hover:text-brand-teal rounded-md transition-colors">
-                      🤖 AI & Machine Learning
-                    </Link>
-                    <Link href="/services" className="block px-4 py-2 text-sm text-brand-charcoal hover:bg-brand-teal/10 hover:text-brand-teal rounded-md transition-colors">
-                      💻 Software Development
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <Link href="/projects" className="text-brand-charcoal hover:text-brand-teal font-medium transition-colors duration-200 relative group">
-                Projects
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-teal transition-all duration-200 group-hover:w-full"></span>
-              </Link>
-              <Link href="/blog" className="text-brand-charcoal hover:text-brand-teal font-medium transition-colors duration-200 relative group">
-                Blog
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-teal transition-all duration-200 group-hover:w-full"></span>
-              </Link>
-              <Link href="/webinars" className="text-brand-charcoal hover:text-brand-teal font-medium transition-colors duration-200 relative group">
-                Webinars
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-teal transition-all duration-200 group-hover:w-full"></span>
+              <Link href="/insights" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group">
+                Insights
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
               </Link>
             </div>
-            
-            {/* CTA Buttons */}
-            <div className="flex items-center space-x-4" suppressHydrationWarning>
-              <Link href="/contact" className="bg-gradient-to-r from-brand-navy to-brand-teal text-white px-6 py-2 rounded-lg font-semibold hover:from-brand-navy/90 hover:to-brand-teal/90 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                Get Started
-              </Link>
-              <Link href="/contact" className="border border-brand-orange text-brand-orange px-6 py-2 rounded-lg font-semibold hover:bg-brand-orange hover:text-white transition-all duration-200">
-                Contact Us
+
+            {/* Persistent CTA Button */}
+            <div className="flex items-center" suppressHydrationWarning>
+              <Link href="/contact" className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-600 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                Book Strategy Call
               </Link>
             </div>
           </nav>
 
           {/* Mobile menu button */}
-          <button 
+          <button
             className="lg:hidden p-2 rounded-md text-brand-charcoal hover:text-brand-teal hover:bg-brand-bg transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -103,99 +76,50 @@ export function DetailedHeader() {
         {isMenuOpen && (
           <div className="lg:hidden border-t border-gray-200 bg-white">
             <div className="px-4 py-4 space-y-4">
-              <Link 
-                href="/" 
-                className="block text-brand-charcoal hover:text-brand-teal font-medium transition-colors duration-200"
+              <Link
+                href="/"
+                className="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
-              <Link 
-                href="/about" 
-                className="block text-brand-charcoal hover:text-brand-teal font-medium transition-colors duration-200"
+              <Link
+                href="/solutions"
+                className="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Solutions
+              </Link>
+              <Link
+                href="/case-studies"
+                className="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Case Studies
+              </Link>
+              <Link
+                href="/about"
+                className="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
               </Link>
-              
-              {/* Services Dropdown for Mobile */}
-              <div className="space-y-2">
-                <Link 
-                  href="/services" 
-                  className="block text-brand-charcoal hover:text-brand-teal font-medium transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Services
-                </Link>
-                <div className="ml-4 space-y-2">
-                  <Link 
-                    href="/services" 
-                    className="block text-sm text-gray-600 hover:text-brand-teal transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    🛡️ Cybersecurity Services
-                  </Link>
-                  <Link 
-                    href="/services" 
-                    className="block text-sm text-gray-600 hover:text-brand-teal transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    ☁️ Cloud Solutions
-                  </Link>
-                  <Link 
-                    href="/services" 
-                    className="block text-sm text-gray-600 hover:text-brand-teal transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    🤖 AI & Machine Learning
-                  </Link>
-                  <Link 
-                    href="/services" 
-                    className="block text-sm text-gray-600 hover:text-brand-teal transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    💻 Software Development
-                  </Link>
-                </div>
-              </div>
+              <Link
+                href="/insights"
+                className="block text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Insights
+              </Link>
 
-              <Link 
-                href="/projects" 
-                className="block text-brand-charcoal hover:text-brand-teal font-medium transition-colors duration-200"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Projects
-              </Link>
-              <Link 
-                href="/blog" 
-                className="block text-brand-charcoal hover:text-brand-teal font-medium transition-colors duration-200"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Blog
-              </Link>
-              <Link 
-                href="/webinars" 
-                className="block text-brand-charcoal hover:text-brand-teal font-medium transition-colors duration-200"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Webinars
-              </Link>
-              
-              {/* Mobile CTA Buttons */}
-              <div className="pt-4 space-y-3 border-t border-gray-200">
-                <Link 
-                  href="/contact" 
-                  className="block w-full text-center bg-gradient-to-r from-brand-navy to-brand-teal text-white px-6 py-3 rounded-lg font-semibold hover:from-brand-navy/90 hover:to-brand-teal/90 transition-all duration-200"
+              {/* Mobile CTA Button */}
+              <div className="pt-4 border-t border-gray-200">
+                <Link
+                  href="/contact"
+                  className="block w-full text-center bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-600 transition-all duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Get Started
-                </Link>
-                <Link 
-                  href="/contact" 
-                  className="block w-full text-center border border-brand-orange text-brand-orange px-6 py-3 rounded-lg font-semibold hover:bg-brand-orange hover:text-white transition-all duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Contact Us
+                  Book Strategy Call
                 </Link>
               </div>
             </div>

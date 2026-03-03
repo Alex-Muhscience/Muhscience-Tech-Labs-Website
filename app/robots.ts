@@ -1,13 +1,13 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  // Get the correct base URL for the current environment
-  const baseUrl = process.env.VERCEL_URL 
+  // Get correct base URL for current environment
+  const baseUrl = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
-    : process.env.NEXT_PUBLIC_SITE_URL 
-    ? process.env.NEXT_PUBLIC_SITE_URL
-    : 'https://muhscience-tech-labs-website.vercel.app' // fallback to your correct Vercel domain
-  
+    : process.env.NEXT_PUBLIC_SITE_URL
+      ? process.env.NEXT_PUBLIC_SITE_URL
+      : 'https://muhscience-tech-labs-website.vercel.app' // fallback to your correct Vercel domain
+
   return {
     rules: [
       {
@@ -21,6 +21,7 @@ export default function robots(): MetadataRoute.Robots {
           '/*.json',         // JSON files (except manifest)
           '/sitemap-test',   // Test pages
           '/auth/admin',     // Admin auth pages
+          '/.well-known/',   // Security files
         ],
         crawlDelay: 10,      // Be respectful to server resources
       },

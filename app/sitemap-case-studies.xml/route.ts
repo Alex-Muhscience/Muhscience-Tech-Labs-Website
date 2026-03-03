@@ -8,70 +8,47 @@ export async function GET(request: NextRequest) {
   
   const currentDate = new Date().toISOString();
   
-  // Define routes with enterprise SEO priorities and GEO targeting
-  const routes = [
+  // Sample case studies data - this would typically come from a CMS or database
+  const caseStudies = [
     {
-      path: '',
+      slug: 'publishing-workflow-automation',
       lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: '1.0'
-    },
-    {
-      path: '/solutions',
-      lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: '0.9'
-    },
-    {
-      path: '/case-studies',
-      lastmod: currentDate,
-      changefreq: 'weekly',
       priority: '0.8'
     },
     {
-      path: '/about',
+      slug: 'learning-management-system-integration',
       lastmod: currentDate,
-      changefreq: 'monthly',
+      priority: '0.8'
+    },
+    {
+      slug: 'custom-crm-implementation',
+      lastmod: currentDate,
       priority: '0.7'
     },
     {
-      path: '/insights',
+      slug: 'business-process-optimization',
       lastmod: currentDate,
-      changefreq: 'daily',
-      priority: '0.8'
+      priority: '0.7'
     },
     {
-      path: '/contact',
+      slug: 'technical-seo-audit',
       lastmod: currentDate,
-      changefreq: 'monthly',
-      priority: '0.9'
-    },
-    {
-      path: '/privacy',
-      lastmod: currentDate,
-      changefreq: 'yearly',
-      priority: '0.3'
-    },
-    {
-      path: '/terms',
-      lastmod: currentDate,
-      changefreq: 'yearly',
-      priority: '0.3'
+      priority: '0.6'
     }
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-${routes
+${caseStudies
   .map(
-    (route) => `  <url>
-    <loc>${baseUrl}${route.path}</loc>
-    <lastmod>${route.lastmod}</lastmod>
-    <changefreq>${route.changefreq}</changefreq>
-    <priority>${route.priority}</priority>
+    (caseStudy) => `  <url>
+    <loc>${baseUrl}/case-studies/${caseStudy.slug}</loc>
+    <lastmod>${caseStudy.lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>${caseStudy.priority}</priority>
   </url>`
   )
   .join('\n')}
