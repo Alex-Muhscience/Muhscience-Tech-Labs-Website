@@ -1,3 +1,4 @@
+import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -136,12 +137,12 @@ export default function InsightsPage() {
                 <h2 className="text-3xl font-bold text-white sm:text-4xl">Featured Insight</h2>
                 <p className="mt-4 text-lg text-gray-300">Our latest analysis on business systems and automation</p>
               </div>
-              
+
               <Card className="bg-slate-800 border-gray-700 overflow-hidden hover:border-blue-500 transition-all duration-300">
                 <div className="md:flex">
                   <div className="md:w-1/3">
                     <div className="h-48 md:h-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
-                      <featuredPost.icon className="h-16 w-16 text-blue-200" />
+                      {React.createElement(featuredPost.icon, { className: "h-16 w-16 text-blue-200" })}
                     </div>
                   </div>
                   <div className="md:w-2/3 p-8">
@@ -167,7 +168,7 @@ export default function InsightsPage() {
                         <Clock className="h-4 w-4 mr-1" />
                         {featuredPost.readTime}
                       </div>
-                      <Link 
+                      <Link
                         href={`/insights/${featuredPost.id}`}
                         className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium transition-colors"
                       >
@@ -210,7 +211,7 @@ export default function InsightsPage() {
                         <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm font-medium">
                           {post.category}
                         </span>
-                        <post.icon className="h-6 w-6 text-blue-400" />
+                        {React.createElement(post.icon, { className: "h-6 w-6 text-blue-400" })}
                       </div>
                       <CardTitle className="text-xl text-white line-clamp-2">
                         <Link href={`/insights/${post.id}`} className="hover:text-blue-400 transition-colors">
@@ -233,7 +234,7 @@ export default function InsightsPage() {
                         </div>
                       </div>
                       <div className="mt-4 pt-4 border-t border-gray-700">
-                        <Link 
+                        <Link
                           href={`/insights/${post.id}`}
                           className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium transition-colors"
                         >
@@ -265,17 +266,17 @@ export default function InsightsPage() {
             <p className="text-xl mb-12 opacity-90">
               Let's discuss how custom business systems and automation can eliminate operational friction and accelerate your growth.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Link 
-                href="/contact" 
+              <Link
+                href="/contact"
                 className="inline-flex items-center px-10 py-5 bg-white text-blue-600 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl"
               >
                 📅 Book a Strategy Call
               </Link>
-              
-              <Link 
-                href="/solutions" 
+
+              <Link
+                href="/solutions"
                 className="inline-flex items-center px-10 py-5 border-2 border-white/30 text-white rounded-xl font-bold text-lg hover:bg-white/10 transition-all duration-300"
               >
                 🔧 Explore Solutions
