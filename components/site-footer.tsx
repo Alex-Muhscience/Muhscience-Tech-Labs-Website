@@ -98,7 +98,7 @@ export function SiteFooter() {
                 </div>
               </div>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                Leading business systems and technology solutions provider in East Africa.
+                Leading business systems and automation engineering solutions in East Africa.
                 Optimizing businesses and empowering digital transformation.
               </p>
 
@@ -133,7 +133,7 @@ export function SiteFooter() {
                     className="text-gray-300 hover:text-brand-teal transition-colors flex items-center group"
                   >
                     <ChevronRight className="w-4 h-4 mr-1 group-hover:translate-x-1 transition-transform" />
-                    Business Systems Solutions
+                    Business Systems & Automation
                   </Link>
                 </li>
                 <li>
@@ -142,7 +142,7 @@ export function SiteFooter() {
                     className="text-gray-300 hover:text-brand-teal transition-colors flex items-center group"
                   >
                     <ChevronRight className="w-4 h-4 mr-1 group-hover:translate-x-1 transition-transform" />
-                    AI & Machine Learning
+                    Technical SEO Services
                   </Link>
                 </li>
                 <li>
@@ -151,7 +151,7 @@ export function SiteFooter() {
                     className="text-gray-300 hover:text-brand-teal transition-colors flex items-center group"
                   >
                     <ChevronRight className="w-4 h-4 mr-1 group-hover:translate-x-1 transition-transform" />
-                    Software Development
+                    Digital Transformation
                   </Link>
                 </li>
                 <li>
@@ -160,7 +160,7 @@ export function SiteFooter() {
                     className="text-gray-300 hover:text-brand-teal transition-colors flex items-center group"
                   >
                     <ChevronRight className="w-4 h-4 mr-1 group-hover:translate-x-1 transition-transform" />
-                    Innovation Labs
+                    AI Innovation Labs
                   </Link>
                 </li>
                 <li>
