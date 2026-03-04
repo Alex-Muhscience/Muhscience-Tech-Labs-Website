@@ -4,13 +4,7 @@ import { DetailedHeader } from '@/components/DetailedHeader';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import type { Metadata, Viewport } from 'next';
 const getBaseUrl = () => {
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
-  if (process.env.NEXT_PUBLIC_SITE_URL) {
-    return process.env.NEXT_PUBLIC_SITE_URL;
-  }
-  return 'https://muhscience-tech-labs-website.vercel.app'; // fallback to your correct Vercel domain
+  return 'https://muhscience-tech-labs-website.vercel.app';
 };
 
 export const metadata: Metadata = {
