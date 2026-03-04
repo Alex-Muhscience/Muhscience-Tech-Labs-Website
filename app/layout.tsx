@@ -91,6 +91,7 @@ export const metadata: Metadata = {
     'apple-mobile-web-app-title': 'Muhscience Tech Labs',
     'msapplication-TileColor': '#1e40af',
     'msapplication-TileImage': '/images/ms-icon-144x144.png',
+    'google-site-verification': 'M1ruyE4wie7Ei_x3caoezOYlvtHt4QJj56iDbvIWWPE',
   },
 };
 
@@ -339,52 +340,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
-        <meta name="referrer" content="origin-when-cross-origin" />
-        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-        <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-
         {/* Structured Data for Enterprise SEO */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
 
-        {/* GEO Targeting Meta Tags */}
-        <meta name="geo.region" content="KE-NBO" />
-        <meta name="geo.placename" content="Nairobi" />
-        <meta name="geo.position" content="-1.2921;36.8219" />
-        <meta name="ICBM" content="-1.2921,36.8219" />
-        <meta name="distribution" content="KE" />
-        <meta name="country" content="Kenya" />
-        <meta name="city" content="Nairobi" />
-        <meta name="state" content="Nairobi County" />
-        <meta name="zipcode" content="00100" />
-
-        {/* Enterprise SEO Meta Tags */}
-        <meta name="business:contact_data:street_address" content="Nairobi, Kenya" />
-        <meta name="business:contact_data:locality" content="Nairobi" />
-        <meta name="business:contact_data:region" content="Nairobi County" />
-        <meta name="business:contact_data:postal_code" content="00100" />
-        <meta name="business:contact_data:country_name" content="Kenya" />
-        <meta name="business:contact_data:email" content="cybermuhscienceilabs@gmail.com" />
-        <meta name="business:contact_data:phone_number" content="+254746254055" />
-        <meta name="business:contact_data:website" content="https://muhscience-tech-labs-website.vercel.app" />
-        <meta name="business:hours" content="Mo-Fr 09:00-18:00" />
-        <meta name="business:price_range" content="$$" />
-
-        {/* Additional Enterprise SEO */}
-        <meta name="rating" content="5.0" />
-        <meta name="review_count" content="50" />
-        <meta name="best_rating" content="5" />
-        <meta name="price_currency" content="KES" />
-        <meta name="availability" content="InStock" />
-        <meta name="category" content="Business Systems, Process Automation, Technical SEO" />
-        <meta name="service_type" content="Professional Services" />
+        {/* <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+  /> */ }
       </head>
       <body className="min-h-screen bg-brand-bg font-sans antialiased" suppressHydrationWarning>
         <div className="relative flex min-h-screen flex-col" suppressHydrationWarning>
@@ -394,6 +355,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <FloatingWhatsApp />
         </div>
       </body>
-    </html>
+    </html >
   );
 }
