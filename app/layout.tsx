@@ -1,6 +1,7 @@
 import './globals.css';
 import { SiteFooter } from '@/components/site-footer';
 import { DetailedHeader } from '@/components/DetailedHeader';
+import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import type { Metadata, Viewport } from 'next';
 const getBaseUrl = () => {
   if (process.env.VERCEL_URL) {
@@ -390,6 +391,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <DetailedHeader />
           <main className="flex-1" suppressHydrationWarning>{children}</main>
           <SiteFooter />
+          <FloatingWhatsApp />
         </div>
       </body>
     </html>
