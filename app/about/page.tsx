@@ -210,7 +210,7 @@ export default function AboutPage() {
             <div className="relative">
               <Card className="bg-slate-900 border-gray-700">
                 <CardContent className="p-8">
-                  <img src="../public/images/profile.jpg" alt="Alex M. Kamau - Lead Systems Architect" className="aspect-square rounded-lg object-cover mb-6" />
+                  <img src="/app/public/images/profile.jpg" alt="Alex M. Kamau - Lead Systems Architect" className="aspect-square rounded-lg object-cover mb-6" />
                   <div className="space-y-4">
                     <div className="text-center">
                       <h4 className="text-xl font-semibold text-white mb-2">Core Philosophy</h4>
