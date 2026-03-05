@@ -54,8 +54,8 @@ const services = [
       }
     ],
     pricing: {
-      starter: "$5,000/project",
-      professional: "$15,000/project",
+      starter: "KES 45,000/project",
+      professional: "KES 60,000/project",
       enterprise: "Custom pricing"
     },
     deliverables: ["Custom platform design", "Responsive web application", "Admin dashboard", "API documentation", "Training and handover"],
@@ -97,8 +97,8 @@ const services = [
       }
     ],
     pricing: {
-      starter: "$3,000/month",
-      professional: "$8,000/month",
+      starter: "KES 80,000/project",
+      professional: "KES 120,000/project",
       enterprise: "Custom pricing"
     },
     deliverables: ["Process analysis report", "Automation roadmap", "Custom automation solution", "Integration setup", "Training and support"],
@@ -140,8 +140,8 @@ const services = [
       }
     ],
     pricing: {
-      starter: "$1,500/month",
-      professional: "$3,500/month",
+      starter: "KES 20,000/month",
+      professional: "KES 35,000/month",
       enterprise: "Custom pricing"
     },
     deliverables: ["Technical SEO audit", "Implementation roadmap", "Performance optimization", "Analytics setup", "Monthly reporting"],
@@ -183,8 +183,8 @@ const services = [
       }
     ],
     pricing: {
-      starter: "$5,000/project",
-      professional: "$15,000/project",
+      starter: "KES 100,000/project",
+      professional: "KES 140,000/project",
       enterprise: "Custom pricing"
     },
     deliverables: ["AI strategy document", "Proof-of-concept demo", "Custom AI solution", "Training and deployment", "Ongoing optimization"],
@@ -333,8 +333,8 @@ export default function ServicesPage() {
               <Card
                 id={service.id}
                 className={`cursor-pointer transition-all hover:shadow-lg ${activeService.id === service.id
-                    ? `border-2 border-primary bg-gradient-to-br ${service.highlightColor}/10`
-                    : ""
+                  ? `border-2 border-primary bg-gradient-to-br ${service.highlightColor}/10`
+                  : ""
                   }`}
                 onClick={() => {
                   setActiveService(service);
@@ -645,58 +645,40 @@ export default function ServicesPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
-              title: "Healthcare Security Transformation",
-              industry: "Healthcare",
-              challenge: "HIPAA compliance and patient data protection",
-              result: "99.9% threat prevention, zero data breaches",
-              metric: "100% Compliance",
-              icon: Shield,
-              color: "from-blue-600 to-blue-800"
+              title: "Digital Publishing Platform for Chania Publishers",
+              industry: "Publishing",
+              challenge: "Legacy content management and publishing workflow",
+              result: "Modern web platform with automated publishing system",
+              metric: "50% Faster Content Deployment",
+              icon: Globe,
+              color: "from-blue-600 to-purple-700"
             },
             {
-              title: "AI-Powered Supply Chain Optimization",
-              industry: "Manufacturing",
-              challenge: "Inefficient inventory management and forecasting",
-              result: "40% reduction in inventory costs, 25% faster delivery",
-              metric: "$2M Saved Annually",
-              icon: Bot,
-              color: "from-green-600 to-green-800"
+              title: "Process Automation for EuroAfriQue Corporate Skills",
+              industry: "Education/Training",
+              challenge: "Manual enrollment, Schedule generation and management and course management processes",
+              result: "Automated enrollment system with real-time reporting and the schedule management system",
+              metric: "70% Time Savings",
+              icon: Settings,
+              color: "from-emerald-600 to-teal-700"
             },
             {
-              title: "Cloud-Native E-commerce Platform",
-              industry: "Retail",
-              challenge: "Legacy system scalability issues",
-              result: "10x traffic handling capacity, 50% faster page loads",
-              metric: "300% Revenue Growth",
-              icon: Cloud,
-              color: "from-purple-600 to-purple-800"
+              title: "AI-Driven Data Research System (UTDRS)",
+              industry: "Research/Data",
+              challenge: "Manual data analysis and predictive modeling",
+              result: "AI-powered insights and automated reporting",
+              metric: "90% Accuracy Improvement",
+              icon: Brain,
+              color: "from-violet-600 to-fuchsia-700"
             },
             {
-              title: "Financial Services Risk Analytics",
-              industry: "Finance",
-              challenge: "Real-time fraud detection and risk assessment",
-              result: "95% fraud detection accuracy, 60% faster processing",
-              metric: "$5M Loss Prevention",
-              icon: BarChart,
-              color: "from-orange-600 to-orange-800"
-            },
-            {
-              title: "Government Cybersecurity Framework",
-              industry: "Government",
-              challenge: "Multi-agency security standardization",
-              result: "Unified security posture across 15 agencies",
-              metric: "Zero Incidents",
-              icon: Lock,
-              color: "from-red-600 to-red-800"
-            },
-            {
-              title: "EdTech Learning Platform",
-              industry: "Education",
-              challenge: "Remote learning scalability and engagement",
-              result: "500K+ concurrent users, 40% better engagement",
-              metric: "2M+ Students",
-              icon: Users,
-              color: "from-indigo-600 to-indigo-800"
+              title: "Technical SEO Overhaul for E-commerce Client",
+              industry: "E-commerce",
+              challenge: "Poor search rankings and site performance",
+              result: "300% increase in organic traffic and rankings",
+              metric: "Top 10 Search Positions",
+              icon: TrendingUp,
+              color: "from-amber-600 to-orange-700"
             }
           ].map((caseStudy, index) => (
             <motion.div

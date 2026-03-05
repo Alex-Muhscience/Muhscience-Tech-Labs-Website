@@ -103,23 +103,17 @@ export function SiteFooter() {
               </p>
 
               {/* Trust Indicators */}
-              <div className="space-y-3">
-                <div className="flex items-center text-sm text-gray-300">
-                  <Shield className="w-4 h-4 mr-2 text-brand-teal" />
-                  <span>ISO 27001 Certified</span>
-                </div>
-                <div className="flex items-center text-sm text-gray-300">
-                  <Award className="w-4 h-4 mr-2 text-brand-teal" />
-                  <span>Award-Winning Solutions</span>
-                </div>
-                <div className="flex items-center text-sm text-gray-300">
-                  <Users className="w-4 h-4 mr-2 text-brand-teal" />
-                  <span>500+ Satisfied Clients</span>
-                </div>
-                <div className="flex items-center text-sm text-gray-300">
-                  <Globe className="w-4 h-4 mr-2 text-brand-teal" />
-                  <span>East Africa Coverage</span>
-                </div>
+              <div className="flex items-center text-sm text-gray-300">
+                <Award className="w-4 h-4 mr-2 text-brand-teal" />
+                <span>Award-Winning Solutions</span>
+              </div>
+              <div className="flex items-center text-sm text-gray-300">
+                <Users className="w-4 h-4 mr-2 text-brand-teal" />
+                <span>500+ Satisfied Clients</span>
+              </div>
+              <div className="flex items-center text-sm text-gray-300">
+                <Globe className="w-4 h-4 mr-2 text-brand-teal" />
+                <span>East Africa Coverage</span>
               </div>
             </div>
 
