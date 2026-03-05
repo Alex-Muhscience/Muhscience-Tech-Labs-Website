@@ -81,6 +81,7 @@ export const metadata: Metadata = {
   classification: 'Business Systems Engineering, Process Automation, Technical SEO',
   other: {
     'apple-mobile-web-app-capable': 'yes',
+    'mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'default',
     'apple-mobile-web-app-title': 'Muhscience Tech Labs',
     'msapplication-TileColor': '#1e40af',
