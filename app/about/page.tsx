@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  Users, Globe, Briefcase, Award, TrendingUp, Zap, 
+import {
+  Users, Globe, Briefcase, Award, TrendingUp, Zap,
   CheckCircle, Star, Lightbulb, Settings, ArrowRight,
   Calendar, Target, BarChart, Cpu, Database
 } from "lucide-react";
@@ -178,7 +178,7 @@ export default function AboutPage() {
               <p className="text-lg text-gray-300 mb-8 leading-relaxed">
                 His approach combines deep technical expertise with business acumen, ensuring that every system delivered not only works technically but also drives measurable business outcomes.
               </p>
-              
+
               <div className="space-y-4 mb-8">
                 <div className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-green-400 mr-3" />
@@ -198,7 +198,7 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <Link 
+              <Link
                 href="/contact"
                 className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-200"
               >
@@ -206,16 +206,11 @@ export default function AboutPage() {
                 Schedule Consultation
               </Link>
             </div>
-            
+
             <div className="relative">
               <Card className="bg-slate-900 border-gray-700">
                 <CardContent className="p-8">
-                  <div className="aspect-square bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center mb-6">
-                    <div className="text-center">
-                      <div className="text-6xl font-bold text-white mb-2">AMK</div>
-                      <div className="text-blue-200">Systems Architect</div>
-                    </div>
-                  </div>
+                  <img src="/images/profile.jpg" alt="Alex M. Kamau - Lead Systems Architect" className="aspect-square rounded-lg object-cover mb-6" />
                   <div className="space-y-4">
                     <div className="text-center">
                       <h4 className="text-xl font-semibold text-white mb-2">Core Philosophy</h4>
@@ -379,17 +374,17 @@ export default function AboutPage() {
             <p className="text-xl mb-12 opacity-90">
               Let's discuss how custom business systems and automation can eliminate operational friction and accelerate your growth.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Link 
-                href="/contact" 
+              <Link
+                href="/contact"
                 className="inline-flex items-center px-10 py-5 bg-white text-blue-600 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl"
               >
                 📅 Book a Strategy Call
               </Link>
-              
-              <Link 
-                href="/solutions" 
+
+              <Link
+                href="/solutions"
                 className="inline-flex items-center px-10 py-5 border-2 border-white/30 text-white rounded-xl font-bold text-lg hover:bg-white/10 transition-all duration-300"
               >
                 🔧 Explore Solutions
