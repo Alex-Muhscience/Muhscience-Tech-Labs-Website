@@ -1,329 +1,51 @@
-# Muhscience Tech Labs Website
+# Muhscience Tech Labs
 
-🚀 **Production-Ready Website** - A comprehensive cybersecurity and technology solutions website built with Next.js 15, featuring modern design, full functionality, and production optimizations.
+The website of **Muhscience Tech Labs**, a founder-led engineering studio in Nairobi that designs, builds and runs custom business systems: web platforms, process automation, technical SEO and applied AI.
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
-[![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=flat&logo=vercel)](https://vercel.com/)
+Live: https://muhscience-tech-labs-website.vercel.app
 
-## 🌟 Features
+## Pages
 
-### Core Pages
-- ✅ **Homepage** - Professional landing page with services overview
-- ✅ **About Us** - Team information and company story
-- ✅ **Services** - Interactive service catalog with consultation forms
-- ✅ **Projects** - Portfolio showcase with filtering
-- ✅ **Blog** - Dynamic blog with search and categorization
-- ✅ **Careers** - Job listings and application system
-- ✅ **FAQ** - Searchable frequently asked questions
-- ✅ **Contact** - Contact form with map integration
-- ✅ **Legal Pages** - Privacy Policy, Terms of Service, Security Policy
+| Route | Content |
+|---|---|
+| `/` | Hero, services with starting prices, selected work, process, why work with us |
+| `/services` | The four services, what each includes, how pricing works |
+| `/work` | Real client platforms with screenshots, linking to live sites and full case studies |
+| `/about` | The founder, how the studio works with partners |
+| `/faq` | Common questions (also published as FAQ structured data) |
+| `/contact` | Email, WhatsApp and a contact form |
+| `/privacy`, `/terms`, `/security` | Plain-language policies and vulnerability reporting |
 
-### Technical Features
-- 🎨 **Modern UI/UX** - shadcn/ui components with Tailwind CSS
-- 📱 **Fully Responsive** - Optimized for all device sizes
-- ⚡ **High Performance** - Next.js 15 with App Router and production optimizations
-- 🔒 **Security First** - Security headers middleware, input validation, XSS protection
-- 🗄️ **Database Ready** - MongoDB integration with Mongoose
-- 📧 **Contact Forms** - Functional contact and service inquiry forms with email integration
-- 🎭 **Animations** - Smooth Framer Motion animations with performance optimizations
-- 🔍 **SEO Optimized** - Dynamic sitemap, robots.txt, structured metadata, Open Graph
-- 📊 **Analytics Ready** - Vercel Analytics and Speed Insights integration
-- 🛡️ **Production Footer** - Comprehensive footer with newsletter, social links, and trust indicators
-- 📱 **WhatsApp Integration** - Direct WhatsApp contact buttons throughout the site
-- ⚡ **Fast Loading** - Optimized images, lazy loading, and efficient bundling
+Pages that were removed or merged (`/solutions`, `/projects`, `/case-studies`, `/blog`, `/webinars`, `/insights`, `/techinsights`, `/careers`, `/auth/*`, `/admin/*`) redirect permanently, see `next.config.ts`.
 
-## 🛠️ Tech Stack
+## Stack
 
-### Core Technologies
-- **Frontend**: Next.js 15 (React 19), TypeScript 5.9
-- **Styling**: Tailwind CSS 3.4, shadcn/ui components
-- **Database**: MongoDB with Mongoose ODM
-- **Authentication**: JWT-based authentication system
-- **Email**: SMTP integration for contact forms
-- **Animations**: Framer Motion 12.x
-- **Analytics**: Vercel Analytics & Speed Insights
-- **Deployment**: Vercel (recommended), supports other platforms
+Next.js 16 (App Router) · React 19 · TypeScript · plain CSS with design tokens (`src/app/globals.css`) · Hanken Grotesk · Nodemailer · Vercel Analytics and Speed Insights.
 
-### Development Tools
-- **Linting**: ESLint with TypeScript support
-- **Formatting**: Prettier with consistent configuration
-- **Type Checking**: TypeScript with strict mode
-- **Build Tool**: Next.js built-in Webpack configuration
-- **Package Manager**: npm/yarn/pnpm support
+Content lives in typed data files: `src/lib/site.ts` (company details), `src/data/services.ts`, `src/data/work.ts` and `src/data/faq.ts`.
 
-## 🚀 Quick Start
+## Contact form
 
-### Prerequisites
-- Node.js 18+ (LTS recommended)
-- npm or yarn or pnpm
-- MongoDB database (local or cloud)
-- SMTP server for email functionality
+`POST /api/contact` validates the message, drops spam caught by a hidden field, rate-limits by IP and delivers the enquiry **by email over SMTP**, with Reply-To set to the sender. Set these environment variables on Vercel:
 
-### Installation
+| Variable | Example |
+|---|---|
+| `SMTP_HOST` | `smtp.gmail.com` |
+| `SMTP_PORT` | `465` (SSL) or `587` (STARTTLS) |
+| `SMTP_USER` | the sending Gmail address |
+| `SMTP_PASS` | a Gmail **app password** (Google Account → Security → App passwords) |
+| `CONTACT_TO` | optional; where enquiries go (defaults to the site email) |
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/cybermuhscience/website.git
-   cd cybermuhscience-website
-   ```
+Without these, the form doesn't fail silently: it offers to send the same message by email or WhatsApp instead.
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   # or
-   yarn install
-   # or
-   pnpm install
-   ```
+## Development
 
-3. **Set up environment variables:**
-   ```bash
-   cp .env.example .env
-   ```
-   
-   Update `.env` with your actual values:
-   ```env
-   MONGODB_URI=your-mongodb-connection-string
-   JWT_SECRET=your-secure-jwt-secret-key
-   SMTP_HOST=smtp.gmail.com
-   SMTP_PORT=587
-   SMTP_USER=your-email@gmail.com
-   SMTP_PASS=your-app-password
-   ```
-
-4. **Start the development server:**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   ```
-
-5. **Open your browser:**
-   Navigate to `http://localhost:3001` to see the website.
-
-## 🏗️ Production Build
-
-1. **Build the application:**
-   ```bash
-   npm run build
-   ```
-
-2. **Start production server:**
-   ```bash
-   npm start
-   ```
-
-## 🌐 Deployment Options
-
-### Vercel (Recommended)
-1. Push your code to GitHub/GitLab/Bitbucket
-2. Connect your repository to Vercel
-3. Set environment variables in Vercel dashboard
-4. Deploy automatically on push to main branch
-
-### Other Platforms
-- **Netlify**: Full support with serverless functions
-- **Railway**: Easy database and app hosting
-- **Digital Ocean**: VPS with Docker support
-- **AWS**: EC2 or Amplify hosting
-
-### Environment Variables for Production
-```env
-NEXT_PUBLIC_SITE_URL=https://yourdomain.com
-MONGODB_URI=your-production-mongodb-uri
-JWT_SECRET=your-production-jwt-secret
-SMTP_HOST=your-smtp-host
-SMTP_PORT=587
-SMTP_USER=your-production-email
-SMTP_PASS=your-production-email-password
-```
-
-## Usage
-
-### Directory Structure
-
-The project follows Next.js 15 App Router structure:
-
-```
-muhscience-tech-labs-website/
-├── app/
-│   ├── (pages)/
-│   │   ├── about/
-│   │   │   └── page.tsx
-│   │   ├── blog/
-│   │   │   └── page.tsx
-│   │   ├── contact/
-│   │   │   └── page.tsx
-│   │   ├── services/
-│   │   │   └── page.tsx
-│   │   └── ...
-│   ├── api/
-│   │   ├── auth/
-│   │   ├── blog/
-│   │   ├── contact/
-│   │   └── ...
-│   ├── globals.css
-│   ├── layout.tsx
-│   ├── page.tsx
-│   └── robots.txt
-├── components/
-│   ├── ui/
-│   │   ├── button.tsx
-│   │   ├── card.tsx
-│   │   ├── input.tsx
-│   │   └── ... (shadcn/ui components)
-│   ├── site-header.tsx
-│   └── site-footer.tsx
-├── lib/
-│   ├── auth.ts
-│   ├── env.ts
-│   └── utils.ts
-├── middleware.ts
-├── public/
-│   ├── images/
-│   ├── favicon.ico
-│   └── sitemap.xml
-├── tailwind.config.ts
-├── next.config.js
-└── package.json
-```
-
-### Custom Components
-
-The `components` directory contains reusable components used throughout the site. For example, `site-header.tsx` and `site-footer.tsx` are used on every page to provide a consistent navigation experience.
-
-### Pages
-
-Each page is located in the `pages` directory and corresponds to a route on the website. For example, `about.tsx` is the "About Us" page, and `services.tsx` is the "Services" page.
-
-### Adding New Pages
-
-With Next.js 15 App Router, create pages in the `app` directory:
-
-1. Create a new directory: `app/testimonials/`
-2. Add a page component: `app/testimonials/page.tsx`
-3. Export a default React component from the page
-4. Update navigation links in the header component
-
-Example:
-```tsx
-// app/testimonials/page.tsx
-export default function TestimonialsPage() {
-  return (
-    <div className="container py-12">
-      <h1>Customer Testimonials</h1>
-      {/* Your content here */}
-    </div>
-  );
-}
-```
-
-## 🏆 Key Features in Detail
-
-### Security Features
-- **Security Headers**: Comprehensive security headers via middleware
-- **Input Validation**: Server-side validation for all forms
-- **XSS Protection**: Built-in protection against cross-site scripting
-- **CSRF Protection**: JWT-based authentication with secure tokens
-
-### Performance Optimizations
-- **Image Optimization**: Next.js automatic image optimization
-- **Code Splitting**: Automatic route-based code splitting
-- **Static Generation**: Pre-rendered pages for better performance
-- **Caching**: Optimized caching strategies for static assets
-
-### SEO Features
-- **Dynamic Sitemap**: Auto-generated sitemap with all routes
-- **Robots.txt**: Comprehensive robots file for search engines
-- **Meta Tags**: Optimized meta descriptions and titles
-- **Open Graph**: Social media sharing optimization
-- **Structured Data**: Schema markup for better search results
-
-### User Experience
-- **Responsive Design**: Mobile-first responsive design
-- **Loading States**: Skeleton loaders and loading indicators
-- **Error Handling**: Graceful error boundaries and 404 pages
-- **Accessibility**: ARIA labels and keyboard navigation support
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-#### Port Already in Use
 ```bash
-# Kill process on port 3001
-taskkill /PID [PID_NUMBER] /F
-# Or use different port
-npm run dev -- -p 3002
+pnpm install
+pnpm dev          # http://localhost:3000
+pnpm lint
+pnpm type-check
+pnpm build
 ```
 
-#### Build Errors
-```bash
-# Clear Next.js cache
-npm run clean
-# Rebuild
-npm run build
-```
-
-#### Database Connection Issues
-- Verify MongoDB URI in `.env`
-- Check MongoDB server status
-- Ensure IP whitelist includes your address
-
-## 📝 Scripts
-
-```json
-{
-  "dev": "next dev -p 3001",
-  "build": "next build",
-  "start": "next start -p 3001",
-  "lint": "next lint",
-  "lint:fix": "next lint --fix",
-  "format": "prettier --write",
-  "clean": "rimraf .next out node_modules/.cache",
-  "type-check": "tsc --noEmit"
-}
-```
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these guidelines:
-
-### Development Workflow
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Make your changes and test thoroughly
-4. Run linting and type checks: `npm run lint && npm run type-check`
-5. Commit with clear messages: `git commit -m "feat: add amazing feature"`
-6. Push to your fork: `git push origin feature/amazing-feature`
-7. Open a Pull Request with detailed description
-
-### Code Standards
-- Use TypeScript for type safety
-- Follow existing code style and patterns
-- Add JSDoc comments for complex functions
-- Include tests for new features
-- Update documentation as needed
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Support
-
-For support or questions:
-- Email: info@cybermuhscience.com
-- Phone: +254 746 254 055
-- WhatsApp: Available through website contact
-
----
-
-**Built with ❤️ in Kenya** | **Muhscience Tech Labs Ltd** | **© 2025**
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Never commit `.env` files; only `.env.example` is tracked.
