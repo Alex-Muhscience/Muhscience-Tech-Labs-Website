@@ -16,7 +16,7 @@ Live: https://muhscience-tech-labs-website.vercel.app
 | `/contact` | Email, WhatsApp and a contact form |
 | `/privacy`, `/terms`, `/security` | Plain-language policies and vulnerability reporting |
 
-Pages that were removed or merged (`/solutions`, `/projects`, `/case-studies`, `/blog`, `/webinars`, `/insights`, `/techinsights`, `/careers`, `/auth/*`, `/admin/*`) redirect permanently, see `next.config.ts`.
+Pages that were removed or merged (`/solutions`, `/projects`, `/case-studies`, `/blog`, `/webinars`, `/techinsights`, `/careers`, `/auth/*`, `/admin/*`) redirect permanently, see `next.config.ts`.
 
 ## Stack
 

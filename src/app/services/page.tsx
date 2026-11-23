@@ -1,12 +1,13 @@
 import type { Metadata } from "next"
-import { Check } from "lucide-react"
+import Link from "next/link"
+import { ArrowRight, Check } from "lucide-react"
 import { CtaBand } from "@/components/CtaBand"
 import { SectionHead } from "@/components/SectionHead"
 import { process, services } from "@/data/services"
 
 export const metadata: Metadata = {
   title: "Services and pricing",
-  description: "Business web platforms, process automation, technical SEO and applied AI, with starting prices in KES and a written quote for every project.",
+  description: "Websites and landing pages, business web platforms, custom business systems, process automation, technical SEO and applied AI, with starting prices in KES and a written quote for every project.",
   alternates: { canonical: "/services" },
 }
 
@@ -17,7 +18,7 @@ export default function ServicesPage() {
         <div className="shell">
           <p className="kicker">Services</p>
           <h1>Systems that take work off your team&apos;s hands.</h1>
-          <p className="lead">Four services that often work together: a platform, the automation behind it, the search visibility in front of it and, where it helps, AI inside it.</p>
+          <p className="lead">Six services that often work together: websites and landing pages, business platforms and custom systems, the automation behind them, the search visibility in front of them and, where it helps, AI inside them.</p>
         </div>
       </section>
 
@@ -33,6 +34,11 @@ export default function ServicesPage() {
                 ))}
               </ul>
               <p className="price">From <strong>{service.from}</strong></p>
+              <p>
+                <Link href={`/services/${service.slug}`} className="text-link">
+                  Service details <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+              </p>
             </article>
           ))}
         </div>

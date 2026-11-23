@@ -3,7 +3,7 @@ import { site } from "@/lib/site"
 export const faq = [
   {
     q: "What does Muhscience Tech Labs do?",
-    a: "We design, build and run custom business systems: web platforms and portals, process automation and integrations, technical SEO and performance, and practical AI features inside your systems.",
+    a: "We design, build and run websites, custom business systems and web platforms: landing pages, ERP, POS, inventory, client portals, bookings, payments and documents, plus process automation, technical SEO and practical AI features inside your systems.",
   },
   {
     q: "Who will I be working with?",
@@ -11,7 +11,7 @@ export const faq = [
   },
   {
     q: "How much does a project cost?",
-    a: "Starting prices are on the Services page: business web platforms from KES 45,000, automation from KES 80,000, technical SEO from KES 20,000 a month and applied AI from KES 100,000. Every project gets a written quote after a short discovery call.",
+    a: "Starting prices are on the Services page: websites and landing pages from KES 10,000, custom business systems from KES 150,000, business web platforms from KES 45,000, automation from KES 80,000, technical SEO from KES 20,000 a month and applied AI from KES 100,000. Every project gets a written quote after a short discovery call.",
   },
   {
     q: "How long does a project take?",

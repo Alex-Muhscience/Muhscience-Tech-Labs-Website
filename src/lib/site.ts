@@ -23,6 +23,8 @@ export const site = {
 export const navigation = [
   { name: "Services", href: "/services" },
   { name: "Work", href: "/work" },
+  { name: "Process", href: "/process" },
+  { name: "Insights", href: "/insights" },
   { name: "About", href: "/about" },
   { name: "FAQ", href: "/faq" },
 ] as const

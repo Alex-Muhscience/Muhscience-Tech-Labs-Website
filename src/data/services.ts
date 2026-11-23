@@ -9,12 +9,28 @@ export interface Service {
 
 export const services: Service[] = [
   {
+    slug: "websites-landing-pages",
+    title: "Websites and landing pages",
+    summary:
+      "A fast, clear website for portfolios, landing pages and small businesses: designed, built and launched without the cost of a full platform.",
+    from: "KES 10,000",
+    includes: ["Landing pages", "Portfolio and brochure websites", "Contact and enquiry forms", "Basic on-page SEO", "Fast, mobile-friendly builds"],
+  },
+  {
     slug: "web-platforms",
     title: "Business web platforms",
     summary:
-      "Corporate websites, client portals and the internal systems behind them: admin dashboards, bookings, payments and generated documents, built to be fast, secure and easy to run.",
+      "Client portals, dashboards and the internal systems behind them: bookings, payments, generated documents and integrations, built to be fast, secure and easy to run.",
     from: "KES 45,000",
-    includes: ["Corporate websites", "Client portals and dashboards", "Admin and operational systems", "Payments: M-Pesa, Paystack and card"],
+    includes: ["Client portals and dashboards", "Admin and operational systems", "Bookings and payments", "Generated documents and integrations"],
+  },
+  {
+    slug: "custom-business-systems",
+    title: "Custom business systems",
+    summary:
+      "ERP, POS, inventory, CRM and the operational systems behind them: stock, sales, approvals, reporting and integrations built around how your business actually runs.",
+    from: "KES 150,000",
+    includes: ["ERP and inventory systems", "POS and sales systems", "CRM and client management", "Reporting and admin dashboards", "Integrations with payments and existing tools"],
   },
   {
     slug: "automation",
@@ -43,8 +59,32 @@ export const services: Service[] = [
 ]
 
 export const process = [
-  { step: "Discovery", time: "1–2 weeks", text: "We map the problem, the people involved and what success looks like, then agree scope, timeline and a written quote." },
-  { step: "Design and architecture", time: "2–3 weeks", text: "Screens, data model and architecture, reviewed with you before any build starts, with security designed in from the first schema." },
-  { step: "Build and test", time: "4–12 weeks", text: "Short cycles with working previews you can click through, automated tests, and every release checked before it reaches your users." },
-  { step: "Launch and support", time: "1–2 weeks", text: "Deployment, training and documentation, then maintenance and improvements on a plan agreed with you." },
+  {
+    step: "Discovery",
+    time: "1–2 weeks",
+    text: "We map the problem, the people involved and what success looks like, then agree scope, timeline and a written quote.",
+    deliverables: ["Project brief", "Success criteria", "Written quote", "Timeline and scope"],
+    questions: ["Who uses the system day to day?", "What does success look like in 90 days?", "What already exists today?"],
+  },
+  {
+    step: "Design and architecture",
+    time: "2–3 weeks",
+    text: "Screens, data model and architecture, reviewed with you before any build starts, with security designed in from the first schema.",
+    deliverables: ["User flows and screen plans", "Data model", "Architecture notes", "Security and access decisions"],
+    questions: ["Which roles need access?", "What data must be protected?", "Which integrations are required?"],
+  },
+  {
+    step: "Build and test",
+    time: "4–12 weeks",
+    text: "Short cycles with working previews you can click through, automated tests, and every release checked before it reaches your users.",
+    deliverables: ["Working previews", "Automated tests", "Payment and integration checks", "Release checklist"],
+    questions: ["Can users complete the core task?", "What happens when a payment callback repeats?", "How will we know it is working?"],
+  },
+  {
+    step: "Launch and support",
+    time: "1–2 weeks",
+    text: "Deployment, training and documentation, then maintenance and improvements on a plan agreed with you.",
+    deliverables: ["Deployment", "Admin training", "Documentation", "Monitoring, backups and support plan"],
+    questions: ["Who owns the accounts and domains?", "How will issues be reported?", "What should the ongoing plan cover?"],
+  },
 ]

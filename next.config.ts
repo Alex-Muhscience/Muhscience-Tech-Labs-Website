@@ -8,7 +8,6 @@ const moved: [string, string][] = [
   ["/webinars", "/"],
   ["/blog", "/"],
   ["/blog/:path*", "/"],
-  ["/insights", "/"],
   ["/techinsights", "/"],
   ["/careers", "/about"],
   ["/auth/:path*", "/"],

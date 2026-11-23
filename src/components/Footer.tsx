@@ -17,7 +17,7 @@ export function Footer() {
             <h2>Services</h2>
             <ul>
               {services.map((service) => (
-                <li key={service.slug}><Link href={`/services#${service.slug}`}>{service.title}</Link></li>
+                <li key={service.slug}><Link href={`/services/${service.slug}`}>{service.title}</Link></li>
               ))}
             </ul>
           </div>

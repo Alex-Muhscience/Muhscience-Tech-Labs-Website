@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Bot, Check, Gauge, LayoutDashboard, ShieldCheck, Workflow, Wrench, UserRound, Handshake } from "lucide-react"
+import { ArrowRight, Bot, Check, Database, Gauge, Globe, LayoutDashboard, ShieldCheck, Workflow, Wrench, UserRound, Handshake } from "lucide-react"
 import { CtaBand } from "@/components/CtaBand"
 import { SectionHead } from "@/components/SectionHead"
 import { WorkCard } from "@/components/WorkCard"
@@ -8,7 +8,7 @@ import { process, services } from "@/data/services"
 import { work } from "@/data/work"
 import { site } from "@/lib/site"
 
-const serviceIcons = { "web-platforms": LayoutDashboard, automation: Workflow, "technical-seo": Gauge, "applied-ai": Bot } as const
+const serviceIcons = { "websites-landing-pages": Globe, "web-platforms": LayoutDashboard, "custom-business-systems": Database, automation: Workflow, "technical-seo": Gauge, "applied-ai": Bot } as const
 
 const promises = [
   { icon: UserRound, title: "One accountable owner", text: "You deal with the person who designs, builds and runs your system, from the first call to production support." },
@@ -35,8 +35,8 @@ export default function HomePage() {
               your operations, not the other way round.
             </h1>
             <p className="lead">
-              We design, build and run custom web platforms, automation and technical SEO for growing organisations,
-              from the first conversation to the production server.
+              We design, build and run websites, business platforms, custom systems, automation, technical SEO and applied AI
+              for growing organisations, from the first conversation to the production server.
             </p>
             <div className="actions">
               <Link href="/contact" className="button button-accent">Start a project <ArrowRight size={16} aria-hidden="true" /></Link>
@@ -64,14 +64,14 @@ export default function HomePage() {
           <SectionHead
             id="services-title"
             kicker="What we do"
-            title="Four services, one goal: systems that save you time."
+            title="Six services, one goal: systems that save you time."
             note="Every project starts with a discovery call and a written quote. Prices below are starting points."
           />
-          <div className="grid-4">
+          <div className="grid-3">
             {services.map((service) => {
               const Icon = serviceIcons[service.slug as keyof typeof serviceIcons]
               return (
-                <Link key={service.slug} href={`/services#${service.slug}`} className="card card-link reveal">
+                <Link key={service.slug} href={`/services/${service.slug}`} className="card card-link reveal">
                   <span className="card-icon"><Icon size={22} aria-hidden="true" /></span>
                   <h3>{service.title}</h3>
                   <p>{service.summary}</p>

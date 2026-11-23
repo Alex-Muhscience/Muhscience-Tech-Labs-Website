@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
 import type { WorkItem } from "@/data/work"
 
@@ -32,13 +33,16 @@ export function WorkCard({ item, detailed = false }: { item: WorkItem; detailed?
           {item.stack.map((tool) => <li key={tool}>{tool}</li>)}
         </ul>
         <p className="work-links">
+          <Link href={`/work/${item.slug}`} className="text-link">
+            Case study <ArrowRight size={15} aria-hidden="true" />
+          </Link>
           {item.live && (
             <a href={item.live} className="text-link" target="_blank" rel="noopener noreferrer">
               {item.status === "open-source" ? "Repository" : "Live site"} <ArrowUpRight size={15} aria-hidden="true" />
             </a>
           )}
           <a href={item.caseStudy} className="text-link" target="_blank" rel="noopener noreferrer">
-            Full case study <ArrowRight size={15} aria-hidden="true" />
+            Extended story <ArrowUpRight size={15} aria-hidden="true" />
           </a>
         </p>
       </div>
