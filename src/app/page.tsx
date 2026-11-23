@@ -19,6 +19,7 @@ const promises = [
 
 export default function HomePage() {
   const live = work.filter((item) => item.status === "live").slice(0, 4)
+  const showcase = live.filter((item) => item.image).slice(0, 2)
 
   return (
     <>
@@ -48,12 +49,26 @@ export default function HomePage() {
               <li><Check size={16} aria-hidden="true" /> Based in Nairobi, working with clients remotely</li>
             </ul>
           </div>
-          <figure className="founder">
-            <div className="founder-photo">
-              <Image src="/images/profile.jpg" alt={`${site.founder}, founder of ${site.name}`} width={800} height={1000} sizes="22rem" priority />
+          <figure className="showcase">
+            <div className="showcase-stack">
+              {showcase.map((item, index) => item.image && (
+                <div key={item.slug} className="browser" data-layer={index === 0 ? "front" : "back"}>
+                  <div className="browser-bar" aria-hidden="true"><i /><i /><i /><span>{item.image.address}</span></div>
+                  <Image
+                    src={item.image.src}
+                    alt={index === 0 ? item.image.alt : ""}
+                    width={1280}
+                    height={720}
+                    sizes="(min-width: 60rem) 30rem, 92vw"
+                    priority={index === 0}
+                  />
+                </div>
+              ))}
             </div>
             <figcaption>
-              <p><strong>{site.founder}</strong><span>Founder and lead engineer</span></p>
+              <span className="showcase-dot" aria-hidden="true" />
+              Client platforms we built, live in production.{" "}
+              <Link href="/work">See the work</Link>
             </figcaption>
           </figure>
         </div>

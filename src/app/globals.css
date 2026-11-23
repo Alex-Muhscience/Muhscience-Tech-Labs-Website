@@ -526,50 +526,77 @@ select {
   color: #7be0ae;
 }
 
-/* The founder card in the hero. */
-.founder {
+/* The hero showcase: two live client platforms, layered in browser frames. */
+.showcase {
   display: grid;
-  gap: 1rem;
-  justify-self: center;
-  width: min(100%, 22rem);
-  padding: 1rem;
-  border: 1px solid rgb(255 255 255 / 0.22);
-  border-radius: var(--radius-card);
-  background: rgb(255 255 255 / 0.08);
-  backdrop-filter: blur(6px);
-}
-
-.founder-photo {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-.founder-photo img {
+  gap: 1.25rem;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 22%;
 }
 
-.founder p {
-  display: grid;
-  line-height: 1.35;
+.showcase-stack {
+  position: relative;
+  padding: 0 0 2.75rem 2.5rem;
 }
 
-.founder strong {
-  font-size: 1.0625rem;
+.showcase .browser {
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 24px 60px -20px rgb(0 0 0 / 0.55);
 }
 
-.founder span {
+.showcase .browser img {
+  aspect-ratio: 16 / 9;
+}
+
+.showcase .browser[data-layer="front"] {
+  position: relative;
+  z-index: 1;
+}
+
+.showcase .browser[data-layer="back"] {
+  position: absolute;
+  inset: auto 2.5rem 0 0;
+  z-index: 0;
+  opacity: 0.9;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .showcase .browser[data-layer="front"] {
+    animation: rise 700ms 200ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+}
+
+.showcase figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.5rem;
   color: #d2e2f2;
   font-size: 0.875rem;
 }
 
+.showcase figcaption a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.showcase-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #7be0ae;
+  box-shadow: 0 0 0 4px rgb(123 224 174 / 0.2);
+}
+
 @media (min-width: 60rem) {
   .hero-grid {
-    grid-template-columns: minmax(0, 1fr) 21rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 30rem);
     gap: 4rem;
   }
 }
@@ -1501,10 +1528,13 @@ select {
   grid-row: 1 / span 2;
 }
 
-/* Phones: a smaller founder card under the hero text. */
+/* Phones: one platform under the hero text, no layering. */
 @media (max-width: 59.99rem) {
-  .founder {
-    justify-self: start;
-    width: min(100%, 16rem);
+  .showcase-stack {
+    padding: 0;
+  }
+
+  .showcase .browser[data-layer="back"] {
+    display: none;
   }
 }
